@@ -1,12 +1,23 @@
 Package: walkboutr
-Title: What the Package Does (One Line, Title Case)
+Title: Generate Walk Bouts from GPS and Accelerometry Data
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Lauren", "Wilner", 
+    email = "wilnerl@uw.edu", 
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0003-4439-3734"))
+Description: Generates walk bouts from GPS and accelerometry data. 
+    A walk bout is a period of activity with accelerometer movement matching the 
+    patterns of walking with corresponding GPS measurements that confirm travel. 
+    The inputs of the walkboutr package are individual-level accelerometry and GPS 
+    data. The outputs of the model are walk bouts with corresponding times, 
+    duration, and summary statistics on the sample population, which collapse all 
+    personally identifying information. These bouts can be used to measure walking 
+    both as an outcome of a change to the built environment or as a predictor of 
+    health outcomes such as a cardioprotective behavior. 
+License: BSD_3_clause + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+URL: https://github.com/rwalkbout/walkboutr 
+BugReports: https://github.com/rwalkbout/walkboutr/issues

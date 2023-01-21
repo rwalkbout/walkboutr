@@ -1,3 +1,12 @@
+#' Convert GPS data into travel instances
+#'
+#' @param gps_data GPS data
+#'
+#' @return A data frame of GPS data, unidentified.
+#' @export
+#'
+#' @examples
+#' x <- process_gps_data_into_travel_instances(gps_data)
 process_gps_data_into_travel_instances <- function(gps_data) {
   # TODO:
   #  - Define input schema and validate inputs match.
