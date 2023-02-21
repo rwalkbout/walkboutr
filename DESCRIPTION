@@ -21,3 +21,18 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 URL: https://github.com/rwalkbout/walkboutr 
 BugReports: https://github.com/rwalkbout/walkboutr/issues
+Config/testthat/edition: 3
+Imports: 
+    data.table,
+    dplyr,
+    geosphere,
+    here,
+    hms,
+    latticeExtra,
+    lubridate,
+    lwgeom,
+    measurements,
+    Rcpp,
+    sf,
+    sp,
+    testthat
