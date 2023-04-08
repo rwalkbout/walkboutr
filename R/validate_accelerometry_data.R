@@ -43,7 +43,7 @@ validate_accelerometry_data <- function(accelerometry_counts){
     if(any(is.na(accelerometry_counts$activity_counts))){
       stop(paste0("Error: activity counts contain NAs"))
     }
-    if(!all(accelerometry_counts$activity_counts > 0)){
+    if(!all(accelerometry_counts$activity_counts >= 0)){
       stop(paste0("Error: negative activity counts in data."))
     }
 }

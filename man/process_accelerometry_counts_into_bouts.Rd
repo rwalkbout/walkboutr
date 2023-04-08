@@ -4,7 +4,10 @@
 \alias{process_accelerometry_counts_into_bouts}
 \title{Convert accelerometry counts into bouts of physical activity}
 \usage{
-process_accelerometry_counts_into_bouts(accelerometry_counts)
+process_accelerometry_counts_into_bouts(
+  accelerometry_counts,
+  active_counts_per_epoch_min
+)
 }
 \arguments{
 \item{accelerometry_counts}{Raw accelerometry data with the expected schema.}

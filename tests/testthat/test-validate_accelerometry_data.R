@@ -1,13 +1,3 @@
-build_accelerometry_data <- function(){
-  start <- as.POSIXct('2012-04-07',tz="UTC")
-  end <- as.POSIXct('2012-04-08',tz="UTC")
-  step <- 30 # by default, the seq function will treat this as seconds
-  time <- seq(start, end, by=step)
-  activity_counts <- (1:length(time))
-  accelerometry_counts <- data.frame(time = time, activity_counts = activity_counts)
-  return(accelerometry_counts)
-}
-
 test_that("happy path", {
   acc <- build_accelerometry_data()
   expect_no_error(
@@ -73,7 +63,7 @@ test_that("activity counts has NAs", {
 
 test_that("activity counts has negative values", {
   acc <- build_accelerometry_data()
-  acc$activity_counts[1] <- -1
+  acc$activity_counts[1] <- -5
   expect_error(
     validate_accelerometry_data(acc)
   )
