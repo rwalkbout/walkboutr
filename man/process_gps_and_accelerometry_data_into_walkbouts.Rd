@@ -18,6 +18,3 @@ A data frame of walk bouts
 \description{
 Convert accelerometry and GPS data into walk bouts
 }
-\examples{
-x <- process_gps_and_accelerometry_data_into_walkbouts(gps_data, acc_data)
-}

@@ -6,8 +6,6 @@
 #' @return A data frame of walk bouts and summary statistics.
 #' @export
 #'
-#' @examples
-#' x <- process_bouts_and_travel_instances_into_walkbouts(bouts, travel_instances)
 process_bouts_and_travel_instances_into_walkbouts <- function(bouts, travel_instances){
   # TODO:
   #  - Define output schema and write some validation
