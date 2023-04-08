@@ -15,6 +15,3 @@ A data frame of GPS data, unidentified.
 \description{
 Convert GPS data into travel instances
 }
-\examples{
-x <- process_gps_data_into_travel_instances(gps_data)
-}

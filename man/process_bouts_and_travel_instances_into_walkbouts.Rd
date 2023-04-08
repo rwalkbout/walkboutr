@@ -18,6 +18,3 @@ A data frame of walk bouts and summary statistics.
 \description{
 Convert bouts and travel instances into walk bouts
 }
-\examples{
-x <- process_bouts_and_travel_instances_into_walkbouts(bouts, travel_instances)
-}
