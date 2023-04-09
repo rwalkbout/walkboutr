@@ -33,6 +33,7 @@ Imports:
     lwgeom,
     measurements,
     Rcpp,
+    RcppRoll,
     sf,
     sp,
     testthat
