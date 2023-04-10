@@ -1,1 +1,2 @@
-ACTIVITY_LEVELS <- list(inactive = "inactive", low_active = "low_active", active = "active")
+epoch_length <- 30
+non_wearing_min_threshold_epochs <- 40
