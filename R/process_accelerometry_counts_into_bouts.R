@@ -17,9 +17,12 @@ process_accelerometry_counts_into_bouts <- function(accelerometry_counts, active
   # Step 2: Identify bouts
     accelerometry_counts <- identify_bouts(accelerometry_counts)
   # Step 3: Identify nonwearing periods
-    # TODO: Add in complete days logic:
-    # complete days are defined as 1) having at least one place record in the travel diary and 2) accelerometer wearing time >=8hrs
     accelerometry_counts <- identify_non_wearing_periods(accelerometry_counts)
+  # Step 4: Identify complete days
+    accelerometry_counts <- identify_complete_days(accelerometry_counts)
+
+    # TODO:
+    # Add tests for complete days and nonwearing
 }
 
 run_length_encode <- function(x){
@@ -114,4 +117,16 @@ identify_non_wearing_periods <- function(accelerometry_counts){
   return(accelerometry_counts)
 }
 
-
+identify_complete_days <- function(accelerometry_counts){
+  max_non_wearing_per_day <- 24-min_wearing_hours_per_day
+  complete_days_df <- accelerometry_counts %>%
+    dplyr::mutate(date = as_date(time)) %>%
+    group_by(date) %>%
+    summarise(total_non_wearing_epochs_whole_day = sum(non_wearing)) %>%
+    mutate(complete_day = total_non_wearing_epochs_whole_day <= max_non_wearing_per_day) %>%
+    select(-c(total_non_wearing_epochs_whole_day))
+  accelerometry_counts <- accelerometry_counts %>%
+    mutate(date = as_date(time)) %>%
+    left_join(complete_days_df, by = c("date")) %>%
+    select(-c("date"))
+}
