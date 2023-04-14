@@ -17,6 +17,8 @@ process_accelerometry_counts_into_bouts <- function(accelerometry_counts, active
   # Step 2: Identify bouts
     accelerometry_counts <- identify_bouts(accelerometry_counts)
   # Step 3: Identify nonwearing periods
+    # TODO: Add in complete days logic:
+    # complete days are defined as 1) having at least one place record in the travel diary and 2) accelerometer wearing time >=8hrs
     accelerometry_counts <- identify_non_wearing_periods(accelerometry_counts)
 }
 
