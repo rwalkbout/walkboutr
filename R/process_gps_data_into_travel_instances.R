@@ -17,12 +17,8 @@ process_gps_data_into_travel_instances <- function(gps_data) {
 
   # TODO:
   #  - write tests for gps data validation
-  #  - Write the processing code in the middle
+  #  - write tests for gps epoch time assignment
   #  - Need to account for the fact that sometimes gps data will have smaller time increments than acc data
-
-
-  # TODO: Question - can we validate that it is in km/h?
-
 }
 
 validate_gps_data <- function(gps_data){
