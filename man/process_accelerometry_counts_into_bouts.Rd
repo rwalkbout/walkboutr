@@ -6,7 +6,8 @@
 \usage{
 process_accelerometry_counts_into_bouts(
   accelerometry_counts,
-  active_counts_per_epoch_min
+  active_counts_per_epoch_min,
+  epoch_length
 )
 }
 \arguments{

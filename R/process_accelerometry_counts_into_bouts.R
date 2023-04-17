@@ -28,10 +28,10 @@ process_accelerometry_counts_into_bouts <- function(accelerometry_counts, active
 run_length_encode <- function(x){
   # running a normal run length encoding and adding some extra variables for use in calculations
   rle_df <- with(rle(as.numeric(x)),
-                 data.frame(tibble("values" = replace_na(values, replace = 0),
+                 data.frame(dplyr::tibble("values" = tidyr::replace_na(values, replace = 0),
                                    "lengths" = lengths,
                                    "cumul_length" = cumsum(lengths),
-                                   "begin" = replace_na(lag(cumul_length) + 1, replace = 1),
+                                   "begin" = tidyr::replace_na(lag(cumul_length) + 1, replace = 1),
                                    "end" = cumul_length,
                                    "duration" = end - begin + 1)))
   return(rle_df)
@@ -120,13 +120,13 @@ identify_non_wearing_periods <- function(accelerometry_counts){
 identify_complete_days <- function(accelerometry_counts){
   max_non_wearing_per_day <- 24-min_wearing_hours_per_day
   complete_days_df <- accelerometry_counts %>%
-    dplyr::mutate(date = as_date(time)) %>%
-    group_by(date) %>%
-    summarise(total_non_wearing_epochs_whole_day = sum(non_wearing)) %>%
-    mutate(complete_day = total_non_wearing_epochs_whole_day <= max_non_wearing_per_day) %>%
-    select(-c(total_non_wearing_epochs_whole_day))
+    dplyr::mutate(date = lubridate::as_date(time)) %>%
+    dplyr::group_by(date) %>%
+    dplyr::summarise(total_non_wearing_epochs_whole_day = sum(non_wearing)) %>%
+    dplyr::mutate(complete_day = total_non_wearing_epochs_whole_day <= max_non_wearing_per_day) %>%
+    dplyr::select(-c(total_non_wearing_epochs_whole_day))
   accelerometry_counts <- accelerometry_counts %>%
-    mutate(date = as_date(time)) %>%
-    left_join(complete_days_df, by = c("date")) %>%
-    select(-c("date"))
+    dplyr::mutate(date = lubridate::as_date(time)) %>%
+    dplyr::left_join(complete_days_df, by = c("date")) %>%
+    dplyr::select(-c("date"))
 }

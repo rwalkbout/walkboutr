@@ -13,5 +13,11 @@ process_gps_data_into_travel_instances(gps_data)
 A data frame of GPS data, unidentified.
 }
 \description{
-Convert GPS data into travel instances
+The input schema for the accelerometry data is \code{time} and \code{activity_counts}.
+\itemize{
+\item \code{time} should be a column in date-time format, in the UTC time zone, with no null values.
+\item \code{latitude} should be a numeric, non-null latitude coordinate between -90 and 90
+\item \code{longitude} should be a numeric, non-null longitude coordinate between -180 and 180
+\item \code{speed} should be a numeric, non-null value in kilometers per hour
+}
 }

@@ -34,6 +34,9 @@ Imports:
     measurements,
     Rcpp,
     RcppRoll,
+    readr,
     sf,
     sp,
-    testthat
+    testthat,
+    tidyr,
+    tinytest

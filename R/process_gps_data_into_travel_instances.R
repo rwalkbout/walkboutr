@@ -79,15 +79,16 @@ validate_gps_data <- function(gps_data){
 
 }
 
-assign_epoch_start_time <- function(gps_date_time, epoch_length){
+assign_epoch_start_time <- function(gps_data, epoch_length){
   # select the closest 30 second increment to assign epoch start time
   gps_data <- gps_data %>%
-    mutate(time = as.numeric(time)) %>%
-    mutate(dx_n = (-1*time)%%epoch_length) %>%
-    mutate(dx_p = time%%epoch_length) %>%
-    mutate(time = ifelse(dx_n<dx_p, time+dx_n, time-dx_p)) %>%
-    mutate(time = as_datetime(time, tz="UTC")) %>%
-    select(-c(dx_n, dx_p))
+    dplyr::mutate(time = as.numeric(time)) %>%
+    dplyr::mutate(dx_n = (-1*time)%%epoch_length) %>%
+    dplyr::mutate(dx_p = time%%epoch_length) %>%
+    dplyr::mutate(time = ifelse(dx_n<dx_p, time+dx_n, time-dx_p)) %>%
+    dplyr::mutate(time = lubridate::as_datetime(time, tz="UTC")) %>%
+    dplyr::select(-c(dx_n, dx_p))
+  return(gps_data)
 }
 
 
