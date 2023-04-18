@@ -21,8 +21,7 @@ process_accelerometry_counts_into_bouts <- function(accelerometry_counts, active
   # Step 4: Identify complete days
     accelerometry_counts <- identify_complete_days(accelerometry_counts)
 
-    # TODO:
-    # Add tests for complete days and nonwearing
+return(bouts)
 }
 
 run_length_encode <- function(x){

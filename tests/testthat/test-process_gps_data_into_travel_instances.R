@@ -1,12 +1,3 @@
-test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
-})
-
-
-
-
-
-
 # Overall data
 test_that("happy path", {
   gps <- get_gps_data()

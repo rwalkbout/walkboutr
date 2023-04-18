@@ -11,14 +11,18 @@
 #' @return A data frame of GPS data, unidentified.
 #' @export
 #'
-process_gps_data_into_travel_instances <- function(gps_data) {
+
+    # TODO:
+    #  - Need to account for the fact that sometimes gps data will have smaller time increments than acc data
+
+process_gps_data_into_gps_epochs <- function(gps_data) {
   print('processing gps data into travel instances')
   validate_gps_data(gps_data)
-
-  # TODO:
-  #  - write tests for gps data validation
-  #  - write tests for gps epoch time assignment
-  #  - Need to account for the fact that sometimes gps data will have smaller time increments than acc data
+  gps_epochs <- assign_epoch_start_time(gps_data, epoch_length)
+  if((length(unique(gps_epochs$time))) != length(gps_epochs)){
+    stop(paste0("Error: Logic not yet implemented to handle multiple GPS points per epoch."))
+  }
+  return(gps_epochs)
 }
 
 validate_gps_data <- function(gps_data){
@@ -55,7 +59,6 @@ validate_gps_data <- function(gps_data){
   if(any(gps_data$latitude < -90 | gps_data$latitude > 90)){
     stop(paste0("Error: latitude column contains invalid latitude coordinates"))
   }
-
   if(!(class(gps_data$longitude) %in% c("integer", "numeric"))){
     stop(paste0("Error: longitude column is not class integer or numeric."))
   }
