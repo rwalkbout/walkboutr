@@ -15,11 +15,11 @@
     # TODO:
     #  - Need to account for the fact that sometimes gps data will have smaller time increments than acc data
 
-process_gps_data_into_gps_epochs <- function(gps_data) {
+process_gps_data_into_travel_instances <- function(gps_data) {
   print('processing gps data into travel instances')
   validate_gps_data(gps_data)
   gps_epochs <- assign_epoch_start_time(gps_data, epoch_length)
-  if((length(unique(gps_epochs$time))) != length(gps_epochs)){
+  if((length(unique(gps_epochs$time))) != nrow(gps_epochs)){
     stop(paste0("Error: Logic not yet implemented to handle multiple GPS points per epoch."))
   }
   return(gps_epochs)
@@ -84,14 +84,14 @@ validate_gps_data <- function(gps_data){
 
 assign_epoch_start_time <- function(gps_data, epoch_length){
   # select the closest 30 second increment to assign epoch start time
-  gps_data <- gps_data %>%
+  gps_epochs <- gps_data %>%
     dplyr::mutate(time = as.numeric(time)) %>%
     dplyr::mutate(dx_n = (-1*time)%%epoch_length) %>%
     dplyr::mutate(dx_p = time%%epoch_length) %>%
     dplyr::mutate(time = ifelse(dx_n<dx_p, time+dx_n, time-dx_p)) %>%
     dplyr::mutate(time = lubridate::as_datetime(time, tz="UTC")) %>%
     dplyr::select(-c(dx_n, dx_p))
-  return(gps_data)
+  return(gps_epochs)
 }
 
 

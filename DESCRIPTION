@@ -37,6 +37,7 @@ Imports:
     readr,
     sf,
     sp,
+    stats,
     testthat,
     tidyr,
     tinytest

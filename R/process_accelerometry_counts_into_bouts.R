@@ -19,7 +19,7 @@ process_accelerometry_counts_into_bouts <- function(accelerometry_counts, active
   # Step 3: Identify nonwearing periods
     accelerometry_counts <- identify_non_wearing_periods(accelerometry_counts)
   # Step 4: Identify complete days
-    accelerometry_counts <- identify_complete_days(accelerometry_counts)
+    bouts <- identify_complete_days(accelerometry_counts)
 
 return(bouts)
 }
@@ -27,12 +27,11 @@ return(bouts)
 run_length_encode <- function(x){
   # running a normal run length encoding and adding some extra variables for use in calculations
   rle_df <- with(rle(as.numeric(x)),
-                 data.frame(dplyr::tibble("values" = tidyr::replace_na(values, replace = 0),
-                                   "lengths" = lengths,
-                                   "cumul_length" = cumsum(lengths),
-                                   "begin" = tidyr::replace_na(lag(cumul_length) + 1, replace = 1),
-                                   "end" = cumul_length,
-                                   "duration" = end - begin + 1)))
+                 data.frame(dplyr::tibble(
+                   "lengths"  = lengths,
+                   "values" = values,
+                   "end" = cumsum(lengths),
+                   "begin" = end-lengths)))
   return(rle_df)
 }
 
@@ -101,7 +100,7 @@ identify_non_wearing_periods <- function(accelerometry_counts){
   inactive_rle <- run_length_encode(accelerometry_counts$inactive)
 
   non_wearing <- inactive_rle %>%
-    dplyr::filter(values == 1 & duration >= non_wearing_min_threshold_epochs)
+    dplyr::filter(values == 1 & lengths >= non_wearing_min_threshold_epochs)
 
   if(nrow(non_wearing) == 0){
     return(accelerometry_counts) }

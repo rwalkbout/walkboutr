@@ -5,12 +5,12 @@
 \alias{process_bouts_and_travel_instances_into_walkbouts}
 \title{Convert bouts and travel instances into walk bouts}
 \usage{
-process_bouts_and_travel_instances_into_walkbouts(bouts, travel_instances)
+process_bouts_and_travel_instances_into_walkbouts(bouts, gps_epochs)
 }
 \arguments{
 \item{bouts}{Accelerometry bouts}
 
-\item{travel_instances}{GPS travel instances}
+\item{gps_epochs}{GPS epochs}
 }
 \value{
 A data frame of walk bouts and summary statistics.

@@ -35,10 +35,10 @@ validate_accelerometry_data <- function(accelerometry_counts){
     if(!(lubridate::tz(accelerometry_counts$time) == "UTC")){
       stop(paste0("Error: time zone provided is not UTC."))
     }
-    if((length(unique(accelerometry_counts$time))) != length(accelerometry_counts)){
+    if((length(unique(accelerometry_counts$time))) != nrow(accelerometry_counts)){
       stop(paste0("Error: times are not unique."))
     }
-    if(length(unique(diff(accelerometry_counts$time)!=1))){
+    if(length(unique(diff(accelerometry_counts$time)))!=1){
       stop(paste0("Error: Unequal time intervals."))
     }
 

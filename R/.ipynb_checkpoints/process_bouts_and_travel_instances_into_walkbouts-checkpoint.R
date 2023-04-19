@@ -16,14 +16,14 @@
   # make this work by subject and concat subjects
   # add in logic about complete days
   # clean up functions, write docs
+  # remove bout label 0
 
 process_bouts_and_travel_instances_into_walkbouts <- function(bouts, gps_epochs){
   print('processing bouts and gps_epochs')
 
   walk_bouts <- gps_epochs %>%
     merge(bouts, by = "time", all=TRUE) %>%
-    dplyr::arrange(time) %>%
-    dplyr::mutate(bout = ifelse(bout==0,NA,bout)) # replace 0s with NAs since they arent bouts
+    dplyr::arrange(time)
 
   bout_radii <- generate_bout_radius(walk_bouts) # returns df: bout, bout_radius (numer)
   gps_completeness <- evaluate_gps_completeness(walk_bouts) # returns df: bout, complete_gps (T/F)
@@ -39,7 +39,7 @@ outlier_gps_points <- function(lat_long){
     sp::spDists(., longlat = TRUE) %>%
     colSums()
   points_to_keep <- distance_sum < quantile(distance_sum, dwellbout_radii_quantile)[[1]][1]
-  lat_long <- cbind(lat_long, points_to_keep) %>% dplyr::filter(points_to_keep==TRUE)
+  lat_long <- lat_long %>% filter(points_to_keep)
   return(lat_long)
 }
 
