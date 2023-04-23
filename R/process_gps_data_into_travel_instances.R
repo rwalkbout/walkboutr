@@ -12,17 +12,12 @@
 #' @export
 #'
 
-    # TODO:
-    #  - Need to account for the fact that sometimes gps data will have smaller time increments than acc data
-      # flag with a warning but take the latest gps data point within an epoch
-        # reason: when a sat comes online, it may throw a bunch of points out and so then we will favor later points which will have more sats online
-
 process_gps_data_into_travel_instances <- function(gps_data) {
   print('processing gps data into travel instances')
   validate_gps_data(gps_data)
   gps_epochs <- assign_epoch_start_time(gps_data, epoch_length)
   if((length(unique(gps_epochs$time))) != nrow(gps_epochs)){
-    stop(paste0("Error: Logic not yet implemented to handle multiple GPS points per epoch."))
+    stop(paste0("Warning: You have smaller GPS data intervals than accelerometry data intervals."))
   }
   return(gps_epochs)
 }
@@ -87,12 +82,14 @@ validate_gps_data <- function(gps_data){
 assign_epoch_start_time <- function(gps_data, epoch_length){
   # select the closest 30 second increment to assign epoch start time
   gps_epochs <- gps_data %>%
-    dplyr::mutate(time = as.numeric(time)) %>%
-    dplyr::mutate(dx_n = (-1*time)%%epoch_length) %>%
-    dplyr::mutate(dx_p = time%%epoch_length) %>%
-    dplyr::mutate(time = ifelse(dx_n<dx_p, time+dx_n, time-dx_p)) %>%
-    dplyr::mutate(time = lubridate::as_datetime(time, tz="UTC")) %>%
-    dplyr::select(-c(dx_n, dx_p))
+    dplyr::mutate(epoch_time = as.numeric(time)) %>%
+    dplyr::mutate(dx_n = (-1*epoch_time)%%epoch_length) %>%
+    dplyr::mutate(dx_p = epoch_time%%epoch_length) %>%
+    dplyr::mutate(epoch_time = ifelse(dx_n<dx_p, epoch_time+dx_n, epoch_time-dx_p)) %>%
+    dplyr::group_by(epoch_time) %>%
+    dplyr::filter(as.numeric(time) == max(as.numeric(time))) %>%
+    dplyr::mutate(time = lubridate::as_datetime(epoch_time, tz="UTC")) %>%
+    dplyr::select(-c(dx_n, dx_p, epoch_time))
   return(gps_epochs)
 }
 

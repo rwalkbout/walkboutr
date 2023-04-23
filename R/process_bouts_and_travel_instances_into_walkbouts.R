@@ -11,7 +11,6 @@
 # TODO
   # make this work by subject and concat subjects and design df to return
   # clean up functions, write docs
-  # gps short interval handling
   # kangs schema stuff
   # what do we want to return?
 
