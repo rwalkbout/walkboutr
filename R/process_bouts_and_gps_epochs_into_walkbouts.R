@@ -1,4 +1,4 @@
-#' Convert bouts and travel instances into walk bouts
+#' Convert bouts and gps epochs into walk bouts
 #'
 #' @param bouts Accelerometry bouts
 #' @param gps_epochs GPS epochs
@@ -14,7 +14,7 @@
   # kangs schema stuff
   # what do we want to return?
 
-process_bouts_and_travel_instances_into_walkbouts <- function(bouts, gps_epochs){
+process_bouts_and_gps_epochs_into_walkbouts <- function(bouts, gps_epochs){
   print('processing bouts and gps_epochs')
 
   walk_bouts <- gps_epochs %>%

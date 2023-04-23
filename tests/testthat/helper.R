@@ -45,7 +45,7 @@ get_walk_bouts <- function(){
     dplyr::select(-c("bout","non_wearing","complete_day"))
   gps_data <- get_gps_data_30()
   bouts <- process_accelerometry_counts_into_bouts(accelerometry_counts)
-  gps_epochs <- process_gps_data_into_travel_instances(gps_data)
+  gps_epochs <- process_gps_data_into_gps_epochs(gps_data)
 
   walk_bouts <- gps_epochs %>%
     merge(bouts, by = "time", all=TRUE) %>%

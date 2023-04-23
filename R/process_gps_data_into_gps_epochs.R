@@ -12,7 +12,7 @@
 #' @export
 #'
 
-process_gps_data_into_travel_instances <- function(gps_data) {
+process_gps_data_into_gps_epochs <- function(gps_data) {
   print('processing gps data into travel instances')
   validate_gps_data(gps_data)
   gps_epochs <- assign_epoch_start_time(gps_data, epoch_length)
