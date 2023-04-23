@@ -14,6 +14,8 @@
 
     # TODO:
     #  - Need to account for the fact that sometimes gps data will have smaller time increments than acc data
+      # flag with a warning but take the latest gps data point within an epoch
+        # reason: when a sat comes online, it may throw a bunch of points out and so then we will favor later points which will have more sats online
 
 process_gps_data_into_travel_instances <- function(gps_data) {
   print('processing gps data into travel instances')

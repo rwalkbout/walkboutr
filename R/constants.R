@@ -6,7 +6,7 @@ min_gps_coverage_ratio <- 0.2
 dwellbout_radii_quantile <- 0.95
 max_dwellbout_radii_ft <- 66
 min_dwellbout_obs <- 10
-max_walking_cpe <- 2863 # >2863 cpe would be non-walking. 2874 cpe? 3360 cpe?
+max_walking_cpe <- 2863
 min_walking_speed_km_h <- 2
 max_walking_speed_km_h <- 6
 
