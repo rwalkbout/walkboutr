@@ -15,10 +15,6 @@ test_that("gps outliers are being applied correctly", {
 
   # Assert that the resulting dataframe has the expected number of rows
   tinytest::expect_equal(nrow(actual), nrow(expected))
-  # Assert that the resulting dataframe has the expected latitude values
-  # tinytest::expect_identical(actual$latitude, expected$latitude)
-  # Assert that the resulting dataframe has the expected longitude values
-  # tinytest::expect_identical(actual$longitude, expected$longitude)
 
 })
 
@@ -28,6 +24,7 @@ test_that("bout radii df has bout labels and radii", {
   bout_radii <- generate_bout_radius(walk_bouts)
   expect_identical(names(bout_radii), c("bout", "bout_radius"))
 })
+
 # TODO: Test that generate_bout_radius function
 
 # test evaluate_gps_completeness

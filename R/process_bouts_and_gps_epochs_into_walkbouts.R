@@ -9,10 +9,12 @@
 
 
 # TODO
-  # make this work by subject and concat subjects and design df to return
   # clean up functions, write docs
-  # kangs schema stuff
   # what do we want to return?
+  # CRAN set up
+  # create summary function
+
+  # kangs schema stuff (later)
 
 process_bouts_and_gps_epochs_into_walkbouts <- function(bouts, gps_epochs){
   print('processing bouts and gps_epochs')
@@ -26,20 +28,14 @@ process_bouts_and_gps_epochs_into_walkbouts <- function(bouts, gps_epochs){
     return(walk_bouts)
 
   } else{
-  speed_df <- walk_bouts %>%
-    dplyr::group_by(bout) %>%
-    dplyr::summarise(median_speed = stats::median(speed))
 
   bout_radii <- generate_bout_radius(walk_bouts) # returns df: bout, bout_radius (numer)
   gps_completeness <- evaluate_gps_completeness(walk_bouts) # returns df: bout, complete_gps (T/F), speed
-  categorized_bouts <- generate_bout_category(walk_bouts, bout_radii, gps_completeness) # returns df: bout, bout_category (string)
+  walk_bouts <- generate_bout_category(walk_bouts, bout_radii, gps_completeness) # returns df: bout, bout_category, complete_days, speed
 
-  categorized_bouts <- categorized_bouts %>%
-    dplyr::left_join(speed_df, by = c("bout")) # returns df: bout, bout_category, complete_days, median_speed
   return(walk_bouts) }
+
 }
-
-
 
 
 outlier_gps_points <- function(lat_long){
@@ -159,7 +155,7 @@ generate_bout_category <- function(walk_bouts, bout_radii, gps_completeness){
   categorized_bouts <- categorized_bouts %>%
     tidyr::pivot_longer(., cols = cols, names_to="bout_category") %>%
     dplyr::filter(value) %>%
-    dplyr::select(-c("inactive","value", "speed")) %>%
+    dplyr::select(-c("inactive","value")) %>%
     unique(.)
 
   return(categorized_bouts)

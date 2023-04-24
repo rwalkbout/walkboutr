@@ -31,15 +31,11 @@ run_length_encode <- function(x){
                    "lengths"  = lengths,
                    "values" = values,
                    "end" = cumsum(lengths),
-                   "begin" = end-lengths)))
+                   "begin" = (end-lengths)+1)))
   return(rle_df)
 }
 
 identify_bouts <- function(accelerometry_counts){
-  # constants
-  active_counts_per_epoch_min <- 500
-  minimum_bout_length <- 10
-  maximum_number_consec_inactive_epochs_in_bout <- 3
 
   # Identify all epochs that are definitely not part of bouts
     # if we have 4 or more epochs where the activity level is below our activity threshold
