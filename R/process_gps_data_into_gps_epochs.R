@@ -81,6 +81,8 @@ validate_gps_data <- function(gps_data){
 
 assign_epoch_start_time <- function(gps_data, epoch_length){
   # select the closest 30 second increment to assign epoch start time
+  # if there are multiple gps data points in a given 30 second increment,
+    # takes the gps coordinates associated with the latest time
   gps_epochs <- gps_data %>%
     dplyr::mutate(epoch_time = as.numeric(time)) %>%
     dplyr::mutate(dx_n = (-1*epoch_time)%%epoch_length) %>%

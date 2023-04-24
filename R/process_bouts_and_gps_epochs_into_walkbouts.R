@@ -9,11 +9,8 @@
 
 
 # TODO
-  # clean up functions, write docs
-  # what do we want to return?
+  # write docs and examples
   # CRAN set up
-  # create summary function
-
   # kangs schema stuff (later)
 
 process_bouts_and_gps_epochs_into_walkbouts <- function(bouts, gps_epochs){
@@ -22,7 +19,7 @@ process_bouts_and_gps_epochs_into_walkbouts <- function(bouts, gps_epochs){
   walk_bouts <- gps_epochs %>%
     merge(bouts, by = "time", all=TRUE) %>%
     dplyr::arrange(time) %>%
-    dplyr::mutate(bout = ifelse(bout==0,NA,bout)) # replace 0s with NAs since they arent bouts
+    dplyr::mutate(bout = ifelse(bout==0,NA,bout))
 
   if(is.na(all(walk_bouts$bout))){
     return(walk_bouts)
