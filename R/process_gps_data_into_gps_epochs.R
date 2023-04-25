@@ -91,6 +91,7 @@ assign_epoch_start_time <- function(gps_data, epoch_length){
     dplyr::group_by(epoch_time) %>%
     dplyr::filter(as.numeric(time) == max(as.numeric(time))) %>%
     dplyr::mutate(time = lubridate::as_datetime(epoch_time, tz="UTC")) %>%
+    dplyr:: ungroup() %>%
     dplyr::select(-c(dx_n, dx_p, epoch_time))
   return(gps_epochs)
 }
