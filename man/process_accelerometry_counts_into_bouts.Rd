@@ -7,7 +7,9 @@
 process_accelerometry_counts_into_bouts(
   accelerometry_counts,
   active_counts_per_epoch_min,
-  epoch_length
+  epoch_length,
+  minimum_bout_length,
+  local_time_zone
 )
 }
 \arguments{

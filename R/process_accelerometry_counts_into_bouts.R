@@ -10,18 +10,19 @@
 #' @export
 #'
 #'
-process_accelerometry_counts_into_bouts <- function(accelerometry_counts, active_counts_per_epoch_min, epoch_length) {
+
+process_accelerometry_counts_into_bouts <- function(accelerometry_counts, active_counts_per_epoch_min, epoch_length, minimum_bout_length, local_time_zone) {
   print('processing accelerometry counts')
   # Step 1: validate data
-    validate_accelerometry_data(accelerometry_counts)
+  validate_accelerometry_data(accelerometry_counts)
   # Step 2: Identify bouts
-    accelerometry_counts <- identify_bouts(accelerometry_counts)
+  accelerometry_counts <- identify_bouts(accelerometry_counts)
   # Step 3: Identify nonwearing periods
-    accelerometry_counts <- identify_non_wearing_periods(accelerometry_counts)
+  accelerometry_counts <- identify_non_wearing_periods(accelerometry_counts)
   # Step 4: Identify complete days
-    bouts <- identify_complete_days(accelerometry_counts)
+  bouts <- identify_complete_days(accelerometry_counts)
 
-return(bouts)
+  return(bouts)
 }
 
 run_length_encode <- function(x){
@@ -56,7 +57,7 @@ identify_bouts <- function(accelerometry_counts){
   # maximum number of consecutive inactive epochs in a bout.
   # So, we find all potential bouts by filtering to anything labeled maybe_bout with enough epochs to
   # meet our minimum bout length and account for trailing inactive periods.
-  potential_bout_length <- minimum_bout_length+maximum_number_consec_inactive_epochs_in_bout
+  potential_bout_length <- minimum_bout_length + maximum_number_consec_inactive_epochs_in_bout
   potential_bouts <- non_bout_rle %>%
     dplyr::filter((lengths >= potential_bout_length) & (maybe_bout == 1))
 
@@ -68,21 +69,21 @@ identify_bouts <- function(accelerometry_counts){
   if(nrow(potential_bouts) == 0){
     return(accelerometry_counts) }
 
-    # Otherwise, label bouts
-    num_bouts <- 0
-    for (i in 1:nrow(potential_bouts)){
-      row <- dplyr::slice(potential_bouts, i)
-      start_ind <- row$begin
-      end_ind <- row$end-maximum_number_consec_inactive_epochs_in_bout
-      active_epochs <- accelerometry_counts %>%
-        dplyr::slice(start_ind:end_ind) %>%
-        dplyr::filter(activity_counts >= active_counts_per_epoch_min) %>%
-        nrow()
-      is_bout <- active_epochs >= minimum_bout_length
-      if (is_bout){
-        num_bouts <- num_bouts + 1
-        accelerometry_counts <- accelerometry_counts %>%
-          dplyr::mutate(bout = ifelse(dplyr::row_number() %in% (start_ind:end_ind), num_bouts, bout))
+  # Otherwise, label bouts
+  num_bouts <- 0
+  for (i in 1:nrow(potential_bouts)){
+    row <- dplyr::slice(potential_bouts, i)
+    start_ind <- row$begin
+    end_ind <- row$end-maximum_number_consec_inactive_epochs_in_bout
+    active_epochs <- accelerometry_counts %>%
+      dplyr::slice(start_ind:end_ind) %>%
+      dplyr::filter(activity_counts >= active_counts_per_epoch_min) %>%
+      nrow()
+    is_bout <- active_epochs >= minimum_bout_length
+    if (is_bout){
+      num_bouts <- num_bouts + 1
+      accelerometry_counts <- accelerometry_counts %>%
+        dplyr::mutate(bout = ifelse(dplyr::row_number() %in% (start_ind:end_ind), num_bouts, bout))
       }
     }
   return(accelerometry_counts)
@@ -112,15 +113,20 @@ identify_non_wearing_periods <- function(accelerometry_counts){
 }
 
 identify_complete_days <- function(accelerometry_counts){
-  max_non_wearing_per_day <- 24-min_wearing_hours_per_day
+  min_wearing_epochs_per_day <- min_wearing_hours_per_day/epoch_length
+  # max_non_wearing_per_day <- 24-min_wearing_hours_per_day
   complete_days_df <- accelerometry_counts %>%
-    dplyr::mutate(date = lubridate::as_date(time)) %>%
+    dplyr::mutate(date = lubridate::as_date(time, tz = local_time_zone)) %>%
     dplyr::group_by(date) %>%
-    dplyr::summarise(total_non_wearing_epochs_whole_day = sum(non_wearing)) %>%
-    dplyr::mutate(complete_day = total_non_wearing_epochs_whole_day <= max_non_wearing_per_day) %>%
-    dplyr::select(-c(total_non_wearing_epochs_whole_day))
+    dplyr::summarise(total_wearing_epochs_whole_day = min_wearing_epochs_per_day - sum(non_wearing)) %>%
+    # dplyr::summarise(total_non_wearing_epochs_whole_day = sum(non_wearing)) %>%
+    dplyr::mutate(complete_day = total_wearing_epochs_whole_day >= min_wearing_epochs_per_day) %>%
+    # dplyr::mutate(complete_day = total_non_wearing_epochs_whole_day <= max_non_wearing_per_day) %>%
+    # dplyr::select(-c(total_non_wearing_epochs_whole_day))
+    dplyr::select(-c(total_wearing_epochs_whole_day))
   accelerometry_counts <- accelerometry_counts %>%
     dplyr::mutate(date = lubridate::as_date(time)) %>%
     dplyr::left_join(complete_days_df, by = c("date")) %>%
     dplyr::select(-c("date"))
+  return(accelerometry_counts)
 }

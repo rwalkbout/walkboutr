@@ -16,9 +16,6 @@ process_gps_data_into_gps_epochs <- function(gps_data) {
   print('processing gps data into travel instances')
   validate_gps_data(gps_data)
   gps_epochs <- assign_epoch_start_time(gps_data, epoch_length)
-  if((length(unique(gps_epochs$time))) != nrow(gps_epochs)){
-    stop(paste0("Warning: You have smaller GPS data intervals than accelerometry data intervals."))
-  }
   return(gps_epochs)
 }
 
@@ -73,6 +70,9 @@ validate_gps_data <- function(gps_data){
   if(any(is.na(gps_data$speed))){
     stop(paste0("Error: speed column contains NAs"))
   }
+  if(any(gps_data$speed<0)){
+    stop(paste0("Error: speed column contains negative values"))
+  }
   if(any(gps_data$speed > 2000)){
     message("Warning: speed column contains implausibly large values")
   }
@@ -85,14 +85,17 @@ assign_epoch_start_time <- function(gps_data, epoch_length){
     # takes the gps coordinates associated with the latest time
   gps_epochs <- gps_data %>%
     dplyr::mutate(epoch_time = as.numeric(time)) %>%
-    dplyr::mutate(dx_n = (-1*epoch_time)%%epoch_length) %>%
+    # dplyr::mutate(dx_n = (-1*epoch_time)%%epoch_length) %>%
     dplyr::mutate(dx_p = epoch_time%%epoch_length) %>%
-    dplyr::mutate(epoch_time = ifelse(dx_n<dx_p, epoch_time+dx_n, epoch_time-dx_p)) %>%
+    dplyr::mutate(epoch_time = epoch_time-dx_p) %>%
+    # dplyr::mutate(epoch_time = ifelse(dx_n<dx_p, epoch_time+dx_n, epoch_time-dx_p)) %>%
+    # take out dx_n and just mutate to epoch_time-dx_p since we always want to round down since acc data are intervals
     dplyr::group_by(epoch_time) %>%
     dplyr::filter(as.numeric(time) == max(as.numeric(time))) %>%
     dplyr::mutate(time = lubridate::as_datetime(epoch_time, tz="UTC")) %>%
     dplyr:: ungroup() %>%
-    dplyr::select(-c(dx_n, dx_p, epoch_time))
+    dplyr::select(-c(dx_p, epoch_time))
+    # dplyr::select(-c(dx_n, dx_p, epoch_time))
   return(gps_epochs)
 }
 

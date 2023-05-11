@@ -7,12 +7,6 @@
 #' @export
 #'
 
-
-# TODO
-  # write docs and examples
-  # CRAN set up
-  # kangs schema stuff (later)
-
 process_bouts_and_gps_epochs_into_walkbouts <- function(bouts, gps_epochs){
   print('processing bouts and gps_epochs')
 
@@ -21,17 +15,17 @@ process_bouts_and_gps_epochs_into_walkbouts <- function(bouts, gps_epochs){
     dplyr::arrange(time) %>%
     dplyr::mutate(bout = ifelse(bout==0,NA,bout))
 
-  if(is.na(all(walk_bouts$bout))){
+  # if there are no bouts, just return the data
+  if(sum(is.na(walk_bouts$bout)) == nrow(walk_bouts)){
     return(walk_bouts)
 
   } else{
 
   bout_radii <- generate_bout_radius(walk_bouts) # returns df: bout, bout_radius (numer)
-  gps_completeness <- evaluate_gps_completeness(walk_bouts) # returns df: bout, complete_gps (T/F), speed
-  walk_bouts <- generate_bout_category(walk_bouts, bout_radii, gps_completeness) # returns df: bout, bout_category, complete_days, speed
+  gps_completeness <- evaluate_gps_completeness(walk_bouts) # returns df: bout, complete_gps (T/F), median_speed
+  walk_bouts <- generate_bout_category(walk_bouts, bout_radii, gps_completeness) # returns df: bout, bout_category, complete_days, non_wearing, speed
 
   return(walk_bouts) }
-
 }
 
 
@@ -55,9 +49,10 @@ generate_bout_radius <- function(walk_bouts){
   # pull long/lat and remove outliers
     lat_long <- walk_bouts %>%
       dplyr::filter(bout==bout_label) %>%
-      tidyr::drop_na() %>%
-      dplyr::distinct(longitude, latitude, .keep_all = TRUE)
+      tidyr::drop_na()
     lat_long <- outlier_gps_points(lat_long)
+    lat_long <- lat_long %>%
+      dplyr::distinct(longitude, latitude, .keep_all = TRUE)
 
     if(nrow(lat_long > 1)){
       # derive radius of bounding circle
@@ -88,6 +83,7 @@ evaluate_gps_completeness <- function(walk_bouts){
       sufficient_gps_coverage = gps_coverage_ratio>min_gps_coverage_ratio,
       median_speed = stats::median(!is.na(speed))) %>%
     dplyr::mutate(complete_gps = ifelse((sufficient_gps_coverage==FALSE & sufficient_gps_records == FALSE), FALSE, TRUE)) %>%
+    # can take out this ifelse since its all T/F
     dplyr::select(c("bout", "complete_gps", "median_speed"))
 
   return(gps_completeness)
@@ -133,18 +129,18 @@ generate_bout_category <- function(walk_bouts, bout_radii, gps_completeness){
     dplyr::mutate(non_walk_fast = median_speed > max_walking_speed_km_h) %>%
     dplyr::select(c("bout", "non_walk_fast")) # cols: bout, non_walk_fast(T/F)
 
-  nonwalk_gps <- gps_completeness %>%
-    dplyr::mutate(non_walk_gps = !complete_gps) %>%
-    dplyr::select(c("bout", "non_walk_gps"))
+  nonwalk_incomplete_gps <- gps_completeness %>%
+    dplyr::mutate(non_walk_incomplete_gps = !complete_gps) %>%
+    dplyr::select(c("bout", "non_walk_incomplete_gps"))
 
-  cols <- c("dwell_bout", "non_walk_gps", "non_walk_fast", "non_walk_slow", "non_walk_too_vigorous",
+  cols <- c("dwell_bout", "non_walk_incomplete_gps", "non_walk_fast", "non_walk_slow", "non_walk_too_vigorous",
             "complete_day", "non_wearing", "inactive")
   categorized_bouts <- plyr::join_all(list(
-    walk_bouts_dwell, nonwalk_cpe, nonwalk_slow, nonwalk_fast, nonwalk_gps),
+    walk_bouts_dwell, nonwalk_cpe, nonwalk_slow, nonwalk_fast, nonwalk_incomplete_gps),
       by = c("bout"), type = "left") %>%
       dplyr::mutate_at(cols, ~tidyr::replace_na(.,FALSE))
 
-  cols <- c("dwell_bout", "non_walk_gps", "non_walk_fast", "non_walk_slow", "non_walk_too_vigorous")
+  cols <- c("dwell_bout", "non_walk_incomplete_gps", "non_walk_fast", "non_walk_slow", "non_walk_too_vigorous")
   if(any(rowSums(categorized_bouts %>% dplyr::select(all_of(cols))) > 1)){
     stop(paste0("Error: some bouts have been classified as 2 different categories."))
   }
