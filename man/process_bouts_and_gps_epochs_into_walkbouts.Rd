@@ -4,7 +4,11 @@
 \alias{process_bouts_and_gps_epochs_into_walkbouts}
 \title{Convert bouts and gps epochs into walk bouts}
 \usage{
-process_bouts_and_gps_epochs_into_walkbouts(bouts, gps_epochs)
+process_bouts_and_gps_epochs_into_walkbouts(
+  bouts,
+  ...,
+  collated_arguments = NULL
+)
 }
 \arguments{
 \item{bouts}{Accelerometry bouts}

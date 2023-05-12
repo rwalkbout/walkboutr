@@ -4,7 +4,7 @@
 \alias{process_gps_data_into_gps_epochs}
 \title{Convert GPS data into travel instances}
 \usage{
-process_gps_data_into_gps_epochs(gps_data)
+process_gps_data_into_gps_epochs(gps_data, ..., collated_arguments = NULL)
 }
 \arguments{
 \item{gps_data}{GPS data}

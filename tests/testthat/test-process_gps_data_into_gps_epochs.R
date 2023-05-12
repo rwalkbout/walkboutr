@@ -129,9 +129,10 @@ test_that("speed has NAs", {
 
 # epoch start time assignment
 test_that("assigned epoch time is the closest epoch time", {
+  collated_arguments <- collate_arguments()
   gps_data <- get_gps_data_30()
   # gps data with 5 second increments and we are using 30 second epochs
-    gps_new <- assign_epoch_start_time(gps_data, epoch_length)
+    gps_new <- assign_epoch_start_time(gps_data, collated_arguments$epoch_length)
   # the difference in the date time before and after this function should be precisely 1/2 the epoch length
     expect_true(
       all(

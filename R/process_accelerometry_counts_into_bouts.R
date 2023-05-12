@@ -11,17 +11,24 @@
 #'
 #'
 
-process_accelerometry_counts_into_bouts <- function(accelerometry_counts, active_counts_per_epoch_min, epoch_length, minimum_bout_length, local_time_zone) {
+process_accelerometry_counts_into_bouts <- function(accelerometry_counts, ..., collated_arguments = NULL) {
+  collated_arguments <- collate_arguments(..., collated_arguments = collated_arguments)
   print('processing accelerometry counts')
   # Step 1: validate data
   validate_accelerometry_data(accelerometry_counts)
   # Step 2: Identify bouts
-  accelerometry_counts <- identify_bouts(accelerometry_counts)
+  accelerometry_counts <- identify_bouts(accelerometry_counts,
+                                         collated_arguments$maximum_number_consec_inactive_epochs_in_bout,
+                                         collated_arguments$active_counts_per_epoch_min,
+                                         collated_arguments$minimum_bout_length)
   # Step 3: Identify nonwearing periods
-  accelerometry_counts <- identify_non_wearing_periods(accelerometry_counts)
+  accelerometry_counts <- identify_non_wearing_periods(accelerometry_counts,
+                                                       collated_arguments$non_wearing_min_threshold_epochs)
   # Step 4: Identify complete days
-  bouts <- identify_complete_days(accelerometry_counts)
-
+  bouts <- identify_complete_days(accelerometry_counts,
+                                  collated_arguments$min_wearing_hours_per_day,
+                                  collated_arguments$epoch_length,
+                                  collated_arguments$local_time_zone)
   return(bouts)
 }
 
@@ -36,7 +43,7 @@ run_length_encode <- function(x){
   return(rle_df)
 }
 
-identify_bouts <- function(accelerometry_counts){
+identify_bouts <- function(accelerometry_counts, maximum_number_consec_inactive_epochs_in_bout, active_counts_per_epoch_min, minimum_bout_length){
 
   # Identify all epochs that are definitely not part of bouts
     # if we have 4 or more epochs where the activity level is below our activity threshold
@@ -89,8 +96,7 @@ identify_bouts <- function(accelerometry_counts){
   return(accelerometry_counts)
 }
 
-
-identify_non_wearing_periods <- function(accelerometry_counts){
+identify_non_wearing_periods <- function(accelerometry_counts, non_wearing_min_threshold_epochs){
   accelerometry_counts <- accelerometry_counts %>%
     dplyr::mutate(inactive = (activity_counts == 0),
            non_wearing = F)
@@ -112,7 +118,7 @@ identify_non_wearing_periods <- function(accelerometry_counts){
   return(accelerometry_counts)
 }
 
-identify_complete_days <- function(accelerometry_counts){
+identify_complete_days <- function(accelerometry_counts, min_wearing_hours_per_day, epoch_length, local_time_zone){
   min_wearing_epochs_per_day <- min_wearing_hours_per_day/epoch_length
   # max_non_wearing_per_day <- 24-min_wearing_hours_per_day
   complete_days_df <- accelerometry_counts %>%
@@ -130,3 +136,5 @@ identify_complete_days <- function(accelerometry_counts){
     dplyr::select(-c("date"))
   return(accelerometry_counts)
 }
+
+

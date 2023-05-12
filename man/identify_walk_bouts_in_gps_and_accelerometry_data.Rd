@@ -8,11 +8,8 @@
 identify_walk_bouts_in_gps_and_accelerometry_data(
   gps_data,
   accelerometry_counts,
-  active_counts_per_epoch_min = 500,
-  epoch_length = 30,
-  minimum_bout_length = 10,
-  maximum_number_consec_inactive_epochs_in_bout = 3,
-  local_time_zone = "PDT"
+  ...,
+  collated_arguments = NULL
 )
 }
 \arguments{
