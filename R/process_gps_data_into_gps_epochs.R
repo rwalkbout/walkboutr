@@ -6,11 +6,19 @@
 #' - `longitude` should be a numeric, non-null longitude coordinate between -180 and 180
 #' - `speed` should be a numeric, non-null value in kilometers per hour
 #'
-#' @param gps_data GPS data
+#' Assign Epoch Start Time
 #'
-#' @return A data frame of GPS data, unidentified.
+#' @param gps_data A data frame with GPS data including a column of timestamps and columns for latitude and longitude
+#' @param epoch_length The duration of an epoch in seconds
+#'
+#' @details Selects the closest 30 second increment to assign epoch start time and takes the GPS coordinates associated with the latest time if there are multiple GPS data points in a given 30 second increment. This function returns a data frame of GPS data with a column of epoch times.
+#'
+#' @return A data frame of GPS data with an additional column indicating epoch start time
+#'
+#' @examples
+#' assign_epoch_start_time(gps_data, epoch_length)
+#'
 #' @export
-#'
 
 process_gps_data_into_gps_epochs <- function(gps_data, ..., collated_arguments = NULL) {
   collated_arguments <- collate_arguments(..., collated_arguments = collated_arguments)

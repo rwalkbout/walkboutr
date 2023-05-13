@@ -1,9 +1,75 @@
-#' Convert bouts and gps epochs into walk bouts
+#' Categorizes accelerometer bouts as walking or non-walking based on various criteria.
 #'
-#' @param bouts Accelerometry bouts
-#' @param gps_epochs GPS epochs
+#' This function takes in a set of accelerometer bouts and categorizes them as either
+#' walking or non-walking based on several criteria, such as the average counts per epoch,
+#' median walking speed, and the presence or absence of GPS data. The function returns a
+#' data frame with information about each bout, including whether it was a dwell bout or
+#' non-walking bout, whether GPS data was complete or not, and whether the bout was too slow or too fast.
 #'
-#' @return A data frame of walk bouts and summary statistics.
+#' @param walk_bouts A data frame containing accelerometry data for each bout.
+#' @param bout_radii A data frame containing information about each bout's radius.
+#' @param gps_completeness A data frame containing information about each bout's GPS completeness.
+#' @param max_dwellbout_radii_ft A numeric value specifying the maximum radius, in feet, for a bout to be considered a dwell bout.
+#' @param max_walking_cpe A numeric value specifying the maximum counts per epoch for a bout to be considered a walking bout.
+#' @param min_walking_speed_km_h A numeric value specifying the minimum walking speed (in km/h) for a bout to be considered a walking bout.
+#' @param max_walking_speed_km_h A numeric value specifying the maximum walking speed (in km/h) for a bout to be considered a walking bout.
+#'
+#' NOTE: If there are multiple GPS points associated with a given epoch interval,
+#' we use the latest possible GPS data point within that epoch. As such,
+#' median walking speed is calculated for only the latest available GPS data point in each epoch.
+#' Additionally, the median speed is calculated using only the GPS data points that remain after
+#' GPS data processing. All GPS data points that are outliered for the calculation of a bout
+#' radius, are, however, included in the assessment of GPS completeness as they are outliers
+#' but are still present GPS data points.
+#'
+#' @return A data frame containing information about each bout and its corresponding bout category.
+#'
+#' @details The function categorizes bouts into the following categories:
+#'   - dwell bout
+#'   - non-walk too vigorous
+#'   - non-walk too slow
+#'   - non-walk too fast
+#'   - unknown lack of gps
+#'
+#' This is done by first taking in a data frame containing walking bout data and
+#' calculates the radius of a bounding circle around each bout.
+#' The function first removes any data points that are considered outliers
+#' based on a given quantile threshold (95%).
+#'
+#' It then uses the remaining data points to calculate the radius of the bounding
+#' circle. The function returns a data frame containing the bout label and the
+#' calculated radius for each bout.
+#'
+#' Outliered data points are excluded from the radius calculation but are included in
+#' subsequent functions that assess GPS completeness. They are also returned from
+#' these functions with the original data and all new variables.
+#'
+#' This function then evaluates whether the GPS data for each bout has sufficient
+#' coverage and data points to be considered complete.
+#'
+#' @return A data frame with categorized bouts.
+#'
+#' @examples
+#' # Generate example data
+#' walk_bouts <- data.frame(
+#'   bout = c(1, 2, 3, 4, 5),
+#'   activity_counts = c(500, 1000, 2000, 3000, 4000),
+#'   speed = c(4, 5, 6, 7, 8)
+#' )
+#'
+#' bout_radii <- data.frame(
+#'   bout = c(1, 2, 3, 4, 5),
+#'   bout_radius = c(10, 20, 30, 40, 50)
+#' )
+#'
+#' gps_completeness <- data.frame(
+#'   bout = c(1, 2, 3, 4, 5),
+#'   complete_gps = c(TRUE, TRUE, FALSE, FALSE, TRUE)
+#' )
+#'
+#' # Categorize bouts
+#' categorized_bouts <- generate_bout_category(walk_bouts, bout_radii, gps_completeness, 50, 2500, 3, 6)
+#'
 #' @export
 #'
 

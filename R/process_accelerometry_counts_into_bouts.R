@@ -1,15 +1,46 @@
-#' Convert accelerometry counts into bouts of physical activity
+#' This function identifies bouts of physical activity in accelerometry data.
 #'
 #' The input schema for the accelerometry data is `time` and `activity_counts`.
 #' - `time` should be a column in date-time format, in the UTC time zone, with no null values.
 #' - `activity_counts` should be a positive numeric column with no null values.
 #'
 #' @param accelerometry_counts Raw accelerometry data with the expected schema.
-#'
 #' @return A data frame of bouts.
+#'
+#' Helper Functions:
+#' Identify Bouts:
+#' @param accelerometry_counts A data frame containing accelerometry counts and times
+#' @param maximum_number_consec_inactive_epochs_in_bout Maximum number of consecutive inactive epochs in a bout without ending the bout
+#' @param active_counts_per_epoch_min Minimum accelerometer counts for an epoch to be considered active (vs. inactive)
+#' @param minimum_bout_length Minimum number of epochs for a period of activity to be considered as a potential bout
+#'
+#' @return A data frame with the same columns as the input data frame \code{accelerometry_counts}, but with a new column named \code{bout} that indicates whether each epoch is part of a bout (in which case it gets a bout number assigned) or not (0)
+#' @details This function partitions the accelerometry data into bouts of activity and non-bouts by
+#' first identifying all epochs that are definitely not part of bouts. Then, it uses run length encoding to
+#' partition the data into potential bouts and non-bouts, and labels each potential bout as a bout or non-bout
+#' based on whether it meets the criteria for bout length and the number of consecutive inactive epochs allowed.
+#' Finally, the function adds a new column to the input data frame \code{accelerometry_counts} named \code{bout}
+#' that indicates whether each epoch is part of a bout (1) or not (0).
+#'
+#' Identify non-wearing and complete days flags
+#' @param accelerometry_counts a data frame containing columns for time (in POSIXct format) and activity_counts
+#' @param non_wearing_min_threshold_epochs an integer value indicating the minimum number of consecutive epochs with 0 activity counts that constitute a non-wearing period
+#' @param min_wearing_hours_per_day an integer value indicating the minimum number of hours per day an individual must wear the accelerometer for the day to be considered complete
+#' @param epoch_length an integer value indicating the duration of an epoch in seconds
+#' @param local_time_zone a character string indicating the local time zone of the data - data come in and are returned in UTC, but local time zone is used to compute complete_days
+#'
+#' @details
+#' Identify complete days based on the number of hours the accelerometer is worn and a minimum threshold value for a complete day.
+#' Identify periods where the accelerometer is not being worn based on the activity counts and a minimum threshold value.
+#'
+#'
+#' @return a data frame with the same columns as the input, as well as an
+#' additional non_wearing and complete_day column indicating time periods when
+#' the individual is not wearing the accelerometer as well as an indicator for
+#' whether the day is considered complete based on the input criteria.
+#'
 #' @export
-#'
-#'
+
 
 process_accelerometry_counts_into_bouts <- function(accelerometry_counts, ..., collated_arguments = NULL) {
   collated_arguments <- collate_arguments(..., collated_arguments = collated_arguments)
