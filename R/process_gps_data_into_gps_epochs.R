@@ -1,4 +1,4 @@
-#' Convert GPS data into travel instances
+#' Convert GPS data into GPS epochs
 #'
 #' The input schema for the accelerometry data is `time` and `activity_counts`.
 #' - `time` should be a column in date-time format, in the UTC time zone, with no null values.
@@ -6,20 +6,14 @@
 #' - `longitude` should be a numeric, non-null longitude coordinate between -180 and 180
 #' - `speed` should be a numeric, non-null value in kilometers per hour
 #'
-#' Assign Epoch Start Time
+#'This function processes GPS data into GPS epochs, with each epoch having a duration specified by \code{epoch_length}.
 #'
-#' @param gps_data A data frame with GPS data including a column of timestamps and columns for latitude and longitude
-#' @param epoch_length The duration of an epoch in seconds
+#' @param gps_data A data frame containing GPS data. Must have columns "Latitude", "Longitude", "UTC_DateTime", and "UTC_Offset".
+#' @param ... Additional arguments to be passed to the function.
+#' @param collated_arguments A named list of arguments, used to avoid naming conflicts when calling this function as part of a pipeline. Optional.
 #'
-#' @details Selects the closest 30 second increment to assign epoch start time and takes the GPS coordinates associated with the latest time if there are multiple GPS data points in a given 30 second increment. This function returns a data frame of GPS data with a column of epoch times.
-#'
-#' @return A data frame of GPS data with an additional column indicating epoch start time
-#'
-#' @examples
-#' assign_epoch_start_time(gps_data, epoch_length)
-#'
+#' @return A data frame with columns latitude, longitude, time, and speed, where time is now the nearest epoch start time
 #' @export
-
 process_gps_data_into_gps_epochs <- function(gps_data, ..., collated_arguments = NULL) {
   collated_arguments <- collate_arguments(..., collated_arguments = collated_arguments)
   print('processing gps data into travel instances')
@@ -29,6 +23,18 @@ process_gps_data_into_gps_epochs <- function(gps_data, ..., collated_arguments =
   return(gps_epochs)
 }
 
+
+#' Validate GPS data
+#'
+#' This function validates GPS data for required variables, correct variable class, and correct data range.
+#'
+#' @param gps_data A data frame containing GPS data with the following variables: time, latitude, longitude, and speed.
+#' @return This function does not return anything. It throws an error if the GPS data fails any of the validation checks.
+#'
+#' @examples
+#' validate_gps_data(gps_data)
+#'
+#' @export
 validate_gps_data <- function(gps_data){
 
 # Validation schema
@@ -89,6 +95,21 @@ validate_gps_data <- function(gps_data){
 
 }
 
+
+
+#' Assign Epoch Start Time
+#'
+#' @param gps_data A data frame with GPS data including a column of timestamps and columns for latitude and longitude
+#' @param epoch_length The duration of an epoch in seconds
+#' @details Selects the closest 30 second increment to assign epoch start time and takes the GPS coordinates associated with the latest time if there are multiple GPS data points in a given 30 second increment. This function returns a data frame of GPS data with a column of epoch times.
+#'
+#' @return A data frame of GPS data with an additional column indicating epoch start time
+#'
+#' @examples
+#' # GPS data is data with columns time, speed, latitude, longitude
+#' # epoch_length is an argument with a configuration default value of 30 (seconds)
+#' gps_data <- get_gps_data()
+#' assign_epoch_start_time(gps_data, epoch_length)
 assign_epoch_start_time <- function(gps_data, epoch_length){
   # select the closest 30 second increment to assign epoch start time
   # if there are multiple gps data points in a given 30 second increment,

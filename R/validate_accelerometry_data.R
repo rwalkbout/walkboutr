@@ -9,9 +9,24 @@
 #'
 #' @param accelerometry_counts Raw accelerometry data with the expected schema.
 #'
+#' @details The following schema validations are performed on the input data:
+#'   - The input data must contain two columns, named `time` and `activity_counts`.
+#'   - The `time` column must be in date-time format, in the UTC time zone, with no null values.
+#'   - The `activity_counts` column must be a positive numeric column with no null values.
+#'
+#' @examples
+#' # Example usage:
+#' data <- data.frame(
+#'   time = seq(
+#'     as.POSIXct("2021-01-01 00:00:00", tz = "UTC"),
+#'     as.POSIXct("2021-01-01 23:59:59", tz = "UTC"),
+#'     by = "5 mins"
+#'   ),
+#'   activity_counts = sample(0:100, 288)
+#' )
+#' validate_accelerometry_data(data)
+#'
 #' @export
-#'
-#'
 validate_accelerometry_data <- function(accelerometry_counts){
 
   # Validate Schema
