@@ -3,7 +3,7 @@
 %   R/identify_walk_bouts_in_gps_and_accelerometry_data.R
 \name{identify_walk_bouts_in_gps_and_accelerometry_data}
 \alias{identify_walk_bouts_in_gps_and_accelerometry_data}
-\title{Convert accelerometry and GPS data into walk bouts}
+\title{Identify walking bouts in GPS and accelerometry data:}
 \usage{
 identify_walk_bouts_in_gps_and_accelerometry_data(
   gps_data,
@@ -13,13 +13,18 @@ identify_walk_bouts_in_gps_and_accelerometry_data(
 )
 }
 \arguments{
-\item{gps_data}{GPS data}
+\item{gps_data}{A data frame containing GPS data}
 
-\item{accelerometry_data}{Accelerometry data}
+\item{accelerometry_counts}{A data frame containing accelerometry counts}
+
+\item{...}{Additional arguments to be passed to the function}
+
+\item{collated_arguments}{A list of collated arguments}
 }
 \value{
-A data frame of walk bouts
+A data frame containing identified walk bouts
 }
 \description{
-Convert accelerometry and GPS data into walk bouts
+This function identifies walking bouts in GPS and accelerometry data.
+It processes the GPS data and accelerometry counts to create walk bouts.
 }

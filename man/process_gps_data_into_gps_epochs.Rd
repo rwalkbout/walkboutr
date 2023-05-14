@@ -2,22 +2,29 @@
 % Please edit documentation in R/process_gps_data_into_gps_epochs.R
 \name{process_gps_data_into_gps_epochs}
 \alias{process_gps_data_into_gps_epochs}
-\title{Convert GPS data into travel instances}
+\title{Convert GPS data into GPS epochs}
 \usage{
 process_gps_data_into_gps_epochs(gps_data, ..., collated_arguments = NULL)
 }
 \arguments{
-\item{gps_data}{GPS data}
+\item{gps_data}{A data frame containing GPS data. Must have columns "Latitude", "Longitude"}
+
+\item{...}{Additional arguments to be passed to the function.}
+
+\item{collated_arguments}{A named list of arguments, used to avoid naming conflicts when calling this function as part of a pipeline. Optional.}
 }
 \value{
-A data frame of GPS data, unidentified.
+A data frame with columns latitude, longitude, time, and speed, where time is now the nearest epoch start time
 }
 \description{
-The input schema for the accelerometry data is \code{time} and \code{activity_counts}.
+The input schema for the accelerometry data is \code{time}, \code{latitude}, \code{longitude}, and \code{speed}.
 \itemize{
 \item \code{time} should be a column in date-time format, in the UTC time zone, with no null values.
 \item \code{latitude} should be a numeric, non-null latitude coordinate between -90 and 90
 \item \code{longitude} should be a numeric, non-null longitude coordinate between -180 and 180
 \item \code{speed} should be a numeric, non-null value in kilometers per hour
 }
+}
+\details{
+This function processes GPS data into GPS epochs, with each epoch having a duration specified by \code{epoch_length}.
 }

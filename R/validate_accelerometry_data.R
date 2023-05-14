@@ -21,9 +21,8 @@
 #'     as.POSIXct("2021-01-01 00:00:00", tz = "UTC"),
 #'     as.POSIXct("2021-01-01 23:59:59", tz = "UTC"),
 #'     by = "5 mins"
-#'   ),
-#'   activity_counts = sample(0:100, 288)
-#' )
+#'   )) %>%
+#'   dplyr::mutate(activity_counts = sample(0:100, length(time), replace = TRUE))
 #' validate_accelerometry_data(data)
 #'
 #' @export

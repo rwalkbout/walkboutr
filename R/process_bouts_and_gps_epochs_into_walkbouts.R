@@ -5,7 +5,7 @@
 #' @param ... additional arguments to be passed on to other functions
 #' @param collated_arguments a list of arguments collated from other functions
 #'
-#' @return a processed data frame, "walk_bouts", with added columns "bout", "bout_radius", "bout_category", "complete_days", "non_wearing", and "speed"#'
+#' @returns a processed data frame, "walk_bouts", with added columns "bout", "bout_radius", "bout_category", "complete_days", "non_wearing", and "speed"#'
 #'
 #' @details The function first collates the arguments passed to it with the collate_arguments() function. It then merges "gps_epochs" and "bouts" data frames by "time" column, and orders the resulting data frame by "time". Then, it generates the "bout_radius" using the generate_bout_radius() function, which calculates the radius of a bounding circle that would be considered a dwell bout. Next, the function evaluates the completeness of GPS data using the evaluate_gps_completeness() function, which determines the number of GPS observations within a bout and the ratio of data points with versus without GPS data. Finally, the function generates the "bout_category" using the generate_bout_category() function, which determines whether a bout is a walk bout or a dwell bout, and calculates the complete days, non-wearing periods, and speed.
 #' The function categorizes bouts into the following categories:
@@ -63,17 +63,7 @@ process_bouts_and_gps_epochs_into_walkbouts <- function(bouts, ..., collated_arg
 #' @param lat_long A data frame containing the latitude and longitude coordinates for the GPS points.
 #' @param dwellbout_radii_quantile The threshold for outliering GPS data points - any data points above the specified percentile are outliered.
 #'
-#' @return A data frame containing the latitude and longitude coordinates for the non-outlier GPS points.
-#'
-#' @examples
-#' # Create a sample data frame of GPS coordinates
-#' lat_long <- data.frame(
-#'   latitude = c(39.7456, 39.7446, 39.7445, 39.7458, 39.7445),
-#'   longitude = c(-104.9952, -104.9953, -104.9949, -104.9949, -104.9953)
-#' )
-#'
-#' # Call the outlier_gps_points() function with the sample data frame
-#' outlier_gps_points(lat_long, 0.95)
+#' @returns A data frame containing the latitude and longitude coordinates for the non-outlier GPS points.
 outlier_gps_points <- function(lat_long, dwellbout_radii_quantile){
   # outlier gps points that are above the 95% percentile of summed distances
   distance_sum <- sp::SpatialPoints(coords = cbind(long = lat_long$longitude, lat = lat_long$latitude)) %>%
@@ -92,7 +82,7 @@ outlier_gps_points <- function(lat_long, dwellbout_radii_quantile){
 #' @param walk_bouts A data frame containing GPS locations for each walking bout, with columns "longitude", "latitude", and "bout" (a unique identifier for each bout)
 #' @param dwellbout_radii_quantile A quantile (between 0 and 1) used to filter outlying GPS data points before generating the bounding circle. GPS points with a distance from the center greater than the radius of the circle that contains (1 - dwellbout_radii_quantile) of the GPS points are considered outliers and are excluded.
 #'
-#' @return A data frame containing the bout identifier and the radius of the bounding circle for each walking bout.
+#' @returns A data frame containing the bout identifier and the radius of the bounding circle for each walking bout.
 generate_bout_radius <- function(walk_bouts, dwellbout_radii_quantile){
   bout_radii <- data.frame(bout = integer(), bout_radius=numeric())
   bout_labels <- walk_bouts %>%
@@ -134,7 +124,7 @@ generate_bout_radius <- function(walk_bouts, dwellbout_radii_quantile){
 #' @param min_gps_obs_within_bout The minimum number of GPS observations required for a bout to be considered to have complete GPS data.
 #' @param min_gps_coverage_ratio The minimum ratio of GPS observations with valid data to total GPS observations for a bout to be considered to have complete GPS data.
 #'
-#' @return A data frame containing information about the GPS completeness and median speed for each bout.
+#' @returns A data frame containing information about the GPS completeness and median speed for each bout.
 evaluate_gps_completeness <- function(walk_bouts, min_gps_obs_within_bout, min_gps_coverage_ratio){
   # determine if we have sufficient gps coverage for each bout
   gps_completeness <- walk_bouts %>%
@@ -165,7 +155,7 @@ evaluate_gps_completeness <- function(walk_bouts, min_gps_obs_within_bout, min_g
 #' @param min_walking_speed_km_h a numeric scalar that specifies the minimum speed considered walking.
 #' @param max_walking_speed_km_h a numeric scalar that specifies the maximum speed considered walking.
 #'
-#' @return a data frame with the following columns: bout, dwell_bout (T/F), non_walk_too_vigorous (T/F), non_walk_slow (T/F), non_walk_fast (T/F), non_walk_incomplete_gps (T/F)
+#' @returns a data frame with the following columns: bout, dwell_bout (T/F), non_walk_too_vigorous (T/F), non_walk_slow (T/F), non_walk_fast (T/F), non_walk_incomplete_gps (T/F)
 #'
 #' @details The function uses the bout information for walking bouts, bout radii information, and GPS data completeness information to generate the bout categories.
 #'

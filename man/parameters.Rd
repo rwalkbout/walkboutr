@@ -10,7 +10,18 @@ An object of class \code{list} of length 5.
 \usage{
 parameters
 }
+\arguments{
+\item{epoch_length}{The duration of an epoch in seconds.}
+
+\item{active_counts_per_epoch_min}{Minimum accelerometer counts for an epoch to be considered active (vs. inactive).}
+
+\item{minimum_bout_length}{Minimum number of epochs for a period of activity to be considered as a potential bout.}
+
+\item{local_time_zone}{Local time zone of the data - data come in and are returned in UTC, but local time zone is used to compute complete_days.}
+
+\item{maximum_number_consec_inactive_epochs_in_bout}{Number of consecutive epochs that can be labeled as inactive during a bout without ending the bout.}
+}
 \description{
-Global parameters and constants
+List of Parameters
 }
 \keyword{datasets}

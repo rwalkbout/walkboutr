@@ -3,7 +3,7 @@
 #' @param bouts Accelerometry bouts
 #' @param gps_epochs GPS epochs
 #'
-#' @return A data frame of walk bouts and summary statistics.
+#' @returns A data frame of walk bouts and summary statistics.
 #' @export
 #'
 

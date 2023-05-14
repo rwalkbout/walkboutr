@@ -19,4 +19,23 @@ The input schema for the accelerometry data is \code{time} and \code{activity_co
 \details{
 This function checks the schema of the accelerometry input data
 and raises an error if any schema constraints are violated.
+
+The following schema validations are performed on the input data:
+\itemize{
+\item The input data must contain two columns, named \code{time} and \code{activity_counts}.
+\item The \code{time} column must be in date-time format, in the UTC time zone, with no null values.
+\item The \code{activity_counts} column must be a positive numeric column with no null values.
+}
+}
+\examples{
+# Example usage:
+data <- data.frame(
+  time = seq(
+    as.POSIXct("2021-01-01 00:00:00", tz = "UTC"),
+    as.POSIXct("2021-01-01 23:59:59", tz = "UTC"),
+    by = "5 mins"
+  )) \%>\%
+  dplyr::mutate(activity_counts = sample(0:100, length(time), replace = TRUE))
+validate_accelerometry_data(data)
+
 }

@@ -8,7 +8,7 @@
 #' @param ... Additional arguments to be passed to the function
 #' @param collated_arguments A list of collated arguments
 #'
-#' @return A data frame containing identified walk bouts
+#' @returns A data frame containing identified walk bouts
 #'
 #' @export
 identify_walk_bouts_in_gps_and_accelerometry_data <- function(gps_data, accelerometry_counts, ..., collated_arguments = NULL){
@@ -27,7 +27,7 @@ identify_walk_bouts_in_gps_and_accelerometry_data <- function(gps_data, accelero
 #'
 #' @param walk_bouts A data frame containing identified walk bouts
 #'
-#' @return A data frame summarizing identified walk bouts
+#' @returns A data frame summarizing identified walk bouts
 #'
 #' @export
 summarize_walk_bouts <- function(walk_bouts){

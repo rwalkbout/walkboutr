@@ -2,7 +2,7 @@
 % Please edit documentation in R/process_bouts_and_gps_epochs_into_walkbouts.R
 \name{process_bouts_and_gps_epochs_into_walkbouts}
 \alias{process_bouts_and_gps_epochs_into_walkbouts}
-\title{Convert bouts and gps epochs into walk bouts}
+\title{Process bouts and GPS epochs into walk bouts}
 \usage{
 process_bouts_and_gps_epochs_into_walkbouts(
   bouts,
@@ -11,13 +11,39 @@ process_bouts_and_gps_epochs_into_walkbouts(
 )
 }
 \arguments{
-\item{bouts}{Accelerometry bouts}
+\item{bouts}{a data frame containing bout information}
 
-\item{gps_epochs}{GPS epochs}
+\item{...}{additional arguments to be passed on to other functions}
+
+\item{collated_arguments}{a list of arguments collated from other functions}
 }
 \value{
-A data frame of walk bouts and summary statistics.
+a processed data frame, "walk_bouts", with added columns "bout", "bout_radius", "bout_category", "complete_days", "non_wearing", and "speed"#'
 }
 \description{
-Convert bouts and gps epochs into walk bouts
+This function processes bouts and GPS epochs into walk bouts. It uses a set of parameters and constants to determine whether an epoch is active or inactive, the minimum number of epochs for a period of activity to be considered as a potential bout, the local time zone of the data, and other relevant information. It takes in two data frames, "bouts" and "gps_epochs", and returns a processed data frame, "walk_bouts", with added columns "bout", "bout_radius", "bout_category", "complete_days", "non_wearing", and "speed".#'
+}
+\details{
+The function first collates the arguments passed to it with the collate_arguments() function. It then merges "gps_epochs" and "bouts" data frames by "time" column, and orders the resulting data frame by "time". Then, it generates the "bout_radius" using the generate_bout_radius() function, which calculates the radius of a bounding circle that would be considered a dwell bout. Next, the function evaluates the completeness of GPS data using the evaluate_gps_completeness() function, which determines the number of GPS observations within a bout and the ratio of data points with versus without GPS data. Finally, the function generates the "bout_category" using the generate_bout_category() function, which determines whether a bout is a walk bout or a dwell bout, and calculates the complete days, non-wearing periods, and speed.
+The function categorizes bouts into the following categories:
+\itemize{
+\item dwell bout
+\item non-walk too vigorous
+\item non-walk too slow
+\item non-walk too fast
+\item unknown lack of gps
+}
+
+NOTE: If there are multiple GPS points associated with a given epoch interval,
+we use the latest possible GPS data point within that epoch. As such,
+median walking speed is calculated for only the latest available GPS data point in each epoch.
+
+NOTE: The median speed is calculated using only the GPS data points that remain after
+GPS data processing. All GPS data points that are outliered for the calculation of a bout
+radius, are, however, included in the assessment of GPS completeness as they are outliers
+but are still present GPS data points.
+
+NOTE: Outliered data points are excluded from the radius calculation but are included in
+subsequent functions that assess GPS completeness. They are also returned from
+these functions with the original data and all new variables.
 }

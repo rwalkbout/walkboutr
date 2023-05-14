@@ -49,11 +49,7 @@ constants <-
 #' @param ... named arguments passed by the user
 #' @param collated_arguments NULL or previously collated arguments
 #'
-#' @return A list of all arguments, including both pre-defined parameters and constants and any user-provided arguments.
-#'
-#' @example
-#' collate_arguments(epoch_length = 60)
-#'
+#' @returns A list of all arguments, including both pre-defined parameters and constants and any user-provided arguments.
 collate_arguments <- function(..., collated_arguments = NULL){
   user_arguments <- list(...)
   if (!is.null(collated_arguments) & length(user_arguments) > 0){
