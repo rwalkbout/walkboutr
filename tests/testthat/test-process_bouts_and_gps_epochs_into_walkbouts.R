@@ -22,7 +22,7 @@ test_that("gps outliers are being applied correctly", {
 # test generate_bout_radius
 test_that("bout radii df has bout labels and radii", {
   collated_arguments <- collate_arguments()
-  walk_bouts <- get_walk_bouts()
+  walk_bouts <- make_full_walk_bout_df()
   bout_radii <- generate_bout_radius(walk_bouts, collated_arguments$dwellbout_radii_quantile)
   expect_identical(names(bout_radii), c("bout", "bout_radius"))
 })
@@ -63,7 +63,7 @@ gps_completeness <- data.frame(bout = 1:10,
                                median_speed = rnorm(10))
 test_that("generate_bout_category correctly categorizes bouts", {
   collated_arguments <- collate_arguments()
-  walk_bouts <- get_walk_bouts()
+  walk_bouts <- make_full_walk_bout_df()
   bout_radii <- generate_bout_radius(walk_bouts, collated_arguments$dwellbout_radii_quantile)
   gps_completeness <- evaluate_gps_completeness(walk_bouts,
                                                 collated_arguments$min_gps_obs_within_bout, collated_arguments$min_gps_coverage_ratio)
@@ -82,7 +82,7 @@ test_that("generate_bout_category correctly categorizes bouts", {
 
 test_that("generate_bout_category results in a df with no NA bout labels", {
   collated_arguments <- collate_arguments()
-  walk_bouts <- get_walk_bouts()
+  walk_bouts <- make_full_walk_bout_df()
   bout_radii <- generate_bout_radius(walk_bouts, collated_arguments$dwellbout_radii_quantile)
   gps_completeness <- evaluate_gps_completeness(walk_bouts,
                                                 collated_arguments$min_gps_obs_within_bout, collated_arguments$min_gps_coverage_ratio)

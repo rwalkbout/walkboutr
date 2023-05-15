@@ -2,15 +2,26 @@
 % Please edit documentation in R/sample_data.R
 \name{next_lat_long}
 \alias{next_lat_long}
-\title{Gets the next lat/long coordinate}
+\title{Calculate next latitude and longitude based on current location, speed, direction, and time elapsed.}
 \usage{
 next_lat_long(latitude, longitude, speed, direction, dt)
 }
 \arguments{
-\item{speed}{The speed of the person in meters per second.}
+\item{latitude}{The current latitude in decimal degrees.}
 
-\item{direction}{The initial direction of the person's movement in degrees.}
+\item{longitude}{The current longitude in decimal degrees.}
+
+\item{speed}{The speed in kilometers per hour.}
+
+\item{direction}{The direction of movement in radians from due north (0 radians).}
+
+\item{dt}{The elapsed time in seconds.}
+}
+\value{
+A numeric vector of length 2 containing the next latitude and longitude in decimal degrees.
 }
 \description{
-Gets the next lat/long coordinate
+Given a current location (latitude and longitude), speed, direction (in radians), and time elapsed (in seconds),
+this function calculates the next latitude and longitude. The calculations are based on the assumption of a constant
+speed and direction during the elapsed time.
 }

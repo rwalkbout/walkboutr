@@ -45,3 +45,7 @@ Imports:
     tidyr,
     tinytest,
     units
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

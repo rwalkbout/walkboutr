@@ -8,8 +8,9 @@ generate_gps_data(
   start_lat,
   start_long,
   start_time,
-  n_epochs = 100,
-  time_interval = 30
+  n_epochs = 110,
+  time_interval = 30,
+  seed = 1234
 )
 }
 \arguments{

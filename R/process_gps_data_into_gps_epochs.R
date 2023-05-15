@@ -52,7 +52,7 @@ validate_gps_data <- function(gps_data){
     stop(paste0("Error: time is not provided in date-time format. class of time variable should be: `POSIXct` `POSIXt`"))
   }
   if(any(is.na(gps_data$time))){
-    stop(paste0("Error: activity counts contain NAs"))
+    stop(paste0("Error: time data contain NAs"))
   }
   if(!(lubridate::tz(gps_data$time) == "UTC")){
     stop(paste0("Error: time zone provided is not UTC."))

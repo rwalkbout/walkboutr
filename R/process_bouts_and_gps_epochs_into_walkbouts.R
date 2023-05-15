@@ -47,7 +47,7 @@ process_bouts_and_gps_epochs_into_walkbouts <- function(bouts, ..., collated_arg
                                      collated_arguments$dwellbout_radii_quantile) # returns df: bout, bout_radius (numer)
   gps_completeness <- evaluate_gps_completeness(walk_bouts,
                                                 collated_arguments$min_gps_obs_within_bout,
-                                                colalted_arguments$min_gps_coverage_ratio) # returns df: bout, complete_gps (T/F), median_speed
+                                                collated_arguments$min_gps_coverage_ratio) # returns df: bout, complete_gps (T/F), median_speed
   walk_bouts <- generate_bout_category(walk_bouts, bout_radii, gps_completeness,
                                        collated_arguments$max_dwellbout_radii_ft,
                                        collated_arguments$max_walking_cpe,
@@ -165,64 +165,40 @@ evaluate_gps_completeness <- function(walk_bouts, min_gps_obs_within_bout, min_g
 generate_bout_category <- function(walk_bouts, bout_radii, gps_completeness,
                                    max_dwellbout_radii_ft, max_walking_cpe, min_walking_speed_km_h, max_walking_speed_km_h){
   # bout categories:
+    # walk bout
     # dwell bout
     # nonwalk too vigorous,
     # nonwalk too slow,
     # nonwalk too fast,
     # unknown lack of gps
-
   dwell_bouts <- bout_radii %>%
     dplyr::filter(!(is.na(bout))) %>%
     dplyr::left_join(gps_completeness, by = "bout") %>%
-    dplyr::mutate(dwell_bout = ifelse(("complete_gps"==TRUE & ("bout_radius" < max_dwellbout_radii_ft)), TRUE, FALSE)) %>%
+    dplyr::mutate(dwell_bout = complete_gps & (bout_radius < max_dwellbout_radii_ft)) %>%
     dplyr::select(c("bout", "dwell_bout")) # cols: bout, dwell_bout (T/F)
-
-  walk_bouts_dwell <- walk_bouts %>%
-    dplyr::left_join(dwell_bouts, by = c("bout")) %>%
-    dplyr::filter(!is.na(bout))
-
-  nonwalk_cpe <- walk_bouts_dwell %>%
-    dplyr::filter(dwell_bout == FALSE) %>%
-    dplyr::group_by(bout) %>%
-    dplyr::summarize(mean_cpe = mean(activity_counts)) %>%
-    dplyr::mutate(non_walk_too_vigorous = mean_cpe > max_walking_cpe) %>%
-    dplyr::select(c("bout", "non_walk_too_vigorous")) # cols: bout, non_walk_too_vigorous(T/F)
-
-  nonwalk_slow <- walk_bouts_dwell %>%
-    dplyr::filter(dwell_bout == FALSE) %>%
-    dplyr::group_by(bout) %>%
-    dplyr::summarize(median_speed = stats::median(speed)) %>%
-    dplyr::mutate(non_walk_slow = median_speed < min_walking_speed_km_h) %>%
-    dplyr::select(c("bout", "non_walk_slow")) # cols: bout, non_walk_slow(T/F)
-
-  nonwalk_fast <- walk_bouts_dwell %>%
-    dplyr::filter(dwell_bout == FALSE) %>%
-    dplyr::group_by(bout) %>%
-    dplyr::summarise(median_speed = stats::median(speed)) %>%
-    dplyr::mutate(non_walk_fast = median_speed > max_walking_speed_km_h) %>%
-    dplyr::select(c("bout", "non_walk_fast")) # cols: bout, non_walk_fast(T/F)
 
   nonwalk_incomplete_gps <- gps_completeness %>%
     dplyr::mutate(non_walk_incomplete_gps = !complete_gps) %>%
+    dplyr::filter(!is.na(bout)) %>%
     dplyr::select(c("bout", "non_walk_incomplete_gps"))
+  ### These are the lines that define precedence of categorization ###
+  bout_categories <- walk_bouts %>%
+    dplyr::filter(!is.na(bout)) %>%
+    dplyr::left_join(dwell_bouts, by = c("bout")) %>%
+    dplyr::left_join(nonwalk_incomplete_gps, by = c("bout")) %>%
+    dplyr::mutate(bout_category = "walk_bout") %>%
+    dplyr::group_by(bout) %>%
+    dplyr::summarise(mean_cpe = mean(activity_counts),
+              median_speed = stats::median(speed, na.rm=TRUE),
+              bout_category = ifelse((median_speed > max_walking_speed_km_h),"non_walk_fast",bout_category),
+              bout_category = ifelse((median_speed < min_walking_speed_km_h),"non_walk_slow",bout_category),
+              bout_category = ifelse((mean_cpe > max_walking_cpe),"non_walk_too_vigorous",bout_category),
+              bout_category = ifelse(any(dwell_bout),"dwell_bout",bout_category),
+              bout_category = ifelse(any(non_walk_incomplete_gps),"non_walk_incomplete_gps",bout_category))  %>%
+    dplyr::select(c(bout,bout_category))
 
-  cols <- c("dwell_bout", "non_walk_incomplete_gps", "non_walk_fast", "non_walk_slow", "non_walk_too_vigorous",
-            "complete_day", "non_wearing", "inactive")
-  categorized_bouts <- plyr::join_all(list(
-    walk_bouts_dwell, nonwalk_cpe, nonwalk_slow, nonwalk_fast, nonwalk_incomplete_gps),
-      by = c("bout"), type = "left") %>%
-      dplyr::mutate_at(cols, ~tidyr::replace_na(.,FALSE))
-
-  cols <- c("dwell_bout", "non_walk_incomplete_gps", "non_walk_fast", "non_walk_slow", "non_walk_too_vigorous")
-  if(any(rowSums(categorized_bouts %>% dplyr::select(all_of(cols))) > 1)){
-    stop(paste0("Error: some bouts have been classified as 2 different categories."))
-  }
-
-  categorized_bouts <- categorized_bouts %>%
-    tidyr::pivot_longer(., cols = cols, names_to="bout_category") %>%
-    dplyr::filter(value) %>%
-    dplyr::select(-c("inactive","value")) %>%
-    unique(.)
+  categorized_bouts <- bout_categories %>%
+    merge(walk_bouts, by = c("bout"))
 
   return(categorized_bouts)
 }

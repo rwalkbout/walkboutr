@@ -13,7 +13,7 @@ parameters <-
     epoch_length = 30,
     active_counts_per_epoch_min = 500,
     minimum_bout_length = 10,
-    local_time_zone = "PDT",
+    local_time_zone = "US/Pacific",
     maximum_number_consec_inactive_epochs_in_bout = 3
   )
 
