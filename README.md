@@ -6,7 +6,10 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of walkboutr is to …
+The goal of walkboutr is to process GPS and accelerometry data into
+walking bouts. walkboutr will either return the original dataset along
+with bout labels and categories, or a summarized, de-identified dataset
+that can be shared for collaboration.
 
 ## Installation
 
@@ -20,28 +23,62 @@ devtools::install_github("rwalkbout/walkboutr")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is an example of simulated data that could be processed by
+walkboutr. The GPS data contain the required columns: time, latitude,
+longitude, speed. The accelerometry data contain the required columns:
+time, accerometry counts. These data have no extra columns, do not
+contain NAs, and don’t have negative speeds or accelerometry counts. All
+times are also in date-time format.
 
 ``` r
 library(walkboutr)
-## basic example code
+gps_data <- generate_walking_in_seattle_gps_data() # this will generate sample GPS data
+accelerometry_counts <- make_full_day_bout_without_metadata() # this will generate sample accelerometry data 
+
+(head(gps_data))
+#>                  time latitude longitude     speed
+#> 1 2012-04-07 00:00:30 47.60620  122.3321 0.8223424
+#> 2 2012-04-07 00:01:00 47.60998  122.3359 0.9223307
+#> 3 2012-04-07 00:01:30 47.61341  122.3393 0.5313921
+#> 4 2012-04-07 00:02:00 47.61603  122.3419 0.7581466
+#> 5 2012-04-07 00:02:30 47.61887  122.3448 0.8348447
+#> 6 2012-04-07 00:03:00 47.62212  122.3480 0.6335497
+(head(accelerometry_counts))
+#>   activity_counts                time
+#> 1               0 2012-04-07 00:00:30
+#> 2               0 2012-04-07 00:01:00
+#> 3               0 2012-04-07 00:01:30
+#> 4               0 2012-04-07 00:02:00
+#> 5             500 2012-04-07 00:02:30
+#> 6             500 2012-04-07 00:03:00
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+Now that we have sample data, we can look at how the walkboutr package
+works. There are two top level functions that will allow us to generate
+either (1) a dataset with bouts and bout categories with all of our
+original data included, or (2) a summary dataset that is completely
+de-identified and shareable for research purposes.
+
+#### Walk bout dataset including original data
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+# walk_bouts <- identify_walk_bouts_in_gps_and_accelerometry_data(gps_data,accelerometry_counts)
+# (head(walk_bouts))
 ```
 
-hi
+#### Summarized walk bout dataset
+
+This dataset is a set of labelled bouts that are categorized
+(`bout_category`) and contains information on bout specific median speed
+(`median_speed`), the start time of the bout (`bout_start`), the
+duration of the bout (in minutes for computational ease, `duration`),
+and a flag for whether the bout came from a dataset with a complete day
+worth of data (`complete_day`).
+
+``` r
+# summary <- summarize_walk_bouts(walk_bouts)
+# (head(summary))
+```
 
 You’ll still need to render `README.Rmd` regularly, to keep `README.md`
 up-to-date. `devtools::build_readme()` is handy for this. You could also

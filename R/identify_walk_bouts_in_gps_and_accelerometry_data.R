@@ -30,21 +30,23 @@ identify_walk_bouts_in_gps_and_accelerometry_data <- function(gps_data, accelero
 #' @returns A data frame summarizing identified walk bouts
 #'
 #' @export
-summarize_walk_bouts <- function(walk_bouts){
+summarize_walk_bouts <- function(walk_bouts, ..., collated_arguments = NULL){
+  collated_arguments <- collate_arguments(..., collated_arguments=collated_arguments)
 
   summary_walk_bouts <- walk_bouts %>%
     dplyr::group_by(bout) %>%
     dplyr::filter(!is.na(bout)) %>%
     dplyr::summarise(
-              median_speed = median(speed),
+              median_speed = median(speed, na.rm=TRUE),
               complete_day = any(complete_day),
-              non_wearing = any(non_wearing),
               bout_start = lubridate::as_datetime(
                 min(as.numeric(time)), tz = "UTC"),
               duration =
-                max(as.numeric(time) + epoch_length) -
-                min(as.numeric(time))
+                (max(as.numeric(time) + collated_arguments$epoch_length) -
+                min(as.numeric(time)))/60,
+              bout_category = any(bout_category)
                 )
+
   return(summary_walk_bouts)
 }
 

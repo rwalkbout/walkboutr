@@ -348,6 +348,26 @@ make_full_day_bout <- function() {
 }
 
 
+#' Create activity counts for a full day bout without metadata
+#'
+#' This function creates a data frame with activity counts for a full day bout. A full day bout is defined as an uninterrupted period of activity with a length of at least \code{min_complete_day}. The function calls the \code{make_non_bout_window()}, \code{make_smallest_bout_window()}, and \code{make_smallest_complete_day_activity()} functions to generate the activity counts for the non-bout window, smallest bout window, and smallest complete day activity, respectively.
+#'
+#' @return A data frame with activity counts for a full day bout without metadata
+#' @export
+make_full_day_bout_without_metadata <- function() {
+  counts <- dplyr::bind_rows(
+    make_non_bout_window(),
+    make_smallest_bout_window(),
+    make_smallest_complete_day_activity()
+  )
+  counts <- add_date_and_format(counts)
+  counts <- counts %>%
+    dplyr::mutate(complete_day = TRUE) %>%
+    dplyr::select(-c("complete_day", "non_wearing", "bout"))
+  return(counts)
+}
+
+
 #' Create a data frame of walking bouts with GPS data
 #'
 #' This function combines accelerometer and GPS data to create a data frame of walking bouts.
