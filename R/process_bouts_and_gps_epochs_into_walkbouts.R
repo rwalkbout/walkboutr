@@ -134,7 +134,7 @@ evaluate_gps_completeness <- function(walk_bouts, min_gps_obs_within_bout, min_g
       gps_coverage_ratio = ifelse(sum(!is.na(bout))!=0, n_valid_gps_records/sum(!is.na(bout)), NA),
       sufficient_gps_records = n_valid_gps_records>min_gps_obs_within_bout,
       sufficient_gps_coverage = gps_coverage_ratio>min_gps_coverage_ratio,
-      median_speed = stats::median(!is.na(speed))) %>%
+      median_speed = stats::median(speed, na.rm=TRUE)) %>%
     dplyr::mutate(complete_gps = ifelse((sufficient_gps_coverage==FALSE & sufficient_gps_records == FALSE), FALSE, TRUE)) %>%
     # can take out this ifelse since its all T/F
     dplyr::select(c("bout", "complete_gps", "median_speed"))

@@ -175,13 +175,13 @@ identify_non_wearing_periods <- function(accelerometry_counts, non_wearing_min_t
 #'
 #' @returns A data frame containing accelerometer counts, non-wearing epochs, and a binary variable indicating if the day is complete or not.
 identify_complete_days <- function(accelerometry_counts, min_wearing_hours_per_day, epoch_length, local_time_zone){
-  min_wearing_epochs_per_day <- min_wearing_hours_per_day/epoch_length
+  min_wearing_epochs_per_day <- (min_wearing_hours_per_day*60*60)/epoch_length
   # max_non_wearing_per_day <- 24-min_wearing_hours_per_day
   complete_days_df <- accelerometry_counts %>%
     dplyr::mutate(date = lubridate::as_date(time, tz = local_time_zone)) %>%
     dplyr::group_by(date) %>%
-    dplyr::summarise(total_wearing_epochs_whole_day = min_wearing_epochs_per_day - sum(non_wearing)) %>%
-    # dplyr::summarise(total_non_wearing_epochs_whole_day = sum(non_wearing)) %>%
+    dplyr::summarise(n_epochs_date = nrow(.),
+                     total_wearing_epochs_whole_day = n_epochs_date - sum(non_wearing)) %>%
     dplyr::mutate(complete_day = total_wearing_epochs_whole_day >= min_wearing_epochs_per_day) %>%
     # dplyr::mutate(complete_day = total_non_wearing_epochs_whole_day <= max_non_wearing_per_day) %>%
     # dplyr::select(-c(total_non_wearing_epochs_whole_day))

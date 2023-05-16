@@ -54,13 +54,13 @@ accelerometry_counts <- make_full_day_bout_without_metadata()
 GPS data: 
 ```{r simulated data: gps, echo = FALSE}
 kable(head(gps_data), booktabs = TRUE)  %>% 
-  kable_styling(latex_options = "striped", full_width = TRUE, font_size = 12)
+  kable_styling(latex_options = "striped", full_width = TRUE, font_size = 12, position = "center")
 ```
 
 Accelerometry data:
 ```{r simulated data: acc, echo = FALSE}
 kable(head(accelerometry_counts), booktabs = TRUE)  %>% 
-  kable_styling(latex_options = "striped", full_width = TRUE, font_size = 12)
+  kable_styling(latex_options = "striped", full_width = TRUE, font_size = 12, position = "center")
 ```
 
 <p>
@@ -77,7 +77,9 @@ walk_bouts <- identify_walk_bouts_in_gps_and_accelerometry_data(gps_data,acceler
 
 ```{r example printout, echo = FALSE}
 kable(head(walk_bouts)) %>% 
-  kable_styling(latex_options = "striped", font_size = 12)
+  kable_styling(latex_options = "striped") %>% 
+  kable_styling(font_size = 12) %>% 
+  kable_styling(position = "center")
 ```
 
 
@@ -89,7 +91,7 @@ summary <- summarize_walk_bouts(walk_bouts)
 
 ```{r example 2 printout, echo = FALSE}
 kable(head(summary)) %>% 
-  kable_styling(latex_options = "striped", font_size = 12)
+  kable_styling(latex_options = "striped", font_size = 12, position = "center")
 summary <- summarize_walk_bouts(walk_bouts)
 summary_1 <- summary %>% dplyr::filter(bout == 1)
 ```
