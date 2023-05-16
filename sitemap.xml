@@ -10,10 +10,22 @@
     <loc>https://rwalkbout.github.io/walkboutr/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://rwalkbout.github.io/walkboutr/articles/generate_data.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/articles/process_bouts.html</loc>
+  </url>
+  <url>
     <loc>https://rwalkbout.github.io/walkboutr/authors.html</loc>
   </url>
   <url>
     <loc>https://rwalkbout.github.io/walkboutr/index.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/add_date_and_format.html</loc>
   </url>
   <url>
     <loc>https://rwalkbout.github.io/walkboutr/reference/assign_epoch_start_time.html</loc>
@@ -37,6 +49,9 @@
     <loc>https://rwalkbout.github.io/walkboutr/reference/generate_gps_data.html</loc>
   </url>
   <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/generate_walking_in_seattle_gps_data.html</loc>
+  </url>
+  <url>
     <loc>https://rwalkbout.github.io/walkboutr/reference/identify_bouts.html</loc>
   </url>
   <url>
@@ -50,6 +65,45 @@
   </url>
   <url>
     <loc>https://rwalkbout.github.io/walkboutr/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/make_active_period.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/make_full_day_bout.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/make_full_day_bout_without_metadata.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/make_full_walk_bout_df.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/make_inactive_period.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/make_non_bout_window.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/make_smallest_bout.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/make_smallest_bout_window.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/make_smallest_bout_with_largest_inactive_period.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/make_smallest_bout_with_smallest_non_wearing_period.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/make_smallest_bout_without_metadata.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/make_smallest_complete_day_activity.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/make_smallest_nonwearing_window.html</loc>
   </url>
   <url>
     <loc>https://rwalkbout.github.io/walkboutr/reference/next_lat_long.html</loc>

@@ -21,6 +21,13 @@
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/generate_data.html">generate_data</a>
+    <a class="dropdown-item" href="../articles/process_bouts.html">process_bouts</a>
+  </div>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -52,6 +59,11 @@
       
 
       <dl><dt>
+          
+          <code><a href="add_date_and_format.html">add_date_and_format()</a></code> 
+        </dt>
+        <dd>Add date and format to activity counts</dd>
+      </dl><dl><dt>
           
           <code><a href="assign_epoch_start_time.html">assign_epoch_start_time()</a></code> 
         </dt>
@@ -89,6 +101,11 @@ This function collates user-provided arguments with pre-defined parameters and c
         <dd>Generate a dataset with date-time, speed, and latitude and longitude of someone moving through space on a walk in Seattle</dd>
       </dl><dl><dt>
           
+          <code><a href="generate_walking_in_seattle_gps_data.html">generate_walking_in_seattle_gps_data()</a></code> 
+        </dt>
+        <dd>Generate GPS data for a walking activity in Seattle, WA</dd>
+      </dl><dl><dt>
+          
           <code><a href="identify_bouts.html">identify_bouts()</a></code> 
         </dt>
         <dd>Identify Bouts:</dd>
@@ -111,9 +128,74 @@ This function identifies non-wearing periods in accelerometry data based on a th
         <dd>Identify walking bouts in GPS and accelerometry data:</dd>
       </dl><dl><dt>
           
+          <code><a href="make_active_period.html">make_active_period()</a></code> 
+        </dt>
+        <dd>Generate accelerometry datasets</dd>
+      </dl><dl><dt>
+          
+          <code><a href="make_full_day_bout.html">make_full_day_bout()</a></code> 
+        </dt>
+        <dd>Create activity counts for a full day bout</dd>
+      </dl><dl><dt>
+          
+          <code><a href="make_full_day_bout_without_metadata.html">make_full_day_bout_without_metadata()</a></code> 
+        </dt>
+        <dd>Create activity counts for a full day bout without metadata</dd>
+      </dl><dl><dt>
+          
+          <code><a href="make_full_walk_bout_df.html">make_full_walk_bout_df()</a></code> 
+        </dt>
+        <dd>Create a data frame of walking bouts with GPS data</dd>
+      </dl><dl><dt>
+          
+          <code><a href="make_inactive_period.html">make_inactive_period()</a></code> 
+        </dt>
+        <dd>Create an inactive period</dd>
+      </dl><dl><dt>
+          
+          <code><a href="make_non_bout_window.html">make_non_bout_window()</a></code> 
+        </dt>
+        <dd>Create a non-bout window</dd>
+      </dl><dl><dt>
+          
+          <code><a href="make_smallest_bout.html">make_smallest_bout()</a></code> 
+        </dt>
+        <dd>Make the smallest bout dataset</dd>
+      </dl><dl><dt>
+          
+          <code><a href="make_smallest_bout_window.html">make_smallest_bout_window()</a></code> 
+        </dt>
+        <dd>Create the smallest bout window</dd>
+      </dl><dl><dt>
+          
+          <code><a href="make_smallest_bout_with_largest_inactive_period.html">make_smallest_bout_with_largest_inactive_period()</a></code> 
+        </dt>
+        <dd>Generate a sequence of accelerometer counts representing the smallest bout with the largest inactive period</dd>
+      </dl><dl><dt>
+          
+          <code><a href="make_smallest_bout_with_smallest_non_wearing_period.html">make_smallest_bout_with_smallest_non_wearing_period()</a></code> 
+        </dt>
+        <dd>Generate the smallest bout with the smallest non-wearing period dataset</dd>
+      </dl><dl><dt>
+          
+          <code><a href="make_smallest_bout_without_metadata.html">make_smallest_bout_without_metadata()</a></code> 
+        </dt>
+        <dd>Create the smallest bout window without metadata</dd>
+      </dl><dl><dt>
+          
+          <code><a href="make_smallest_complete_day_activity.html">make_smallest_complete_day_activity()</a></code> 
+        </dt>
+        <dd>Generate an activity sequence for a complete day with minimal activity</dd>
+      </dl><dl><dt>
+          
+          <code><a href="make_smallest_nonwearing_window.html">make_smallest_nonwearing_window()</a></code> 
+        </dt>
+        <dd>Create smallest non-wearing window</dd>
+      </dl><dl><dt>
+          
           <code><a href="next_lat_long.html">next_lat_long()</a></code> 
         </dt>
-        <dd>Gets the next lat/long coordinate</dd>
+        <dd>Calculate next latitude and longitude based on current location, speed, direction, and time elapsed.</dd>
       </dl><dl><dt>
           
           <code><a href="outlier_gps_points.html">outlier_gps_points()</a></code> 

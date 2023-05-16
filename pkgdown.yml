@@ -1,8 +1,10 @@
 pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
-articles: {}
-last_built: 2023-05-14T20:12Z
+articles:
+  generate_data: generate_data.html
+  process_bouts: process_bouts.html
+last_built: 2023-05-16T17:53Z
 urls:
   reference: https://rwalkbout.github.io/walkboutr/reference
   article: https://rwalkbout.github.io/walkboutr/articles
