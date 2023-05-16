@@ -27,6 +27,7 @@ Imports:
     data.table,
     dplyr,
     geosphere,
+    ggplot2,
     here,
     hms,
     latticeExtra,

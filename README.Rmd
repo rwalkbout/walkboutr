@@ -99,4 +99,9 @@ In this example, we have `r nrow(summary)` bout(s), and each bout has a label. B
 For more information on bout categories and how these are assigned, please see the vignette titled XXX. 
 
 
+``` {r plot, include = FALSE}
+bouts <- process_accelerometry_counts_into_bouts(accelerometry_counts)
+gps_epochs <- process_gps_data_into_gps_epochs(gps_data)
+all_bouts <- process_bouts_and_gps_epochs_into_walkbouts(bouts, gps_epochs)
+```
 

@@ -72,7 +72,7 @@ speed
 122.3321
 </td>
 <td style="text-align:right;">
-0.6284093
+1.2273315
 </td>
 </tr>
 <tr>
@@ -80,10 +80,10 @@ speed
 2012-04-07 00:01:00
 </td>
 <td style="text-align:right;">
-47.60909
+47.61184
 </td>
 <td style="text-align:right;">
-122.3350
+122.3377
 </td>
 <td style="text-align:right;">
 0.9223307
@@ -94,10 +94,10 @@ speed
 2012-04-07 00:01:30
 </td>
 <td style="text-align:right;">
-47.61252
+47.61527
 </td>
 <td style="text-align:right;">
-122.3384
+122.3412
 </td>
 <td style="text-align:right;">
 0.5313921
@@ -108,10 +108,10 @@ speed
 2012-04-07 00:02:00
 </td>
 <td style="text-align:right;">
-47.61514
+47.61789
 </td>
 <td style="text-align:right;">
-122.3410
+122.3438
 </td>
 <td style="text-align:right;">
 0.7581466
@@ -122,10 +122,10 @@ speed
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.61798
+47.62073
 </td>
 <td style="text-align:right;">
-122.3439
+122.3466
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -136,10 +136,10 @@ speed
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62123
+47.62398
 </td>
 <td style="text-align:right;">
-122.3471
+122.3499
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -272,10 +272,10 @@ non_walk_slow
 2012-04-07 00:03:30
 </td>
 <td style="text-align:right;">
-47.62432
+47.62707
 </td>
 <td style="text-align:right;">
-122.3502
+122.3530
 </td>
 <td style="text-align:right;">
 0.9995464
@@ -304,10 +304,10 @@ non_walk_slow
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.61798
+47.62073
 </td>
 <td style="text-align:right;">
-122.3439
+122.3466
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -336,10 +336,10 @@ non_walk_slow
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62123
+47.62398
 </td>
 <td style="text-align:right;">
-122.3471
+122.3499
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -368,10 +368,10 @@ non_walk_slow
 2012-04-07 00:05:30
 </td>
 <td style="text-align:right;">
-47.64231
+47.64506
 </td>
 <td style="text-align:right;">
-122.3682
+122.3710
 </td>
 <td style="text-align:right;">
 0.9944386
@@ -400,10 +400,10 @@ non_walk_slow
 2012-04-07 00:06:00
 </td>
 <td style="text-align:right;">
-47.64692
+47.64968
 </td>
 <td style="text-align:right;">
-122.3728
+122.3756
 </td>
 <td style="text-align:right;">
 1.2970529
@@ -432,10 +432,10 @@ non_walk_slow
 2012-04-07 00:06:30
 </td>
 <td style="text-align:right;">
-47.65326
+47.65601
 </td>
 <td style="text-align:right;">
-122.3792
+122.3819
 </td>
 <td style="text-align:right;">
 1.0669589
