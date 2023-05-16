@@ -13,10 +13,9 @@
 #' @export
 identify_walk_bouts_in_gps_and_accelerometry_data <- function(gps_data, accelerometry_counts, ..., collated_arguments = NULL){
   collated_arguments <- collate_arguments(..., collated_arguments=collated_arguments)
-
   bouts <- process_accelerometry_counts_into_bouts(accelerometry_counts, collated_arguments=collated_arguments)
   gps_epochs <- process_gps_data_into_gps_epochs(gps_data, collated_arguments=collated_arguments)
-  walk_bouts <- process_bouts_and_gps_epochs_into_walkbouts(bouts, collated_arguments=collated_arguments)
+  walk_bouts <- process_bouts_and_gps_epochs_into_walkbouts(bouts, gps_epochs, collated_arguments=collated_arguments)
   return(walk_bouts)
 }
 
@@ -44,7 +43,7 @@ summarize_walk_bouts <- function(walk_bouts, ..., collated_arguments = NULL){
               duration =
                 (max(as.numeric(time) + collated_arguments$epoch_length) -
                 min(as.numeric(time)))/60,
-              bout_category = any(bout_category)
+              bout_category = (bout_category[1])
                 )
 
   return(summary_walk_bouts)

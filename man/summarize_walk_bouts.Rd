@@ -6,7 +6,7 @@
 \title{Summarize walking bouts:
 This function summarizes walking bouts and calculates the median speed, complete day, non-wearing, bout start, and duration of each bout.}
 \usage{
-summarize_walk_bouts(walk_bouts, epoch_length)
+summarize_walk_bouts(walk_bouts, ..., collated_arguments = NULL)
 }
 \arguments{
 \item{walk_bouts}{A data frame containing identified walk bouts}

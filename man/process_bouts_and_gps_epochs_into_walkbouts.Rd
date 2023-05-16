@@ -6,6 +6,7 @@
 \usage{
 process_bouts_and_gps_epochs_into_walkbouts(
   bouts,
+  gps_epochs,
   ...,
   collated_arguments = NULL
 )

@@ -29,7 +29,7 @@
 #' these functions with the original data and all new variables.
 #'
 #' @export
-process_bouts_and_gps_epochs_into_walkbouts <- function(bouts, ..., collated_arguments = NULL){
+process_bouts_and_gps_epochs_into_walkbouts <- function(bouts, gps_epochs, ..., collated_arguments = NULL){
   collated_arguments <- collate_arguments(..., collated_arguments = collated_arguments)
   print('processing bouts and gps_epochs')
 
