@@ -125,10 +125,6 @@ generate_walking_in_seattle_gps_data <- function(){
 #' @param complete_day Logical indicating if the active period is a complete day
 #'
 #' @return A list of activity epochs
-#' @examples
-#' make_active_period()
-#'
-#' @export
 make_active_period <- function(length = 1, is_bout = TRUE, non_wearing = FALSE, complete_day = FALSE) {
   active_counts_per_epoch_min <- 500
   minimum_bout_length <- 10
@@ -159,10 +155,6 @@ make_active_period <- function(length = 1, is_bout = TRUE, non_wearing = FALSE, 
 #'
 #' @return A data frame with columns activity_counts, bout, non_wearing, and complete_day, where activity_counts is set to 0 for the entire length, and bout, non_wearing, and complete_day are set according to the input values.
 #'
-#' @examples
-#' make_inactive_period(length = 30, is_bout = TRUE, non_wearing = FALSE, complete_day = TRUE)
-#'
-#' @export
 make_inactive_period <- function(length = 1, is_bout = FALSE, non_wearing = FALSE, complete_day = FALSE) {
   inactive_period <- data.frame(activity_counts = rep(0, length),
          bout = as.integer(is_bout),
@@ -179,12 +171,6 @@ make_inactive_period <- function(length = 1, is_bout = FALSE, non_wearing = FALS
 #'
 #' @param counts a data frame containing activity counts
 #' @return a data frame with time stamps added in POSIXct format
-#' @examples
-#' data <- data.frame(steps = c(100, 200, 300))
-#' data_with_time <- add_date_and_format(data)
-#' head(data_with_time)
-#'
-#' @export
 add_date_and_format <- function(counts) {
   time <- seq(lubridate::ymd_hms("2012-04-07 00:00:30"), length.out = nrow(counts), by = "30 sec")
   df <- cbind(counts, time)
@@ -199,8 +185,6 @@ add_date_and_format <- function(counts) {
 #'
 #' @return A data.frame with columns [activity_counts, bout, non_wearing, complete_day] representing the smallest bout window.
 #' @examples
-#' make_smallest_bout_window()
-#' @export
 make_smallest_bout_window <- function(minimum_bout_length = 10) {
   return(make_active_period(minimum_bout_length))
 }

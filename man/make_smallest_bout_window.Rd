@@ -12,6 +12,3 @@ A data.frame with columns \link{activity_counts, bout, non_wearing, complete_day
 \description{
 This function creates an active period of minimum length defined by the parameter \code{minimum_bout_length}.
 }
-\examples{
-make_smallest_bout_window()
-}

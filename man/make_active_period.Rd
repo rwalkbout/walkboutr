@@ -39,7 +39,3 @@ A list of activity epochs
 This function generates a list of activity epochs with specified minimum active counts per epoch, minimum bout length,
 maximum number of consecutive inactive epochs in a bout, minimum non-wearing length, and minimum complete day length.
 }
-\examples{
-make_active_period()
-
-}

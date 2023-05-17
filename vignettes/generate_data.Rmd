@@ -12,8 +12,96 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(kableExtra)
 ```
 
 ```{r setup}
 library(walkboutr)
 ```
+
+The `walkboutr` package has several functions to generate sample data so that you can see how the package works in practice. We generate GPS data and accelerometry data separately, as that is how you will provide your data to `walkboutr`. 
+
+### GPS Data Generation
+
+GPS data provided should contain the following columns and have the relevant characteristics: 
+- *time* values should be in date-time format and be all non-missing
+- *latitude* values should be between -90 and 90 and be all non-missing 
+- *longitude* values should be between -180 and 180 and be all non-missing
+- *speed* values should all be positive, non-missing values in km/h
+
+These data will be processed and later combined with accelerometry data to generate walkbouts. 
+#### Generating sample GPS data 
+
+```{r sample GPS data}
+gps_data <- generate_gps_data(start_lat = 40.7128, start_long = 74.0060, start_time = lubridate::ymd_hms('2012-04-07 00:00:30'))
+```
+
+These sample GPS data meet all of the characteristics outlined above: 
+
+```{r sample GPS data head}
+kable(head(gps_data))
+```
+
+`walkboutr` also has a function to generate a realistic walking route in Seattle, which is simply meant to provide another example for generating data and becoming familiar with the package: 
+
+```{r seattle walking data}
+seattle <- generate_walking_in_seattle_gps_data()
+```
+
+These data look exactly the same as the randomly generated sample GPS data: 
+```{r seattle walking data head, echo = FALSE}
+kable(head(seattle))
+```
+
+<p>
+<p>
+#### Generating sample Accelerometry data 
+
+Accelerometry data provided should contain the following columns and have the relevant characteristics: 
+- *time* values should be in date-time format and be all non-missing
+- *activity_count* values should be the output of accelerometers and represent activity counts in CPE. These values should be non-missing and non-negative.
+
+These data will be processed and later combined with the GPS data to generate walkbouts. 
+
+There are more functions to generate accelerometry data so that you can see the differences based on the size of the dataset. The following functions are included for you to generate sample data: 
+
+
+For the purposes of this example, we will create generate the smallest walk bout. 
+
+```{r generate smallest walkbout}
+accelerometry_counts <- make_smallest_bout_without_metadata()
+```
+
+These sample accelerometry data meet all of the characteristics outlined above: 
+```{r smallest walkbout head, echo=FALSE}
+kable(head(accelerometry_counts))
+```
+
+#### Generating a full data frame of walk bouts 
+
+This function generates a data frame of walk bouts with accelerometry and GPS data so that you can get an idea of how some of the top level functions work. These data won't be used directly by the package, but are here to give you an idea of what a full dataset looks like as it goes into the final steps of the package. 
+
+In order to generate these data, you can use the `make_full_walk_bout_df` function: 
+```{r make full walk bout}
+walk_bouts <- make_full_walk_bout_df()
+```
+
+This dataset looks like this: 
+```{r full walk bout head, echo=FALSE}
+kable(head(walk_bouts))
+```
+
+
+Please see docs for each of these functions for generating data. The full list of available functions is: 
+<p> - `generate_gps_data()`
+- `generate_walking_in_seattle_gps_data()`
+- `make_smallest_bout_window()`
+- `make_smallest_nonwearing_window()`
+- `make_smallest_complete_day_activity()`
+- `make_smallest_bout()`
+- `make_smallest_bout_without_metadata()`
+- `make_smallest_bout_with_largest_inactive_period()`
+- `make_smallest_bout_with_smallest_non_wearing_period()`
+- `make_full_day_bout()`
+- `make_full_day_bout_without_metadata()`
+- `make_full_walk_bout_df()`

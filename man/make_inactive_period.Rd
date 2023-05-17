@@ -26,7 +26,3 @@ A data frame with columns activity_counts, bout, non_wearing, and complete_day, 
 \description{
 This function creates an inactive period with a given length.
 }
-\examples{
-make_inactive_period(length = 30, is_bout = TRUE, non_wearing = FALSE, complete_day = TRUE)
-
-}

@@ -32,7 +32,7 @@ walkboutr. The GPS data contain the required columns: time, latitude,
 longitude, speed. The accelerometry data contain the required columns:
 time, accerometry counts. These data have no extra columns, do not
 contain NAs, and don’t have negative speeds or accelerometry counts. All
-times are also in date-time format.
+times here are also in date-time format.
 
 ``` r
 library(walkboutr)
@@ -72,7 +72,7 @@ speed
 122.3321
 </td>
 <td style="text-align:right;">
-0.7942021
+1.3559572
 </td>
 </tr>
 <tr>
@@ -80,10 +80,10 @@ speed
 2012-04-07 00:01:00
 </td>
 <td style="text-align:right;">
-47.60985
+47.61243
 </td>
 <td style="text-align:right;">
-122.3357
+122.3383
 </td>
 <td style="text-align:right;">
 0.9223307
@@ -94,10 +94,10 @@ speed
 2012-04-07 00:01:30
 </td>
 <td style="text-align:right;">
-47.61328
+47.61586
 </td>
 <td style="text-align:right;">
-122.3392
+122.3418
 </td>
 <td style="text-align:right;">
 0.5313921
@@ -108,10 +108,10 @@ speed
 2012-04-07 00:02:00
 </td>
 <td style="text-align:right;">
-47.61590
+47.61848
 </td>
 <td style="text-align:right;">
-122.3418
+122.3444
 </td>
 <td style="text-align:right;">
 0.7581466
@@ -122,10 +122,10 @@ speed
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.61874
+47.62132
 </td>
 <td style="text-align:right;">
-122.3446
+122.3472
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -136,10 +136,10 @@ speed
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62199
+47.62457
 </td>
 <td style="text-align:right;">
-122.3479
+122.3505
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -255,6 +255,9 @@ inactive
 <th style="text-align:left;">
 non_wearing
 </th>
+<th style="text-align:right;">
+n_epochs_date
+</th>
 <th style="text-align:left;">
 complete_day
 </th>
@@ -272,10 +275,10 @@ non_walk_slow
 2012-04-07 00:03:30
 </td>
 <td style="text-align:right;">
-47.62508
+47.62766
 </td>
 <td style="text-align:right;">
-122.3510
+122.3536
 </td>
 <td style="text-align:right;">
 0.9995464
@@ -288,6 +291,9 @@ FALSE
 </td>
 <td style="text-align:left;">
 FALSE
+</td>
+<td style="text-align:right;">
+8616
 </td>
 <td style="text-align:left;">
 TRUE
@@ -304,10 +310,10 @@ non_walk_slow
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.61874
+47.62132
 </td>
 <td style="text-align:right;">
-122.3446
+122.3472
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -320,6 +326,9 @@ FALSE
 </td>
 <td style="text-align:left;">
 FALSE
+</td>
+<td style="text-align:right;">
+8616
 </td>
 <td style="text-align:left;">
 TRUE
@@ -336,10 +345,10 @@ non_walk_slow
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62199
+47.62457
 </td>
 <td style="text-align:right;">
-122.3479
+122.3505
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -352,6 +361,9 @@ FALSE
 </td>
 <td style="text-align:left;">
 FALSE
+</td>
+<td style="text-align:right;">
+8616
 </td>
 <td style="text-align:left;">
 TRUE
@@ -368,10 +380,10 @@ non_walk_slow
 2012-04-07 00:05:30
 </td>
 <td style="text-align:right;">
-47.64307
+47.64565
 </td>
 <td style="text-align:right;">
-122.3690
+122.3716
 </td>
 <td style="text-align:right;">
 0.9944386
@@ -384,6 +396,9 @@ FALSE
 </td>
 <td style="text-align:left;">
 FALSE
+</td>
+<td style="text-align:right;">
+8616
 </td>
 <td style="text-align:left;">
 TRUE
@@ -400,10 +415,10 @@ non_walk_slow
 2012-04-07 00:06:00
 </td>
 <td style="text-align:right;">
-47.64769
+47.65027
 </td>
 <td style="text-align:right;">
-122.3736
+122.3762
 </td>
 <td style="text-align:right;">
 1.2970529
@@ -416,6 +431,9 @@ FALSE
 </td>
 <td style="text-align:left;">
 FALSE
+</td>
+<td style="text-align:right;">
+8616
 </td>
 <td style="text-align:left;">
 TRUE
@@ -432,10 +450,10 @@ non_walk_slow
 2012-04-07 00:06:30
 </td>
 <td style="text-align:right;">
-47.65402
+47.65660
 </td>
 <td style="text-align:right;">
-122.3799
+122.3825
 </td>
 <td style="text-align:right;">
 1.0669589
@@ -448,6 +466,9 @@ FALSE
 </td>
 <td style="text-align:left;">
 FALSE
+</td>
+<td style="text-align:right;">
+8616
 </td>
 <td style="text-align:left;">
 TRUE

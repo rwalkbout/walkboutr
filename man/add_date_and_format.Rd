@@ -16,9 +16,3 @@ a data frame with time stamps added in POSIXct format
 This function takes a data frame of activity counts and adds a column of time stamps in POSIXct format.
 The time stamps start at "2012-04-07 00:00:30" and increase by 30 seconds for each row of the data frame.
 }
-\examples{
-data <- data.frame(steps = c(100, 200, 300))
-data_with_time <- add_date_and_format(data)
-head(data_with_time)
-
-}
