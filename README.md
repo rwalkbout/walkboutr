@@ -32,7 +32,7 @@ walkboutr. The GPS data contain the required columns: time, latitude,
 longitude, speed. The accelerometry data contain the required columns:
 time, accerometry counts. These data have no extra columns, do not
 contain NAs, and don’t have negative speeds or accelerometry counts. All
-times here are also in date-time format.
+times are also in date-time format.
 
 ``` r
 library(walkboutr)
@@ -72,7 +72,7 @@ speed
 122.3321
 </td>
 <td style="text-align:right;">
-1.3559572
+0.9309503
 </td>
 </tr>
 <tr>
@@ -80,10 +80,10 @@ speed
 2012-04-07 00:01:00
 </td>
 <td style="text-align:right;">
-47.61243
+47.61048
 </td>
 <td style="text-align:right;">
-122.3383
+122.3364
 </td>
 <td style="text-align:right;">
 0.9223307
@@ -94,10 +94,10 @@ speed
 2012-04-07 00:01:30
 </td>
 <td style="text-align:right;">
-47.61586
+47.61391
 </td>
 <td style="text-align:right;">
-122.3418
+122.3398
 </td>
 <td style="text-align:right;">
 0.5313921
@@ -108,10 +108,10 @@ speed
 2012-04-07 00:02:00
 </td>
 <td style="text-align:right;">
-47.61848
+47.61653
 </td>
 <td style="text-align:right;">
-122.3444
+122.3424
 </td>
 <td style="text-align:right;">
 0.7581466
@@ -122,10 +122,10 @@ speed
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.62132
+47.61937
 </td>
 <td style="text-align:right;">
-122.3472
+122.3453
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -136,10 +136,10 @@ speed
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62457
+47.62262
 </td>
 <td style="text-align:right;">
-122.3505
+122.3485
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -275,10 +275,10 @@ non_walk_slow
 2012-04-07 00:03:30
 </td>
 <td style="text-align:right;">
-47.62766
+47.62571
 </td>
 <td style="text-align:right;">
-122.3536
+122.3516
 </td>
 <td style="text-align:right;">
 0.9995464
@@ -310,10 +310,10 @@ non_walk_slow
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.62132
+47.61937
 </td>
 <td style="text-align:right;">
-122.3472
+122.3453
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -345,10 +345,10 @@ non_walk_slow
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62457
+47.62262
 </td>
 <td style="text-align:right;">
-122.3505
+122.3485
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -380,10 +380,10 @@ non_walk_slow
 2012-04-07 00:05:30
 </td>
 <td style="text-align:right;">
-47.64565
+47.64370
 </td>
 <td style="text-align:right;">
-122.3716
+122.3696
 </td>
 <td style="text-align:right;">
 0.9944386
@@ -415,10 +415,10 @@ non_walk_slow
 2012-04-07 00:06:00
 </td>
 <td style="text-align:right;">
-47.65027
+47.64831
 </td>
 <td style="text-align:right;">
-122.3762
+122.3742
 </td>
 <td style="text-align:right;">
 1.2970529
@@ -450,10 +450,10 @@ non_walk_slow
 2012-04-07 00:06:30
 </td>
 <td style="text-align:right;">
-47.65660
+47.65465
 </td>
 <td style="text-align:right;">
-122.3825
+122.3806
 </td>
 <td style="text-align:right;">
 1.0669589

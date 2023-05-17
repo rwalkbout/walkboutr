@@ -2,10 +2,13 @@ Package: walkboutr
 Title: Generate Walk Bouts from GPS and Accelerometry Data
 Version: 0.0.0.9000
 Authors@R: 
-    person("Lauren", "Wilner", 
+    c(person("Lauren", "Wilner", 
     email = "wilnerl@uw.edu", 
     role = c("aut", "cre"),
-    comment = c(ORCID = "0000-0003-4439-3734"))
+    comment = c(ORCID = "0000-0003-4439-3734")),
+    person("Steve", "Mooney",
+    email = "sjm2186@uw.edu",
+    role = c("aut")))
 Description: Generates walk bouts from GPS and accelerometry data. 
     A walk bout is a period of activity with accelerometer movement matching the 
     patterns of walking with corresponding GPS measurements that confirm travel. 
