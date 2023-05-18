@@ -80,14 +80,614 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rwalkbout/walkboutr" class="external-link">walkboutr</a></span><span class="op">)</span></span></code></pre></div>
-  </main>
+<p>The <code>walkboutr</code> package has several functions to generate
+sample data so that you can see how the package works in practice. We
+generate GPS data and accelerometry data separately, as that is how you
+will provide your data to <code>walkboutr</code>.</p>
+<div class="section level3">
+<h3 id="gps-data-generation">GPS Data Generation<a class="anchor" aria-label="anchor" href="#gps-data-generation"></a>
+</h3>
+GPS data provided should contain the following columns and have the
+relevant characteristics:
+<p>
+</p>
+<ul>
+<li>
+<strong>time</strong> values should be in date-time format and be
+all non-missing</li>
+<li>
+<strong>latitude</strong> values should be between -90 and 90 and be
+all non-missing</li>
+<li>
+<strong>longitude</strong> values should be between -180 and 180 and
+be all non-missing</li>
+<li>
+<strong>speed</strong> values should all be positive, non-missing
+values in km/h</li>
+</ul>
+<p>These data will be processed and later combined with accelerometry
+data to generate walkbouts. #### Generating sample GPS data</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gps_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_gps_data.html">generate_gps_data</a></span><span class="op">(</span>start_lat <span class="op">=</span> <span class="fl">40.7128</span>, start_long <span class="op">=</span> <span class="fl">74.0060</span>, start_time <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html" class="external-link">ymd_hms</a></span><span class="op">(</span><span class="st">'2012-04-07 00:00:30'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>These sample GPS data meet all of the characteristics outlined
+above:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">gps_data</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+time
+</th>
+<th style="text-align:right;">
+latitude
+</th>
+<th style="text-align:right;">
+longitude
+</th>
+<th style="text-align:right;">
+speed
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:00:30
+</td>
+<td style="text-align:right;">
+40.71280
+</td>
+<td style="text-align:right;">
+74.00600
+</td>
+<td style="text-align:right;">
+0.5510585
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:01:00
+</td>
+<td style="text-align:right;">
+40.71533
+</td>
+<td style="text-align:right;">
+74.00853
+</td>
+<td style="text-align:right;">
+0.9223307
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:01:30
+</td>
+<td style="text-align:right;">
+40.71876
+</td>
+<td style="text-align:right;">
+74.01196
+</td>
+<td style="text-align:right;">
+0.5313921
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:02:00
+</td>
+<td style="text-align:right;">
+40.72138
+</td>
+<td style="text-align:right;">
+74.01458
+</td>
+<td style="text-align:right;">
+0.7581466
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:02:30
+</td>
+<td style="text-align:right;">
+40.72422
+</td>
+<td style="text-align:right;">
+74.01743
+</td>
+<td style="text-align:right;">
+0.8348447
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:03:00
+</td>
+<td style="text-align:right;">
+40.72747
+</td>
+<td style="text-align:right;">
+74.02067
+</td>
+<td style="text-align:right;">
+0.6335497
+</td>
+</tr>
+</tbody>
+</table>
+<p><code>walkboutr</code> also has a function to generate a realistic
+walking route in Seattle, which is simply meant to provide another
+example for generating data and becoming familiar with the package:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">seattle</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_walking_in_seattle_gps_data.html">generate_walking_in_seattle_gps_data</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+These data look exactly the same as the randomly generated sample GPS
+data:
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+time
+</th>
+<th style="text-align:right;">
+latitude
+</th>
+<th style="text-align:right;">
+longitude
+</th>
+<th style="text-align:right;">
+speed
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:00:30
+</td>
+<td style="text-align:right;">
+47.60620
+</td>
+<td style="text-align:right;">
+122.3321
+</td>
+<td style="text-align:right;">
+1.2338941
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:01:00
+</td>
+<td style="text-align:right;">
+47.61187
+</td>
+<td style="text-align:right;">
+122.3378
+</td>
+<td style="text-align:right;">
+0.9223307
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:01:30
+</td>
+<td style="text-align:right;">
+47.61530
+</td>
+<td style="text-align:right;">
+122.3412
+</td>
+<td style="text-align:right;">
+0.5313921
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:02:00
+</td>
+<td style="text-align:right;">
+47.61792
+</td>
+<td style="text-align:right;">
+122.3438
+</td>
+<td style="text-align:right;">
+0.7581466
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:02:30
+</td>
+<td style="text-align:right;">
+47.62076
+</td>
+<td style="text-align:right;">
+122.3467
+</td>
+<td style="text-align:right;">
+0.8348447
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:03:00
+</td>
+<td style="text-align:right;">
+47.62401
+</td>
+<td style="text-align:right;">
+122.3499
+</td>
+<td style="text-align:right;">
+0.6335497
+</td>
+</tr>
+</tbody>
+</table>
+<p>
+</p>
+<p>
+</p>
+<div class="section level4">
+<h4 id="generating-sample-accelerometry-data">Generating sample Accelerometry data<a class="anchor" aria-label="anchor" href="#generating-sample-accelerometry-data"></a>
+</h4>
+Accelerometry data provided should contain the following columns and
+have the relevant characteristics:
+<p>
+</p>
+<ul>
+<li>
+<strong>time</strong> values should be in date-time format and be
+all non-missing</li>
+<li>
+<strong>activity_count</strong> values should be the output of
+accelerometers and represent activity counts in CPE. These values should
+be non-missing and non-negative.</li>
+</ul>
+<p>These data will be processed and later combined with the GPS data to
+generate walkbouts.</p>
+<p>There are more functions to generate accelerometry data so that you
+can see the differences based on the size of the dataset. The following
+functions are included for you to generate sample data:</p>
+<p>For the purposes of this example, we will create generate the
+smallest walk bout.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">accelerometry_counts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_smallest_bout_without_metadata.html">make_smallest_bout_without_metadata</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+These sample accelerometry data meet all of the characteristics outlined
+above:
+<table class="table">
+<thead><tr>
+<th style="text-align:right;">
+activity_counts
+</th>
+<th style="text-align:left;">
+time
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2012-04-07 00:00:30
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2012-04-07 00:01:00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2012-04-07 00:01:30
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2012-04-07 00:02:00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+500
+</td>
+<td style="text-align:left;">
+2012-04-07 00:02:30
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+500
+</td>
+<td style="text-align:left;">
+2012-04-07 00:03:00
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level4">
+<h4 id="generating-a-full-data-frame-of-walk-bouts">Generating a full data frame of walk bouts<a class="anchor" aria-label="anchor" href="#generating-a-full-data-frame-of-walk-bouts"></a>
+</h4>
+<p>This function generates a data frame of walk bouts with accelerometry
+and GPS data so that you can get an idea of how some of the top level
+functions work. These data won’t be used directly by the package, but
+are here to give you an idea of what a full dataset looks like as it
+goes into the final steps of the package.</p>
+<p>In order to generate these data, you can use the
+<code>make_full_walk_bout_df</code> function:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">walk_bouts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_full_walk_bout_df.html">make_full_walk_bout_df</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "processing accelerometry counts"</span></span>
+<span><span class="co">#&gt; [1] "processing gps data into travel instances"</span></span></code></pre></div>
+This dataset looks like this:
+<table class="table">
+<thead><tr>
+<th style="text-align:left;">
+time
+</th>
+<th style="text-align:right;">
+latitude
+</th>
+<th style="text-align:right;">
+longitude
+</th>
+<th style="text-align:right;">
+speed
+</th>
+<th style="text-align:right;">
+activity_counts
+</th>
+<th style="text-align:right;">
+bout
+</th>
+<th style="text-align:left;">
+inactive
+</th>
+<th style="text-align:left;">
+non_wearing
+</th>
+<th style="text-align:right;">
+n_epochs_date
+</th>
+<th style="text-align:left;">
+complete_day
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:00:30
+</td>
+<td style="text-align:right;">
+47.60620
+</td>
+<td style="text-align:right;">
+122.3321
+</td>
+<td style="text-align:right;">
+1.2338941
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+8616
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:01:00
+</td>
+<td style="text-align:right;">
+47.61187
+</td>
+<td style="text-align:right;">
+122.3378
+</td>
+<td style="text-align:right;">
+0.9223307
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+8616
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:01:30
+</td>
+<td style="text-align:right;">
+47.61530
+</td>
+<td style="text-align:right;">
+122.3412
+</td>
+<td style="text-align:right;">
+0.5313921
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+8616
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:02:00
+</td>
+<td style="text-align:right;">
+47.61792
+</td>
+<td style="text-align:right;">
+122.3438
+</td>
+<td style="text-align:right;">
+0.7581466
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+8616
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:02:30
+</td>
+<td style="text-align:right;">
+47.62076
+</td>
+<td style="text-align:right;">
+122.3467
+</td>
+<td style="text-align:right;">
+0.8348447
+</td>
+<td style="text-align:right;">
+500
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+8616
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012-04-07 00:03:00
+</td>
+<td style="text-align:right;">
+47.62401
+</td>
+<td style="text-align:right;">
+122.3499
+</td>
+<td style="text-align:right;">
+0.6335497
+</td>
+<td style="text-align:right;">
+500
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+8616
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+</tbody>
+</table>
+Please see docs for each of these functions for generating data. The
+full list of available functions is:
+<p>
+</p>
+<ul>
+<li><code><a href="../reference/generate_gps_data.html">generate_gps_data()</a></code></li>
+<li><code><a href="../reference/generate_walking_in_seattle_gps_data.html">generate_walking_in_seattle_gps_data()</a></code></li>
+<li><code><a href="../reference/make_smallest_bout_window.html">make_smallest_bout_window()</a></code></li>
+<li><code><a href="../reference/make_smallest_nonwearing_window.html">make_smallest_nonwearing_window()</a></code></li>
+<li><code><a href="../reference/make_smallest_complete_day_activity.html">make_smallest_complete_day_activity()</a></code></li>
+<li><code><a href="../reference/make_smallest_bout.html">make_smallest_bout()</a></code></li>
+<li><code><a href="../reference/make_smallest_bout_without_metadata.html">make_smallest_bout_without_metadata()</a></code></li>
+<li><code><a href="../reference/make_smallest_bout_with_largest_inactive_period.html">make_smallest_bout_with_largest_inactive_period()</a></code></li>
+<li><code><a href="../reference/make_smallest_bout_with_smallest_non_wearing_period.html">make_smallest_bout_with_smallest_non_wearing_period()</a></code></li>
+<li><code><a href="../reference/make_full_day_bout.html">make_full_day_bout()</a></code></li>
+<li><code><a href="../reference/make_full_day_bout_without_metadata.html">make_full_day_bout_without_metadata()</a></code></li>
+<li><code><a href="../reference/make_full_walk_bout_df.html">make_full_walk_bout_df()</a></code></li>
+</ul>
+</div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Lauren Wilner.</p>
+<p>Developed by Lauren Wilner, Steve Mooney.</p>
 </div>
 
 <div class="pkgdown-footer-right">
