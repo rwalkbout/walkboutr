@@ -70,7 +70,7 @@ speed
 122.3321
 </td>
 <td style="text-align:right;">
-1.2444291
+0.8202625
 </td>
 </tr>
 <tr>
@@ -78,10 +78,10 @@ speed
 2012-04-07 00:01:00
 </td>
 <td style="text-align:right;">
-47.61192
+47.60997
 </td>
 <td style="text-align:right;">
-122.3378
+122.3359
 </td>
 <td style="text-align:right;">
 0.9223307
@@ -92,10 +92,10 @@ speed
 2012-04-07 00:01:30
 </td>
 <td style="text-align:right;">
-47.61535
+47.61340
 </td>
 <td style="text-align:right;">
-122.3412
+122.3393
 </td>
 <td style="text-align:right;">
 0.5313921
@@ -106,10 +106,10 @@ speed
 2012-04-07 00:02:00
 </td>
 <td style="text-align:right;">
-47.61797
+47.61602
 </td>
 <td style="text-align:right;">
-122.3439
+122.3419
 </td>
 <td style="text-align:right;">
 0.7581466
@@ -120,10 +120,10 @@ speed
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.62081
+47.61886
 </td>
 <td style="text-align:right;">
-122.3467
+122.3448
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -134,10 +134,10 @@ speed
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62406
+47.62211
 </td>
 <td style="text-align:right;">
-122.3500
+122.3480
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -210,6 +210,7 @@ time
 </table>
 <p>
 <p>
+<p>
 
 Now that we have sample data, we can look at how the walkboutr package
 works. There are two top level functions that will allow us to generate
@@ -267,10 +268,10 @@ non_walk_slow
 2012-04-07 00:03:30
 </td>
 <td style="text-align:right;">
-47.62715
+47.62520
 </td>
 <td style="text-align:right;">
-122.3530
+122.3511
 </td>
 <td style="text-align:right;">
 0.9995464
@@ -296,10 +297,10 @@ non_walk_slow
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.62081
+47.61886
 </td>
 <td style="text-align:right;">
-122.3467
+122.3448
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -325,10 +326,10 @@ non_walk_slow
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62406
+47.62211
 </td>
 <td style="text-align:right;">
-122.3500
+122.3480
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -354,10 +355,10 @@ non_walk_slow
 2012-04-07 00:05:30
 </td>
 <td style="text-align:right;">
-47.64514
+47.64319
 </td>
 <td style="text-align:right;">
-122.3710
+122.3691
 </td>
 <td style="text-align:right;">
 0.9944386
@@ -383,10 +384,10 @@ non_walk_slow
 2012-04-07 00:06:00
 </td>
 <td style="text-align:right;">
-47.64975
+47.64781
 </td>
 <td style="text-align:right;">
-122.3757
+122.3737
 </td>
 <td style="text-align:right;">
 1.2970529
@@ -412,10 +413,10 @@ non_walk_slow
 2012-04-07 00:06:30
 </td>
 <td style="text-align:right;">
-47.65609
+47.65414
 </td>
 <td style="text-align:right;">
-122.3820
+122.3800
 </td>
 <td style="text-align:right;">
 1.0669589

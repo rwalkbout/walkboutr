@@ -63,6 +63,7 @@ kable(head(accelerometry_counts), booktabs = TRUE)  %>%
 
 <p>
 <p>
+<p>
 Now that we have sample data, we can look at how the walkboutr package works. There are two top level functions that will allow us to generate either (1) a dataset with bouts and bout categories with all of our original data included, or (2) a summary dataset that is completely de-identified and shareable for research purposes. 
 
 

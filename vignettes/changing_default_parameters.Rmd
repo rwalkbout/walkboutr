@@ -12,8 +12,37 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(kableExtra)
 ```
 
 ```{r setup}
 library(walkboutr)
 ```
+
+`walkboutr` comes with several preset parameters. The parameters that we are using are: 
+
+<p> - **Epoch length** `epoch_length = 30` 
+Epoch length is the length of an epoch in seconds. 
+- **CPE associated with being active** `active_counts_per_epoch_min = 500`
+The number of CPE associated with being active are the accelerometry counts, in CPE, that are considered to reflect someone who is active (compared to inactive or at a very low activity level)
+- **Minimum bout length** `minimum_bout_length = 10`
+The minimum bout length is in epochs and is the minimum amount of time that must elapse for something to be considered a bout. A minimum bout length is equal to a minimum bout length of 5 minutes. 
+- **Local time zone** `local_time_zone = "US/Pacific"` 
+For the purposes of evaluating whether we have a complete day of data (a flag that is passed as an output of this package), we use the local time zone of your data.
+- **Maximum number of consecutive inactive epochs in a bout** `maximum_number_consec_inactive_epochs_in_bout = 3`
+A bout of walking, or activity, is allowed to have up to a certain number of consecutive epochs of inactivity (or low activity) before the bout would terminate. The standard amount of inactive time that can interrupt a bout is 2 minutes, and thus the maximum number of consecutive inactive epochs in a bout is 3, or 1.5 minutes. After that, we would hit the 2 minute threshold and the bout would end rather than be interrupted. 
+
+If you want to set any of these parameters yourself, you can simply pass them into the functions. If you pass nothing, the above default parameter values will be used. 
+
+For example, if we generate some sample data, we can then pass in a different parameter value. 
+```{r generate sample data}
+gps_data <- generate_walking_in_seattle_gps_data()
+accelerometry_counts <- make_full_day_bout_without_metadata()
+```
+
+Now that we have sample data, we can look at how `walkboutr` generates bouts: 
+```{r run walkbout functions, message = FALSE, warning = FALSE, results = 'hide'}
+walk_bouts <- identify_walk_bouts_in_gps_and_accelerometry_data(gps_data, accelerometry_counts, epoch_length = 15)
+summary_walk_bouts <- summarize_walk_bouts(walk_bouts)
+```
+This will change the way we treat epochs to regard them as 15 second intervals rather than 30 second intervals. The same can be done with any parameters listed above. 
