@@ -96,7 +96,7 @@ summary_1 <- summary %>% dplyr::filter(bout == 1)
 
 In this example, we have `r nrow(summary)` bout(s), and each bout has a label. Bout 1 occurred on `r format(summary_1$bout_start, format = "%Y.%m.%d")` and has a complete day worth of data (`complete_day` = `r summary_1$complete_day`) and a start time of `r format(summary_1$bout_start, format = "%H:%M:%S")`. This bout lasted `r summary_1$duration` minutes, or `r summary_1$duration/60 %>% round(2)` hours. The bout is a non walk bout because the participant was moving too slowly for this walk to be considered walking. 
 
-For more information on bout categories and how these are assigned, please see the vignette titled XXX. 
+For more information on bout categories and how these are assigned, please see the vignette titled **Generate Walk Bouts**. 
 
 
 ``` {r plot, include = FALSE}

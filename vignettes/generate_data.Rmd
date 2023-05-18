@@ -1,5 +1,5 @@
 ---
-title: "generate_data"
+title: "Generate Data"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{generate_data}

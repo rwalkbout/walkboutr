@@ -70,7 +70,7 @@ speed
 122.3321
 </td>
 <td style="text-align:right;">
-0.9675562
+0.7546821
 </td>
 </tr>
 <tr>
@@ -78,10 +78,10 @@ speed
 2012-04-07 00:01:00
 </td>
 <td style="text-align:right;">
-47.61064
+47.60967
 </td>
 <td style="text-align:right;">
-122.3365
+122.3356
 </td>
 <td style="text-align:right;">
 0.9223307
@@ -92,10 +92,10 @@ speed
 2012-04-07 00:01:30
 </td>
 <td style="text-align:right;">
-47.61407
+47.61310
 </td>
 <td style="text-align:right;">
-122.3400
+122.3390
 </td>
 <td style="text-align:right;">
 0.5313921
@@ -106,10 +106,10 @@ speed
 2012-04-07 00:02:00
 </td>
 <td style="text-align:right;">
-47.61670
+47.61572
 </td>
 <td style="text-align:right;">
-122.3426
+122.3416
 </td>
 <td style="text-align:right;">
 0.7581466
@@ -120,10 +120,10 @@ speed
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.61954
+47.61856
 </td>
 <td style="text-align:right;">
-122.3454
+122.3445
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -134,10 +134,10 @@ speed
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62278
+47.62181
 </td>
 <td style="text-align:right;">
-122.3487
+122.3477
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -248,13 +248,7 @@ speed
 activity_counts
 </th>
 <th style="text-align:left;">
-inactive
-</th>
-<th style="text-align:left;">
 non_wearing
-</th>
-<th style="text-align:right;">
-n_epochs_date
 </th>
 <th style="text-align:left;">
 complete_day
@@ -273,10 +267,10 @@ non_walk_slow
 2012-04-07 00:03:30
 </td>
 <td style="text-align:right;">
-47.62588
+47.62490
 </td>
 <td style="text-align:right;">
-122.3518
+122.3508
 </td>
 <td style="text-align:right;">
 0.9995464
@@ -286,12 +280,6 @@ non_walk_slow
 </td>
 <td style="text-align:left;">
 FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
-8616
 </td>
 <td style="text-align:left;">
 TRUE
@@ -308,10 +296,10 @@ non_walk_slow
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.61954
+47.61856
 </td>
 <td style="text-align:right;">
-122.3454
+122.3445
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -321,12 +309,6 @@ non_walk_slow
 </td>
 <td style="text-align:left;">
 FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
-8616
 </td>
 <td style="text-align:left;">
 TRUE
@@ -343,10 +325,10 @@ non_walk_slow
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62278
+47.62181
 </td>
 <td style="text-align:right;">
-122.3487
+122.3477
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -356,12 +338,6 @@ non_walk_slow
 </td>
 <td style="text-align:left;">
 FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
-8616
 </td>
 <td style="text-align:left;">
 TRUE
@@ -378,10 +354,10 @@ non_walk_slow
 2012-04-07 00:05:30
 </td>
 <td style="text-align:right;">
-47.64387
+47.64289
 </td>
 <td style="text-align:right;">
-122.3698
+122.3688
 </td>
 <td style="text-align:right;">
 0.9944386
@@ -391,12 +367,6 @@ non_walk_slow
 </td>
 <td style="text-align:left;">
 FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
-8616
 </td>
 <td style="text-align:left;">
 TRUE
@@ -413,10 +383,10 @@ non_walk_slow
 2012-04-07 00:06:00
 </td>
 <td style="text-align:right;">
-47.64848
+47.64750
 </td>
 <td style="text-align:right;">
-122.3744
+122.3734
 </td>
 <td style="text-align:right;">
 1.2970529
@@ -426,12 +396,6 @@ non_walk_slow
 </td>
 <td style="text-align:left;">
 FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
-8616
 </td>
 <td style="text-align:left;">
 TRUE
@@ -448,10 +412,10 @@ non_walk_slow
 2012-04-07 00:06:30
 </td>
 <td style="text-align:right;">
-47.65482
+47.65384
 </td>
 <td style="text-align:right;">
-122.3807
+122.3797
 </td>
 <td style="text-align:right;">
 1.0669589
@@ -461,12 +425,6 @@ non_walk_slow
 </td>
 <td style="text-align:left;">
 FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
-8616
 </td>
 <td style="text-align:left;">
 TRUE
@@ -543,4 +501,4 @@ the participant was moving too slowly for this walk to be considered
 walking.
 
 For more information on bout categories and how these are assigned,
-please see the vignette titled XXX.
+please see the vignette titled **Generate Walk Bouts**.

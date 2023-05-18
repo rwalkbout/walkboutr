@@ -198,7 +198,8 @@ generate_bout_category <- function(walk_bouts, bout_radii, gps_completeness,
     dplyr::select(c(bout,bout_category))
 
   categorized_bouts <- bout_categories %>%
-    merge(walk_bouts, by = c("bout"))
+    merge(walk_bouts, by = c("bout")) %>%
+    dplyr::select(-c("inactive","n_epochs_date"))
 
   return(categorized_bouts)
 }
