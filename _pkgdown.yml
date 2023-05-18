@@ -2,4 +2,4 @@ url: https://rwalkbout.github.io/walkboutr/
 template:
   bootstrap: 5
   bootswatch: lumen
-  toc: true
+  fontsize: 12pt

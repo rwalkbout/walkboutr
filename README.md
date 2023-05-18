@@ -1,6 +1,4 @@
 
-- <a href="#walkboutr" id="toc-walkboutr">walkboutr</a>
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # walkboutr
@@ -13,7 +11,7 @@ walking bouts. walkboutr will either return the original dataset along
 with bout labels and categories, or a summarized, de-identified dataset
 that can be shared for collaboration.
 
-### Installation
+## Installation
 
 You can install the development version of walkboutr from
 [GitHub](https://github.com/) with:
@@ -23,9 +21,9 @@ You can install the development version of walkboutr from
 devtools::install_github("rwalkbout/walkboutr")
 ```
 
-### Basic Usage
+## Basic Usage
 
-##### Simulated sample data
+#### Simulated sample data
 
 This is an example of simulated data that could be processed by
 walkboutr. The GPS data contain the required columns: time, latitude,
@@ -72,7 +70,7 @@ speed
 122.3321
 </td>
 <td style="text-align:right;">
-1.4175028
+0.9675562
 </td>
 </tr>
 <tr>
@@ -80,10 +78,10 @@ speed
 2012-04-07 00:01:00
 </td>
 <td style="text-align:right;">
-47.61271
+47.61064
 </td>
 <td style="text-align:right;">
-122.3386
+122.3365
 </td>
 <td style="text-align:right;">
 0.9223307
@@ -94,10 +92,10 @@ speed
 2012-04-07 00:01:30
 </td>
 <td style="text-align:right;">
-47.61614
+47.61407
 </td>
 <td style="text-align:right;">
-122.3420
+122.3400
 </td>
 <td style="text-align:right;">
 0.5313921
@@ -108,10 +106,10 @@ speed
 2012-04-07 00:02:00
 </td>
 <td style="text-align:right;">
-47.61876
+47.61670
 </td>
 <td style="text-align:right;">
-122.3447
+122.3426
 </td>
 <td style="text-align:right;">
 0.7581466
@@ -122,10 +120,10 @@ speed
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.62160
+47.61954
 </td>
 <td style="text-align:right;">
-122.3475
+122.3454
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -136,10 +134,10 @@ speed
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62485
+47.62278
 </td>
 <td style="text-align:right;">
-122.3508
+122.3487
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -219,7 +217,7 @@ either (1) a dataset with bouts and bout categories with all of our
 original data included, or (2) a summary dataset that is completely
 de-identified and shareable for research purposes.
 
-##### Walk bout dataset including original data
+#### Walk bout dataset including original data
 
 ``` r
 walk_bouts <- identify_walk_bouts_in_gps_and_accelerometry_data(gps_data,accelerometry_counts)
@@ -275,10 +273,10 @@ non_walk_slow
 2012-04-07 00:03:30
 </td>
 <td style="text-align:right;">
-47.62794
+47.62588
 </td>
 <td style="text-align:right;">
-122.3538
+122.3518
 </td>
 <td style="text-align:right;">
 0.9995464
@@ -310,10 +308,10 @@ non_walk_slow
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.62160
+47.61954
 </td>
 <td style="text-align:right;">
-122.3475
+122.3454
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -345,10 +343,10 @@ non_walk_slow
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62485
+47.62278
 </td>
 <td style="text-align:right;">
-122.3508
+122.3487
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -380,10 +378,10 @@ non_walk_slow
 2012-04-07 00:05:30
 </td>
 <td style="text-align:right;">
-47.64594
+47.64387
 </td>
 <td style="text-align:right;">
-122.3718
+122.3698
 </td>
 <td style="text-align:right;">
 0.9944386
@@ -415,10 +413,10 @@ non_walk_slow
 2012-04-07 00:06:00
 </td>
 <td style="text-align:right;">
-47.65055
+47.64848
 </td>
 <td style="text-align:right;">
-122.3765
+122.3744
 </td>
 <td style="text-align:right;">
 1.2970529
@@ -450,10 +448,10 @@ non_walk_slow
 2012-04-07 00:06:30
 </td>
 <td style="text-align:right;">
-47.65688
+47.65482
 </td>
 <td style="text-align:right;">
-122.3828
+122.3807
 </td>
 <td style="text-align:right;">
 1.0669589
@@ -477,7 +475,7 @@ TRUE
 </tbody>
 </table>
 
-##### Summarized walk bout dataset
+#### Summarized walk bout dataset
 
 This dataset is a set of labelled bouts that are categorized
 (`bout_category`) and contains information on bout specific median speed

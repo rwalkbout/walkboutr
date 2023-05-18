@@ -1,10 +1,8 @@
 ---
 output: 
   github_document:
-      toc: true
-      toc_depth: 2
 always_allow_html: true
-fontsize: 14pt
+fontsize: 12pt
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -13,12 +11,12 @@ fontsize: 14pt
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "man/figures/README-",
   out.width = "100%"
 )
 library(knitr)
 library(kableExtra)
 ```
+
 
 # walkboutr
 
@@ -27,7 +25,7 @@ library(kableExtra)
 
 The goal of walkboutr is to process GPS and accelerometry data into walking bouts. walkboutr will either return the original dataset along with bout labels and categories, or a summarized, de-identified dataset that can be shared for collaboration. 
 
-### Installation
+## Installation
 
 You can install the development version of walkboutr from [GitHub](https://github.com/) with:
 
@@ -36,9 +34,9 @@ You can install the development version of walkboutr from [GitHub](https://githu
 devtools::install_github("rwalkbout/walkboutr")
 ```
 
-### Basic Usage
+## Basic Usage
 
-##### Simulated sample data
+#### Simulated sample data
 
 This is an example of simulated data that could be processed by walkboutr. The GPS data contain the required columns: time, latitude, longitude, speed. The accelerometry data contain the required columns: time, accerometry counts.
 These data have no extra columns, do not contain NAs, and don't have negative speeds or accelerometry counts. All times are also in date-time format. 
@@ -58,7 +56,7 @@ kable(head(gps_data), booktabs = TRUE)  %>%
 ```
 
 Accelerometry data:
-```{r simulated data: acc, echo = FALSE}
+```{r simulated data: acc, echo = FALSE, fig.align='center'}
 kable(head(accelerometry_counts), booktabs = TRUE)  %>% 
   kable_styling(latex_options = "striped", full_width = TRUE, font_size = 12, position = "center")
 ```
@@ -68,7 +66,7 @@ kable(head(accelerometry_counts), booktabs = TRUE)  %>%
 Now that we have sample data, we can look at how the walkboutr package works. There are two top level functions that will allow us to generate either (1) a dataset with bouts and bout categories with all of our original data included, or (2) a summary dataset that is completely de-identified and shareable for research purposes. 
 
 
-##### Walk bout dataset including original data
+#### Walk bout dataset including original data
 
 ```{r example 1, message = FALSE, warning = FALSE, results = 'hide'}
 walk_bouts <- identify_walk_bouts_in_gps_and_accelerometry_data(gps_data,accelerometry_counts)
@@ -77,13 +75,13 @@ walk_bouts <- identify_walk_bouts_in_gps_and_accelerometry_data(gps_data,acceler
 
 ```{r example printout, echo = FALSE}
 kable(head(walk_bouts)) %>% 
-  kable_styling(latex_options = "striped") %>% 
-  kable_styling(font_size = 12) %>% 
-  kable_styling(position = "center")
+  kableExtra::kable_styling(latex_options = "striped") %>% 
+  kableExtra::kable_styling(font_size = 12) %>% 
+  kableExtra::kable_styling(position = "center")
 ```
 
 
-##### Summarized walk bout dataset 
+#### Summarized walk bout dataset 
 This dataset is a set of labelled bouts that are categorized (`bout_category`) and contains information on bout specific median speed (`median_speed`), the start time of the bout (`bout_start`), the duration of the bout (in minutes for computational ease, `duration`), and a flag for whether the bout came from a dataset with a complete day worth of data (`complete_day`). 
 ```{r example 2, message = FALSE, warning = FALSE}
 summary <- summarize_walk_bouts(walk_bouts)
@@ -91,7 +89,7 @@ summary <- summarize_walk_bouts(walk_bouts)
 
 ```{r example 2 printout, echo = FALSE}
 kable(head(summary)) %>% 
-  kable_styling(latex_options = "striped", font_size = 12, position = "center")
+  kableExtra::kable_styling(latex_options = "striped", font_size = 12, position = "center")
 summary <- summarize_walk_bouts(walk_bouts)
 summary_1 <- summary %>% dplyr::filter(bout == 1)
 ```
