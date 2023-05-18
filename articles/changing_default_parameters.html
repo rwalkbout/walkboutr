@@ -88,6 +88,59 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rwalkbout/walkboutr" class="external-link">walkboutr</a></span><span class="op">)</span></span></code></pre></div>
+<p><code>walkboutr</code> comes with several preset parameters. The
+parameters that we are using are:</p>
+<p>
+</p>
+<ul>
+<li>
+<strong>Epoch length</strong> <code>epoch_length = 30</code> Epoch
+length is the length of an epoch in seconds.</li>
+<li>
+<strong>CPE associated with being active</strong>
+<code>active_counts_per_epoch_min = 500</code> The number of CPE
+associated with being active are the accelerometry counts, in CPE, that
+are considered to reflect someone who is active (compared to inactive or
+at a very low activity level)</li>
+<li>
+<strong>Minimum bout length</strong>
+<code>minimum_bout_length = 10</code> The minimum bout length is in
+epochs and is the minimum amount of time that must elapse for something
+to be considered a bout. A minimum bout length is equal to a minimum
+bout length of 5 minutes.</li>
+<li>
+<strong>Local time zone</strong>
+<code>local_time_zone = "US/Pacific"</code> For the purposes of
+evaluating whether we have a complete day of data (a flag that is passed
+as an output of this package), we use the local time zone of your
+data.</li>
+<li>
+<strong>Maximum number of consecutive inactive epochs in a
+bout</strong>
+<code>maximum_number_consec_inactive_epochs_in_bout = 3</code> A bout of
+walking, or activity, is allowed to have up to a certain number of
+consecutive epochs of inactivity (or low activity) before the bout would
+terminate. The standard amount of inactive time that can interrupt a
+bout is 2 minutes, and thus the maximum number of consecutive inactive
+epochs in a bout is 3, or 1.5 minutes. After that, we would hit the 2
+minute threshold and the bout would end rather than be interrupted.</li>
+</ul>
+<p>If you want to set any of these parameters yourself, you can simply
+pass them into the functions. If you pass nothing, the above default
+parameter values will be used.</p>
+<p>For example, if we generate some sample data, we can then pass in a
+different parameter value.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gps_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_walking_in_seattle_gps_data.html">generate_walking_in_seattle_gps_data</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">accelerometry_counts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_full_day_bout_without_metadata.html">make_full_day_bout_without_metadata</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Now that we have sample data, we can look at how
+<code>walkboutr</code> generates bouts:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">walk_bouts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/identify_walk_bouts_in_gps_and_accelerometry_data.html">identify_walk_bouts_in_gps_and_accelerometry_data</a></span><span class="op">(</span><span class="va">gps_data</span>, <span class="va">accelerometry_counts</span>, epoch_length <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
+<span><span class="va">summary_walk_bouts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/summarize_walk_bouts.html">summarize_walk_bouts</a></span><span class="op">(</span><span class="va">walk_bouts</span><span class="op">)</span></span></code></pre></div>
+<p>This will change the way we treat epochs to regard them as 15 second
+intervals rather than 30 second intervals. The same can be done with any
+parameters listed above.</p>
   </main>
 </div>
 
@@ -95,7 +148,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Lauren Wilner, Steve Mooney.</p>
+<p>Developed by Lauren Blair Wilner, Stephen J Mooney.</p>
 </div>
 
 <div class="pkgdown-footer-right">
