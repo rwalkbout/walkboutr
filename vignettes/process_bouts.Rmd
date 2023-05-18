@@ -12,11 +12,11 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(kableExtra)
 ```
 
 ```{r setup}
 library(walkboutr)
-library(kableExtra)
 ```
 
 The `walkboutr` package will process GPS and accelerometry data and create two different outputs: 

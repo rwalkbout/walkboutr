@@ -70,7 +70,7 @@ speed
 122.3321
 </td>
 <td style="text-align:right;">
-0.7546821
+1.2444291
 </td>
 </tr>
 <tr>
@@ -78,10 +78,10 @@ speed
 2012-04-07 00:01:00
 </td>
 <td style="text-align:right;">
-47.60967
+47.61192
 </td>
 <td style="text-align:right;">
-122.3356
+122.3378
 </td>
 <td style="text-align:right;">
 0.9223307
@@ -92,10 +92,10 @@ speed
 2012-04-07 00:01:30
 </td>
 <td style="text-align:right;">
-47.61310
+47.61535
 </td>
 <td style="text-align:right;">
-122.3390
+122.3412
 </td>
 <td style="text-align:right;">
 0.5313921
@@ -106,10 +106,10 @@ speed
 2012-04-07 00:02:00
 </td>
 <td style="text-align:right;">
-47.61572
+47.61797
 </td>
 <td style="text-align:right;">
-122.3416
+122.3439
 </td>
 <td style="text-align:right;">
 0.7581466
@@ -120,10 +120,10 @@ speed
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.61856
+47.62081
 </td>
 <td style="text-align:right;">
-122.3445
+122.3467
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -134,10 +134,10 @@ speed
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62181
+47.62406
 </td>
 <td style="text-align:right;">
-122.3477
+122.3500
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -267,10 +267,10 @@ non_walk_slow
 2012-04-07 00:03:30
 </td>
 <td style="text-align:right;">
-47.62490
+47.62715
 </td>
 <td style="text-align:right;">
-122.3508
+122.3530
 </td>
 <td style="text-align:right;">
 0.9995464
@@ -296,10 +296,10 @@ non_walk_slow
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.61856
+47.62081
 </td>
 <td style="text-align:right;">
-122.3445
+122.3467
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -325,10 +325,10 @@ non_walk_slow
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62181
+47.62406
 </td>
 <td style="text-align:right;">
-122.3477
+122.3500
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -354,10 +354,10 @@ non_walk_slow
 2012-04-07 00:05:30
 </td>
 <td style="text-align:right;">
-47.64289
+47.64514
 </td>
 <td style="text-align:right;">
-122.3688
+122.3710
 </td>
 <td style="text-align:right;">
 0.9944386
@@ -383,10 +383,10 @@ non_walk_slow
 2012-04-07 00:06:00
 </td>
 <td style="text-align:right;">
-47.64750
+47.64975
 </td>
 <td style="text-align:right;">
-122.3734
+122.3757
 </td>
 <td style="text-align:right;">
 1.2970529
@@ -412,10 +412,10 @@ non_walk_slow
 2012-04-07 00:06:30
 </td>
 <td style="text-align:right;">
-47.65384
+47.65609
 </td>
 <td style="text-align:right;">
-122.3797
+122.3820
 </td>
 <td style="text-align:right;">
 1.0669589
@@ -496,7 +496,7 @@ non_walk_slow
 In this example, we have 1 bout(s), and each bout has a label. Bout 1
 occurred on 2012.04.07 and has a complete day worth of data
 (`complete_day` = TRUE) and a start time of 00:02:30. This bout lasted
-4304.5 minutes, or 71.7416667 hours. The bout is a non walk bout because
+4304.5 minutes, or 71.7416667 hours. The bout is a non-walk bout because
 the participant was moving too slowly for this walk to be considered
 walking.
 

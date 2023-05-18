@@ -38,7 +38,7 @@ gps_data <- generate_gps_data(start_lat = 40.7128, start_long = 74.0060, start_t
 
 These sample GPS data meet all of the characteristics outlined above: 
 
-```{r sample GPS data head}
+```{r sample GPS data head, echo = FALSE}
 kable(head(gps_data))
 ```
 
