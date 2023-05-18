@@ -11,7 +11,7 @@
 The goal of walkboutr is to process GPS and accelerometry data into
 walking bouts. walkboutr will either return the original dataset along
 with bout labels and categories, or a summarized, de-identified dataset
-that can be shared for collaboration.
+that can be shared for collaborations.
 
 ### Installation
 
@@ -72,7 +72,7 @@ speed
 122.3321
 </td>
 <td style="text-align:right;">
-0.9309503
+0.7775003
 </td>
 </tr>
 <tr>
@@ -80,10 +80,10 @@ speed
 2012-04-07 00:01:00
 </td>
 <td style="text-align:right;">
-47.61048
+47.60977
 </td>
 <td style="text-align:right;">
-122.3364
+122.3357
 </td>
 <td style="text-align:right;">
 0.9223307
@@ -94,10 +94,10 @@ speed
 2012-04-07 00:01:30
 </td>
 <td style="text-align:right;">
-47.61391
+47.61320
 </td>
 <td style="text-align:right;">
-122.3398
+122.3391
 </td>
 <td style="text-align:right;">
 0.5313921
@@ -108,10 +108,10 @@ speed
 2012-04-07 00:02:00
 </td>
 <td style="text-align:right;">
-47.61653
+47.61582
 </td>
 <td style="text-align:right;">
-122.3424
+122.3417
 </td>
 <td style="text-align:right;">
 0.7581466
@@ -122,10 +122,10 @@ speed
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.61937
+47.61866
 </td>
 <td style="text-align:right;">
-122.3453
+122.3446
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -136,10 +136,10 @@ speed
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62262
+47.62191
 </td>
 <td style="text-align:right;">
-122.3485
+122.3478
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -275,10 +275,10 @@ non_walk_slow
 2012-04-07 00:03:30
 </td>
 <td style="text-align:right;">
-47.62571
+47.62500
 </td>
 <td style="text-align:right;">
-122.3516
+122.3509
 </td>
 <td style="text-align:right;">
 0.9995464
@@ -310,10 +310,10 @@ non_walk_slow
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.61937
+47.61866
 </td>
 <td style="text-align:right;">
-122.3453
+122.3446
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -345,10 +345,10 @@ non_walk_slow
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62262
+47.62191
 </td>
 <td style="text-align:right;">
-122.3485
+122.3478
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -380,10 +380,10 @@ non_walk_slow
 2012-04-07 00:05:30
 </td>
 <td style="text-align:right;">
-47.64370
+47.64300
 </td>
 <td style="text-align:right;">
-122.3696
+122.3689
 </td>
 <td style="text-align:right;">
 0.9944386
@@ -415,10 +415,10 @@ non_walk_slow
 2012-04-07 00:06:00
 </td>
 <td style="text-align:right;">
-47.64831
+47.64761
 </td>
 <td style="text-align:right;">
-122.3742
+122.3735
 </td>
 <td style="text-align:right;">
 1.2970529
@@ -450,10 +450,10 @@ non_walk_slow
 2012-04-07 00:06:30
 </td>
 <td style="text-align:right;">
-47.65465
+47.65394
 </td>
 <td style="text-align:right;">
-122.3806
+122.3798
 </td>
 <td style="text-align:right;">
 1.0669589

@@ -24,10 +24,10 @@ The `walkboutr` package has several functions to generate sample data so that yo
 ### GPS Data Generation
 
 GPS data provided should contain the following columns and have the relevant characteristics: 
-- *time* values should be in date-time format and be all non-missing
-- *latitude* values should be between -90 and 90 and be all non-missing 
-- *longitude* values should be between -180 and 180 and be all non-missing
-- *speed* values should all be positive, non-missing values in km/h
+<p> - **time** values should be in date-time format and be all non-missing
+- **latitude** values should be between -90 and 90 and be all non-missing 
+- **longitude** values should be between -180 and 180 and be all non-missing
+- **speed** values should all be positive, non-missing values in km/h
 
 These data will be processed and later combined with accelerometry data to generate walkbouts. 
 #### Generating sample GPS data 
@@ -58,8 +58,8 @@ kable(head(seattle))
 #### Generating sample Accelerometry data 
 
 Accelerometry data provided should contain the following columns and have the relevant characteristics: 
-- *time* values should be in date-time format and be all non-missing
-- *activity_count* values should be the output of accelerometers and represent activity counts in CPE. These values should be non-missing and non-negative.
+<p> - **time** values should be in date-time format and be all non-missing
+- **activity_count** values should be the output of accelerometers and represent activity counts in CPE. These values should be non-missing and non-negative.
 
 These data will be processed and later combined with the GPS data to generate walkbouts. 
 

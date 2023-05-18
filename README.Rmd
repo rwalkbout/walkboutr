@@ -25,7 +25,7 @@ library(kableExtra)
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of walkboutr is to process GPS and accelerometry data into walking bouts. walkboutr will either return the original dataset along with bout labels and categories, or a summarized, de-identified dataset that can be shared for collaboration. 
+The goal of walkboutr is to process GPS and accelerometry data into walking bouts. walkboutr will either return the original dataset along with bout labels and categories, or a summarized, de-identified dataset that can be shared for collaborations. 
 
 ### Installation
 
