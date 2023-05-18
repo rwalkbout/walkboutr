@@ -33,6 +33,7 @@ Imports:
     ggplot2,
     here,
     hms,
+    kableExtra,
     latticeExtra,
     lubridate,
     lwgeom,
