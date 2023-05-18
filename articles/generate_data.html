@@ -48,6 +48,7 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/changing_default_parameters.html">Changing Default Parameters</a>
     <a class="dropdown-item" href="../articles/generate_data.html">Generate Data</a>
     <a class="dropdown-item" href="../articles/process_bouts.html">Generate Walk Bouts</a>
   </div>
@@ -118,8 +119,6 @@ data to generate walkbouts. #### Generating sample GPS data</p>
 <code class="sourceCode R"><span><span class="va">gps_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_gps_data.html">generate_gps_data</a></span><span class="op">(</span>start_lat <span class="op">=</span> <span class="fl">40.7128</span>, start_long <span class="op">=</span> <span class="fl">74.0060</span>, start_time <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html" class="external-link">ymd_hms</a></span><span class="op">(</span><span class="st">'2012-04-07 00:00:30'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>These sample GPS data meet all of the characteristics outlined
 above:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">gps_data</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr>
 <th style="text-align:left;">
@@ -147,7 +146,7 @@ speed
 74.00600
 </td>
 <td style="text-align:right;">
-1.0827625
+0.7839497
 </td>
 </tr>
 <tr>
@@ -155,10 +154,10 @@ speed
 2012-04-07 00:01:00
 </td>
 <td style="text-align:right;">
-40.71777
+40.71640
 </td>
 <td style="text-align:right;">
-74.01097
+74.00960
 </td>
 <td style="text-align:right;">
 0.9223307
@@ -169,10 +168,10 @@ speed
 2012-04-07 00:01:30
 </td>
 <td style="text-align:right;">
-40.72120
+40.71983
 </td>
 <td style="text-align:right;">
-74.01440
+74.01303
 </td>
 <td style="text-align:right;">
 0.5313921
@@ -183,10 +182,10 @@ speed
 2012-04-07 00:02:00
 </td>
 <td style="text-align:right;">
-40.72383
+40.72245
 </td>
 <td style="text-align:right;">
-74.01703
+74.01565
 </td>
 <td style="text-align:right;">
 0.7581466
@@ -197,10 +196,10 @@ speed
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-40.72667
+40.72529
 </td>
 <td style="text-align:right;">
-74.01987
+74.01850
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -211,10 +210,10 @@ speed
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-40.72991
+40.72854
 </td>
 <td style="text-align:right;">
-74.02311
+74.02174
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -225,7 +224,7 @@ speed
 <p><code>walkboutr</code> also has a function to generate a realistic
 walking route in Seattle, which is simply meant to provide another
 example for generating data and becoming familiar with the package:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">seattle</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_walking_in_seattle_gps_data.html">generate_walking_in_seattle_gps_data</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 These data look exactly the same as the randomly generated sample GPS
 data:
@@ -358,7 +357,7 @@ can see the differences based on the size of the dataset. The following
 functions are included for you to generate sample data:</p>
 <p>For the purposes of this example, we will create generate the
 smallest walk bout.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">accelerometry_counts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_smallest_bout_without_metadata.html">make_smallest_bout_without_metadata</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 These sample accelerometry data meet all of the characteristics outlined
 above:
@@ -433,7 +432,7 @@ are here to give you an idea of what a full dataset looks like as it
 goes into the final steps of the package.</p>
 <p>In order to generate these data, you can use the
 <code>make_full_walk_bout_df</code> function:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">walk_bouts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_full_walk_bout_df.html">make_full_walk_bout_df</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "processing accelerometry counts"</span></span>
 <span><span class="co">#&gt; [1] "processing gps data into travel instances"</span></span></code></pre></div>
