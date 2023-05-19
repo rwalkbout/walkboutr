@@ -49,3 +49,4 @@ summarize_walk_bouts <- function(walk_bouts, ..., collated_arguments = NULL){
   return(summary_walk_bouts)
 }
 
+

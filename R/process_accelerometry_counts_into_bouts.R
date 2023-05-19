@@ -187,7 +187,7 @@ identify_complete_days <- function(accelerometry_counts, min_wearing_hours_per_d
     # dplyr::select(-c(total_non_wearing_epochs_whole_day))
     dplyr::select(-c(total_wearing_epochs_whole_day))
   accelerometry_counts <- accelerometry_counts %>%
-    dplyr::mutate(date = lubridate::as_date(time)) %>%
+    dplyr::mutate(date = lubridate::as_date(time, tz = local_time_zone)) %>%
     dplyr::left_join(complete_days_df, by = c("date")) %>%
     dplyr::select(-c("date"))
   return(accelerometry_counts)
