@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">walkboutr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,12 +126,6 @@ category. More details on bout category can be found below.</li>
 <code>walkboutr</code> generates bouts:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">walk_bouts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/identify_walk_bouts_in_gps_and_accelerometry_data.html">identify_walk_bouts_in_gps_and_accelerometry_data</a></span><span class="op">(</span><span class="va">gps_data</span>, <span class="va">accelerometry_counts</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "processing accelerometry counts"</span></span>
-<span><span class="co">#&gt; [1] "processing gps data into travel instances"</span></span>
-<span><span class="co">#&gt; [1] "processing bouts and gps_epochs"</span></span>
-<span><span class="co">#&gt; Warning in sp::spDists(., longlat = TRUE): spDists: argument longlat conflicts</span></span>
-<span><span class="co">#&gt; with CRS(x); using the value TRUE</span></span>
-<span><span class="co">#&gt; Linking to GEOS 3.10.2, GDAL 3.4.1, PROJ 8.2.1; sf_use_s2() is TRUE</span></span>
 <span><span class="va">summary_walk_bouts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/summarize_walk_bouts.html">summarize_walk_bouts</a></span><span class="op">(</span><span class="va">walk_bouts</span><span class="op">)</span></span></code></pre></div>
 <p>The bouts identified look like this:</p>
 <table class="table">
@@ -165,8 +159,8 @@ category. More details on bout category can be found below.</li>
 <td align="left">2012-04-07 00:03:30</td>
 <td align="left">FALSE</td>
 <td align="left">TRUE</td>
-<td align="right">47.62744</td>
-<td align="right">122.3533</td>
+<td align="right">47.62508</td>
+<td align="right">122.3510</td>
 <td align="right">0.9995464</td>
 </tr>
 <tr class="even">
@@ -176,8 +170,8 @@ category. More details on bout category can be found below.</li>
 <td align="left">2012-04-07 00:02:30</td>
 <td align="left">FALSE</td>
 <td align="left">TRUE</td>
-<td align="right">47.62110</td>
-<td align="right">122.3470</td>
+<td align="right">47.61874</td>
+<td align="right">122.3446</td>
 <td align="right">0.8348447</td>
 </tr>
 <tr class="odd">
@@ -187,8 +181,8 @@ category. More details on bout category can be found below.</li>
 <td align="left">2012-04-07 00:03:00</td>
 <td align="left">FALSE</td>
 <td align="left">TRUE</td>
-<td align="right">47.62434</td>
-<td align="right">122.3502</td>
+<td align="right">47.62199</td>
+<td align="right">122.3479</td>
 <td align="right">0.6335497</td>
 </tr>
 <tr class="even">
@@ -198,8 +192,8 @@ category. More details on bout category can be found below.</li>
 <td align="left">2012-04-07 00:05:30</td>
 <td align="left">FALSE</td>
 <td align="left">TRUE</td>
-<td align="right">47.64543</td>
-<td align="right">122.3713</td>
+<td align="right">47.64308</td>
+<td align="right">122.3690</td>
 <td align="right">0.9944386</td>
 </tr>
 <tr class="odd">
@@ -209,8 +203,8 @@ category. More details on bout category can be found below.</li>
 <td align="left">2012-04-07 00:06:00</td>
 <td align="left">FALSE</td>
 <td align="left">TRUE</td>
-<td align="right">47.65004</td>
-<td align="right">122.3759</td>
+<td align="right">47.64769</td>
+<td align="right">122.3736</td>
 <td align="right">1.2970529</td>
 </tr>
 <tr class="even">
@@ -220,8 +214,8 @@ category. More details on bout category can be found below.</li>
 <td align="left">2012-04-07 00:06:30</td>
 <td align="left">FALSE</td>
 <td align="left">TRUE</td>
-<td align="right">47.65638</td>
-<td align="right">122.3823</td>
+<td align="right">47.65402</td>
+<td align="right">122.3799</td>
 <td align="right">1.0669589</td>
 </tr>
 </tbody>
@@ -299,13 +293,13 @@ someone to have stayed in one place.</li>
 <code>non_walk_incomplete_gps</code> bout is a bout where the GPS
 coverage is too low to be considered complete.</li>
 </ul>
+<p>In order to better visualize our bouts, we can also plot the
+accelerometry counts and GPS radius.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">accelerometry_counts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_smallest_bout_without_metadata.html">make_smallest_bout_without_metadata</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">gps_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_walking_in_seattle_gps_data.html">generate_walking_in_seattle_gps_data</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/generate_bout_plot.html">generate_bout_plot</a></span><span class="op">(</span><span class="va">accelerometry_counts</span>, <span class="va">gps_data</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "processing accelerometry counts"</span></span>
-<span><span class="co">#&gt; [1] "processing gps data into travel instances"</span></span></code></pre></div>
-<p><img src="process_bouts_files/figure-html/bout%20plot-1.png" width="700"></p>
+<span><span class="fu"><a href="../reference/generate_bout_plot.html">generate_bout_plot</a></span><span class="op">(</span><span class="va">accelerometry_counts</span>, <span class="va">gps_data</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<p><img src="process_bouts_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
   </main>
 </div>
 
