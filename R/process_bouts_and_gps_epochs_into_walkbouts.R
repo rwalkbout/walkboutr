@@ -33,7 +33,6 @@
 process_bouts_and_gps_epochs_into_walkbouts <- function(bouts, gps_epochs, ..., collated_arguments = NULL){
 time <- bout <- NULL
   collated_arguments <- collate_arguments(..., collated_arguments = collated_arguments)
-  print('processing bouts and gps_epochs')
 
   walk_bouts <- bouts %>%
     dplyr::left_join(gps_epochs, by = "time") %>%

@@ -17,7 +17,6 @@
 #' @export
 process_accelerometry_counts_into_bouts <- function(accelerometry_counts, ..., collated_arguments = NULL) {
   collated_arguments <- collate_arguments(..., collated_arguments = collated_arguments)
-  print('processing accelerometry counts')
   # Step 1: validate data
   validate_accelerometry_data(accelerometry_counts)
   # Step 2: Identify bouts

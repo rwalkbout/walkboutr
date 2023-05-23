@@ -2,7 +2,7 @@
 title: "Changing Default Parameters"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{changing_default_parameters}
+  %\VignetteIndexEntry{Changing Default Parameters}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

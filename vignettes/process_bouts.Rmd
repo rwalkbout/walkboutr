@@ -2,7 +2,7 @@
 title: "Generate Walk Bouts"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{process_bouts}
+  %\VignetteIndexEntry{Generate Walk Bouts}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -31,7 +31,7 @@ accelerometry_counts <- make_full_day_bout_without_metadata()
 ```
 
 Now that we have sample data, we can look at how `walkboutr` generates bouts: 
-```{r run walkbout functions}
+```{r run walkbout functions, message=FALSE,warning=FALSE}
 walk_bouts <- identify_walk_bouts_in_gps_and_accelerometry_data(gps_data, accelerometry_counts)
 summary_walk_bouts <- summarize_walk_bouts(walk_bouts)
 ```
@@ -63,7 +63,8 @@ Accordingly, the following non-walk-bouts are defined as:
 * **Dwell bout** a `dwell_bout` is a bout where the radius of GPS points is below our threshold for considering someone to have stayed in one place.
 * **Non-walk bout due to incomplete GPS coverage** a `non_walk_incomplete_gps` bout is a bout where the GPS coverage is too low to be considered complete.
 
-```{r bout plot, message=FALSE, warning=FALSE}
+In order to better visualize our bouts, we can also plot the accelerometry counts and GPS radius. 
+```{r, message=FALSE, warning=FALSE}
 accelerometry_counts <- make_smallest_bout_without_metadata()
 gps_data <- generate_walking_in_seattle_gps_data()
 generate_bout_plot(accelerometry_counts, gps_data, 1)

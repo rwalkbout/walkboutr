@@ -17,7 +17,6 @@
 #' @export
 process_gps_data_into_gps_epochs <- function(gps_data, ..., collated_arguments = NULL) {
   collated_arguments <- collate_arguments(..., collated_arguments = collated_arguments)
-  print('processing gps data into travel instances')
   validate_gps_data(gps_data)
   gps_epochs <- assign_epoch_start_time(gps_data,
                                         collated_arguments$epoch_length)
