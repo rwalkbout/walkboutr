@@ -53,6 +53,9 @@
     <a class="dropdown-item" href="../articles/process_bouts.html">Generate Walk Bouts</a>
   </div>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -120,104 +123,48 @@ data to generate walkbouts. #### Generating sample GPS data</p>
 <p>These sample GPS data meet all of the characteristics outlined
 above:</p>
 <table class="table">
-<thead><tr>
-<th style="text-align:left;">
-time
-</th>
-<th style="text-align:right;">
-latitude
-</th>
-<th style="text-align:right;">
-longitude
-</th>
-<th style="text-align:right;">
-speed
-</th>
+<thead><tr class="header">
+<th align="left">time</th>
+<th align="right">latitude</th>
+<th align="right">longitude</th>
+<th align="right">speed</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:00:30
-</td>
-<td style="text-align:right;">
-40.71280
-</td>
-<td style="text-align:right;">
-74.00600
-</td>
-<td style="text-align:right;">
-1.1994505
-</td>
+<tr class="odd">
+<td align="left">2012-04-07 00:00:30</td>
+<td align="right">40.71280</td>
+<td align="right">74.00600</td>
+<td align="right">0.8753862</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:01:00
-</td>
-<td style="text-align:right;">
-40.71831
-</td>
-<td style="text-align:right;">
-74.01151
-</td>
-<td style="text-align:right;">
-0.9223307
-</td>
+<tr class="even">
+<td align="left">2012-04-07 00:01:00</td>
+<td align="right">40.71682</td>
+<td align="right">74.01002</td>
+<td align="right">0.9223307</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:01:30
-</td>
-<td style="text-align:right;">
-40.72174
-</td>
-<td style="text-align:right;">
-74.01494
-</td>
-<td style="text-align:right;">
-0.5313921
-</td>
+<tr class="odd">
+<td align="left">2012-04-07 00:01:30</td>
+<td align="right">40.72025</td>
+<td align="right">74.01345</td>
+<td align="right">0.5313921</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:02:00
-</td>
-<td style="text-align:right;">
-40.72436
-</td>
-<td style="text-align:right;">
-74.01756
-</td>
-<td style="text-align:right;">
-0.7581466
-</td>
+<tr class="even">
+<td align="left">2012-04-07 00:02:00</td>
+<td align="right">40.72287</td>
+<td align="right">74.01607</td>
+<td align="right">0.7581466</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:02:30
-</td>
-<td style="text-align:right;">
-40.72720
-</td>
-<td style="text-align:right;">
-74.02040
-</td>
-<td style="text-align:right;">
-0.8348447
-</td>
+<tr class="odd">
+<td align="left">2012-04-07 00:02:30</td>
+<td align="right">40.72571</td>
+<td align="right">74.01892</td>
+<td align="right">0.8348447</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:03:00
-</td>
-<td style="text-align:right;">
-40.73045
-</td>
-<td style="text-align:right;">
-74.02365
-</td>
-<td style="text-align:right;">
-0.6335497
-</td>
+<tr class="even">
+<td align="left">2012-04-07 00:03:00</td>
+<td align="right">40.72896</td>
+<td align="right">74.02216</td>
+<td align="right">0.6335497</td>
 </tr>
 </tbody>
 </table>
@@ -226,107 +173,51 @@ walking route in Seattle, which is simply meant to provide another
 example for generating data and becoming familiar with the package:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">seattle</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_walking_in_seattle_gps_data.html">generate_walking_in_seattle_gps_data</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-These data look exactly the same as the randomly generated sample GPS
-data:
+<p>These data look exactly the same as the randomly generated sample GPS
+data:</p>
 <table class="table">
-<thead><tr>
-<th style="text-align:left;">
-time
-</th>
-<th style="text-align:right;">
-latitude
-</th>
-<th style="text-align:right;">
-longitude
-</th>
-<th style="text-align:right;">
-speed
-</th>
+<thead><tr class="header">
+<th align="left">time</th>
+<th align="right">latitude</th>
+<th align="right">longitude</th>
+<th align="right">speed</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:00:30
-</td>
-<td style="text-align:right;">
-47.60620
-</td>
-<td style="text-align:right;">
-122.3321
-</td>
-<td style="text-align:right;">
-1.2338941
-</td>
+<tr class="odd">
+<td align="left">2012-04-07 00:00:30</td>
+<td align="right">47.60620</td>
+<td align="right">122.3321</td>
+<td align="right">1.2338941</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:01:00
-</td>
-<td style="text-align:right;">
-47.61187
-</td>
-<td style="text-align:right;">
-122.3378
-</td>
-<td style="text-align:right;">
-0.9223307
-</td>
+<tr class="even">
+<td align="left">2012-04-07 00:01:00</td>
+<td align="right">47.61187</td>
+<td align="right">122.3378</td>
+<td align="right">0.9223307</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:01:30
-</td>
-<td style="text-align:right;">
-47.61530
-</td>
-<td style="text-align:right;">
-122.3412
-</td>
-<td style="text-align:right;">
-0.5313921
-</td>
+<tr class="odd">
+<td align="left">2012-04-07 00:01:30</td>
+<td align="right">47.61530</td>
+<td align="right">122.3412</td>
+<td align="right">0.5313921</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:02:00
-</td>
-<td style="text-align:right;">
-47.61792
-</td>
-<td style="text-align:right;">
-122.3438
-</td>
-<td style="text-align:right;">
-0.7581466
-</td>
+<tr class="even">
+<td align="left">2012-04-07 00:02:00</td>
+<td align="right">47.61792</td>
+<td align="right">122.3438</td>
+<td align="right">0.7581466</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:02:30
-</td>
-<td style="text-align:right;">
-47.62076
-</td>
-<td style="text-align:right;">
-122.3467
-</td>
-<td style="text-align:right;">
-0.8348447
-</td>
+<tr class="odd">
+<td align="left">2012-04-07 00:02:30</td>
+<td align="right">47.62076</td>
+<td align="right">122.3467</td>
+<td align="right">0.8348447</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:03:00
-</td>
-<td style="text-align:right;">
-47.62401
-</td>
-<td style="text-align:right;">
-122.3499
-</td>
-<td style="text-align:right;">
-0.6335497
-</td>
+<tr class="even">
+<td align="left">2012-04-07 00:03:00</td>
+<td align="right">47.62401</td>
+<td align="right">122.3499</td>
+<td align="right">0.6335497</td>
 </tr>
 </tbody>
 </table>
@@ -359,65 +250,37 @@ functions are included for you to generate sample data:</p>
 smallest walk bout.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">accelerometry_counts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_smallest_bout_without_metadata.html">make_smallest_bout_without_metadata</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-These sample accelerometry data meet all of the characteristics outlined
-above:
+<p>These sample accelerometry data meet all of the characteristics
+outlined above:</p>
 <table class="table">
-<thead><tr>
-<th style="text-align:right;">
-activity_counts
-</th>
-<th style="text-align:left;">
-time
-</th>
+<thead><tr class="header">
+<th align="right">activity_counts</th>
+<th align="left">time</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-2012-04-07 00:00:30
-</td>
+<tr class="odd">
+<td align="right">0</td>
+<td align="left">2012-04-07 00:00:30</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-2012-04-07 00:01:00
-</td>
+<tr class="even">
+<td align="right">0</td>
+<td align="left">2012-04-07 00:01:00</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-2012-04-07 00:01:30
-</td>
+<tr class="odd">
+<td align="right">0</td>
+<td align="left">2012-04-07 00:01:30</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-2012-04-07 00:02:00
-</td>
+<tr class="even">
+<td align="right">0</td>
+<td align="left">2012-04-07 00:02:00</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-500
-</td>
-<td style="text-align:left;">
-2012-04-07 00:02:30
-</td>
+<tr class="odd">
+<td align="right">500</td>
+<td align="left">2012-04-07 00:02:30</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-500
-</td>
-<td style="text-align:left;">
-2012-04-07 00:03:00
-</td>
+<tr class="even">
+<td align="right">500</td>
+<td align="left">2012-04-07 00:03:00</td>
 </tr>
 </tbody>
 </table>
@@ -436,232 +299,104 @@ goes into the final steps of the package.</p>
 <code class="sourceCode R"><span><span class="va">walk_bouts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_full_walk_bout_df.html">make_full_walk_bout_df</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "processing accelerometry counts"</span></span>
 <span><span class="co">#&gt; [1] "processing gps data into travel instances"</span></span></code></pre></div>
-This dataset looks like this:
+<p>This dataset looks like this:</p>
 <table class="table">
-<thead><tr>
-<th style="text-align:left;">
-time
-</th>
-<th style="text-align:right;">
-latitude
-</th>
-<th style="text-align:right;">
-longitude
-</th>
-<th style="text-align:right;">
-speed
-</th>
-<th style="text-align:right;">
-activity_counts
-</th>
-<th style="text-align:right;">
-bout
-</th>
-<th style="text-align:left;">
-inactive
-</th>
-<th style="text-align:left;">
-non_wearing
-</th>
-<th style="text-align:right;">
-n_epochs_date
-</th>
-<th style="text-align:left;">
-complete_day
-</th>
+<colgroup>
+<col width="16%">
+<col width="7%">
+<col width="8%">
+<col width="8%">
+<col width="13%">
+<col width="4%">
+<col width="7%">
+<col width="10%">
+<col width="11%">
+<col width="11%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">time</th>
+<th align="right">latitude</th>
+<th align="right">longitude</th>
+<th align="right">speed</th>
+<th align="right">activity_counts</th>
+<th align="right">bout</th>
+<th align="left">inactive</th>
+<th align="left">non_wearing</th>
+<th align="right">n_epochs_date</th>
+<th align="left">complete_day</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:00:30
-</td>
-<td style="text-align:right;">
-47.60620
-</td>
-<td style="text-align:right;">
-122.3321
-</td>
-<td style="text-align:right;">
-1.2338941
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
-8616
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
+<tr class="odd">
+<td align="left">2012-04-07 00:00:30</td>
+<td align="right">47.60620</td>
+<td align="right">122.3321</td>
+<td align="right">1.2338941</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="right">8616</td>
+<td align="left">TRUE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:01:00
-</td>
-<td style="text-align:right;">
-47.61187
-</td>
-<td style="text-align:right;">
-122.3378
-</td>
-<td style="text-align:right;">
-0.9223307
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
-8616
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
+<tr class="even">
+<td align="left">2012-04-07 00:01:00</td>
+<td align="right">47.61187</td>
+<td align="right">122.3378</td>
+<td align="right">0.9223307</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="right">8616</td>
+<td align="left">TRUE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:01:30
-</td>
-<td style="text-align:right;">
-47.61530
-</td>
-<td style="text-align:right;">
-122.3412
-</td>
-<td style="text-align:right;">
-0.5313921
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
-8616
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
+<tr class="odd">
+<td align="left">2012-04-07 00:01:30</td>
+<td align="right">47.61530</td>
+<td align="right">122.3412</td>
+<td align="right">0.5313921</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="right">8616</td>
+<td align="left">TRUE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:02:00
-</td>
-<td style="text-align:right;">
-47.61792
-</td>
-<td style="text-align:right;">
-122.3438
-</td>
-<td style="text-align:right;">
-0.7581466
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
-8616
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
+<tr class="even">
+<td align="left">2012-04-07 00:02:00</td>
+<td align="right">47.61792</td>
+<td align="right">122.3438</td>
+<td align="right">0.7581466</td>
+<td align="right">0</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="right">8616</td>
+<td align="left">TRUE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:02:30
-</td>
-<td style="text-align:right;">
-47.62076
-</td>
-<td style="text-align:right;">
-122.3467
-</td>
-<td style="text-align:right;">
-0.8348447
-</td>
-<td style="text-align:right;">
-500
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
-8616
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
+<tr class="odd">
+<td align="left">2012-04-07 00:02:30</td>
+<td align="right">47.62076</td>
+<td align="right">122.3467</td>
+<td align="right">0.8348447</td>
+<td align="right">500</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="right">8616</td>
+<td align="left">TRUE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2012-04-07 00:03:00
-</td>
-<td style="text-align:right;">
-47.62401
-</td>
-<td style="text-align:right;">
-122.3499
-</td>
-<td style="text-align:right;">
-0.6335497
-</td>
-<td style="text-align:right;">
-500
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
-8616
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
+<tr class="even">
+<td align="left">2012-04-07 00:03:00</td>
+<td align="right">47.62401</td>
+<td align="right">122.3499</td>
+<td align="right">0.6335497</td>
+<td align="right">500</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="right">8616</td>
+<td align="left">TRUE</td>
 </tr>
 </tbody>
 </table>

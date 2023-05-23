@@ -29,6 +29,9 @@
     <a class="dropdown-item" href="../articles/process_bouts.html">Generate Walk Bouts</a>
   </div>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -56,14 +59,37 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_smallest_bout_window</span><span class="op">(</span>minimum_bout_length <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_smallest_bout_window</span><span class="op">(</span></span>
+<span>  minimum_bout_length <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  is_bout <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  non_wearing <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  complete_day <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
+    <dl><dt>minimum_bout_length</dt>
+<dd><p>is the minimum number of epochs for something to be considered a bout</p></dd>
+
+
+<dt>is_bout</dt>
+<dd><p>Logical indicating if the active period is a bout</p></dd>
+
+
+<dt>non_wearing</dt>
+<dd><p>Logical indicating if the active period is a non-wearing period</p></dd>
+
+
+<dt>complete_day</dt>
+<dd><p>Logical indicating if the active period is a complete day</p></dd>
+
+</dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A data.frame with columns activity_counts, bout, non_wearing, complete_day representing the smallest bout window.</p>
+<p>A data.frame with columns <code>activity_counts</code>, <code>bout</code>, <code>non_wearing</code>, and <code>complete_day</code> representing the smallest bout window.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

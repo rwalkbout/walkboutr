@@ -29,6 +29,9 @@
     <a class="dropdown-item" href="../articles/process_bouts.html">Generate Walk Bouts</a>
   </div>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -79,7 +82,17 @@ This function collates user-provided arguments with pre-defined parameters and c
           
           <code><a href="constants.html">constants</a></code> 
         </dt>
-        <dd>List of Constants</dd>
+        <dd>List of Constants
+<code>non_wearing_min_threshold_epochs</code> Number of consecutive epochs with activity counts of 0 that constitute a non_wearing period.
+<code>min_wearing_hours_per_day</code> Minimum number of hours in a day an individual must wear an accelerometer for the day to be considered complete.
+<code>min_gps_obs_within_bout</code> Minimum number of GPS observations within a bout for that bout to be considered to have complete GPS data.
+<code>min_gps_coverage_ratio</code> Minimum ratio of data points with versus without GPS data for the bout to be considered to have complete GPS data.
+<code>dwellbout_radii_quantile</code> Threshold for outliering GPS data points - any data points above the 95th percentile are outliered.
+<code>max_dwellbout_radii_ft</code> Maximum radius, in feet, of a bounding circle that would be considered a dwell bout (rather than a potential walk bout).
+<code>min_dwellbout_obs</code> Minimum number of observations to consider something a potential dwell bout.
+<code>max_walking_cpe</code> Maxiumum CPE value before the accelerometer is considered to be picking up on an activity other than walking.
+<code>min_walking_speed_km_h</code> Minimum speed considered walking.
+<code>max_walking_speed_km_h</code> Maximum speed considered walking.</dd>
       </dl><dl><dt>
           
           <code><a href="evaluate_gps_completeness.html">evaluate_gps_completeness()</a></code> 
@@ -90,6 +103,11 @@ This function collates user-provided arguments with pre-defined parameters and c
           <code><a href="generate_bout_category.html">generate_bout_category()</a></code> 
         </dt>
         <dd>Generate bout categories</dd>
+      </dl><dl><dt>
+          
+          <code><a href="generate_bout_plot.html">generate_bout_plot()</a></code> 
+        </dt>
+        <dd>Generate Bout Plot</dd>
       </dl><dl><dt>
           
           <code><a href="generate_bout_radius.html">generate_bout_radius()</a></code> 

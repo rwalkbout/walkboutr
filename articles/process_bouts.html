@@ -53,6 +53,9 @@
     <a class="dropdown-item" href="../articles/process_bouts.html">Generate Walk Bouts</a>
   </div>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -130,256 +133,125 @@ category. More details on bout category can be found below.</li>
 <span><span class="co">#&gt; with CRS(x); using the value TRUE</span></span>
 <span><span class="co">#&gt; Linking to GEOS 3.10.2, GDAL 3.4.1, PROJ 8.2.1; sf_use_s2() is TRUE</span></span>
 <span><span class="va">summary_walk_bouts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/summarize_walk_bouts.html">summarize_walk_bouts</a></span><span class="op">(</span><span class="va">walk_bouts</span><span class="op">)</span></span></code></pre></div>
-The bouts identified look like this:
+<p>The bouts identified look like this:</p>
 <table class="table">
-<thead><tr>
-<th style="text-align:right;">
-bout
-</th>
-<th style="text-align:left;">
-bout_category
-</th>
-<th style="text-align:right;">
-activity_counts
-</th>
-<th style="text-align:left;">
-time
-</th>
-<th style="text-align:left;">
-non_wearing
-</th>
-<th style="text-align:left;">
-complete_day
-</th>
-<th style="text-align:right;">
-latitude
-</th>
-<th style="text-align:right;">
-longitude
-</th>
-<th style="text-align:right;">
-speed
-</th>
+<colgroup>
+<col width="4%">
+<col width="12%">
+<col width="14%">
+<col width="18%">
+<col width="11%">
+<col width="11%">
+<col width="8%">
+<col width="9%">
+<col width="9%">
+</colgroup>
+<thead><tr class="header">
+<th align="right">bout</th>
+<th align="left">bout_category</th>
+<th align="right">activity_counts</th>
+<th align="left">time</th>
+<th align="left">non_wearing</th>
+<th align="left">complete_day</th>
+<th align="right">latitude</th>
+<th align="right">longitude</th>
+<th align="right">speed</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-non_walk_slow
-</td>
-<td style="text-align:right;">
-500
-</td>
-<td style="text-align:left;">
-2012-04-07 00:03:30
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:right;">
-47.62444
-</td>
-<td style="text-align:right;">
-122.3503
-</td>
-<td style="text-align:right;">
-0.9995464
-</td>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">non_walk_slow</td>
+<td align="right">500</td>
+<td align="left">2012-04-07 00:03:30</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="right">47.62744</td>
+<td align="right">122.3533</td>
+<td align="right">0.9995464</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-non_walk_slow
-</td>
-<td style="text-align:right;">
-500
-</td>
-<td style="text-align:left;">
-2012-04-07 00:02:30
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:right;">
-47.61810
-</td>
-<td style="text-align:right;">
-122.3440
-</td>
-<td style="text-align:right;">
-0.8348447
-</td>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">non_walk_slow</td>
+<td align="right">500</td>
+<td align="left">2012-04-07 00:02:30</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="right">47.62110</td>
+<td align="right">122.3470</td>
+<td align="right">0.8348447</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-non_walk_slow
-</td>
-<td style="text-align:right;">
-500
-</td>
-<td style="text-align:left;">
-2012-04-07 00:03:00
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:right;">
-47.62134
-</td>
-<td style="text-align:right;">
-122.3472
-</td>
-<td style="text-align:right;">
-0.6335497
-</td>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">non_walk_slow</td>
+<td align="right">500</td>
+<td align="left">2012-04-07 00:03:00</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="right">47.62434</td>
+<td align="right">122.3502</td>
+<td align="right">0.6335497</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-non_walk_slow
-</td>
-<td style="text-align:right;">
-500
-</td>
-<td style="text-align:left;">
-2012-04-07 00:05:30
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:right;">
-47.64243
-</td>
-<td style="text-align:right;">
-122.3683
-</td>
-<td style="text-align:right;">
-0.9944386
-</td>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">non_walk_slow</td>
+<td align="right">500</td>
+<td align="left">2012-04-07 00:05:30</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="right">47.64543</td>
+<td align="right">122.3713</td>
+<td align="right">0.9944386</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-non_walk_slow
-</td>
-<td style="text-align:right;">
-500
-</td>
-<td style="text-align:left;">
-2012-04-07 00:06:00
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:right;">
-47.64704
-</td>
-<td style="text-align:right;">
-122.3729
-</td>
-<td style="text-align:right;">
-1.2970529
-</td>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">non_walk_slow</td>
+<td align="right">500</td>
+<td align="left">2012-04-07 00:06:00</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="right">47.65004</td>
+<td align="right">122.3759</td>
+<td align="right">1.2970529</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-non_walk_slow
-</td>
-<td style="text-align:right;">
-500
-</td>
-<td style="text-align:left;">
-2012-04-07 00:06:30
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:right;">
-47.65338
-</td>
-<td style="text-align:right;">
-122.3793
-</td>
-<td style="text-align:right;">
-1.0669589
-</td>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">non_walk_slow</td>
+<td align="right">500</td>
+<td align="left">2012-04-07 00:06:30</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="right">47.65638</td>
+<td align="right">122.3823</td>
+<td align="right">1.0669589</td>
 </tr>
 </tbody>
 </table>
 <p>We can now use the second function to generate our summarized
 dataset, which is de-identified and shareable:</p>
 <table class="table">
-<thead><tr>
-<th style="text-align:right;">
-bout
-</th>
-<th style="text-align:right;">
-median_speed
-</th>
-<th style="text-align:left;">
-complete_day
-</th>
-<th style="text-align:left;">
-bout_start
-</th>
-<th style="text-align:right;">
-duration
-</th>
-<th style="text-align:left;">
-bout_category
-</th>
+<colgroup>
+<col width="6%">
+<col width="17%">
+<col width="17%">
+<col width="27%">
+<col width="12%">
+<col width="18%">
+</colgroup>
+<thead><tr class="header">
+<th align="right">bout</th>
+<th align="right">median_speed</th>
+<th align="left">complete_day</th>
+<th align="left">bout_start</th>
+<th align="right">duration</th>
+<th align="left">bout_category</th>
 </tr></thead>
-<tbody><tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0.9895184
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:left;">
-2012-04-07 00:02:30
-</td>
-<td style="text-align:right;">
-4304.5
-</td>
-<td style="text-align:left;">
-non_walk_slow
-</td>
+<tbody><tr class="odd">
+<td align="right">1</td>
+<td align="right">0.9895184</td>
+<td align="left">TRUE</td>
+<td align="left">2012-04-07 00:02:30</td>
+<td align="right">4304.5</td>
+<td align="left">non_walk_slow</td>
 </tr></tbody>
 </table>
 The bout categories reflected in these outputs are defined as follows:
@@ -426,7 +298,15 @@ someone to have stayed in one place.</li>
 <strong>Non-walk bout due to incomplete GPS coverage</strong> a
 <code>non_walk_incomplete_gps</code> bout is a bout where the GPS
 coverage is too low to be considered complete.</li>
-</ul></main>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">accelerometry_counts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_smallest_bout_without_metadata.html">make_smallest_bout_without_metadata</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">gps_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_walking_in_seattle_gps_data.html">generate_walking_in_seattle_gps_data</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/generate_bout_plot.html">generate_bout_plot</a></span><span class="op">(</span><span class="va">accelerometry_counts</span>, <span class="va">gps_data</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "processing accelerometry counts"</span></span>
+<span><span class="co">#&gt; [1] "processing gps data into travel instances"</span></span></code></pre></div>
+<p><img src="process_bouts_files/figure-html/bout%20plot-1.png" width="700"></p>
+  </main>
 </div>
 
 

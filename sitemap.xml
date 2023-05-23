@@ -28,6 +28,9 @@
     <loc>https://rwalkbout.github.io/walkboutr/index.html</loc>
   </url>
   <url>
+    <loc>https://rwalkbout.github.io/walkboutr/news/index.html</loc>
+  </url>
+  <url>
     <loc>https://rwalkbout.github.io/walkboutr/reference/add_date_and_format.html</loc>
   </url>
   <url>
@@ -44,6 +47,9 @@
   </url>
   <url>
     <loc>https://rwalkbout.github.io/walkboutr/reference/generate_bout_category.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/generate_bout_plot.html</loc>
   </url>
   <url>
     <loc>https://rwalkbout.github.io/walkboutr/reference/generate_bout_radius.html</loc>
@@ -140,5 +146,8 @@
   </url>
   <url>
     <loc>https://rwalkbout.github.io/walkboutr/reference/validate_gps_data.html</loc>
+  </url>
+  <url>
+    <loc>https://rwalkbout.github.io/walkboutr/reference/walkboutr-package.html</loc>
   </url>
 </urlset>
