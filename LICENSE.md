@@ -1,5 +1,9 @@
 # BSD 3-clause license
 
+YEAR: 2023
+COPYRIGHT HOLDER: walkboutr authors
+ORGANIZATION: University of Washington
+
 Copyright (c) 2023 walkboutr authors
 
 Redistribution and use in source and binary forms, with or without modification, 

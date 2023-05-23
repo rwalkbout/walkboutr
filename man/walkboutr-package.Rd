@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Generates walk bouts from GPS and accelerometry data. A walk bout is a period of activity with accelerometer movement matching the patterns of walking with corresponding GPS measurements that confirm travel. The inputs of the walkboutr package are individual-level accelerometry and GPS data. The outputs of the model are walk bouts with corresponding times, duration, and summary statistics on the sample population, which collapse all personally identifying information. These bouts can be used to measure walking both as an outcome of a change to the built environment or as a predictor of health outcomes such as a cardioprotective behavior.
+Process GPS and accelerometry data to generate walk bouts. A walk bout is a period of activity with accelerometer movement matching the patterns of walking with corresponding GPS measurements that confirm travel. The inputs of the `walkboutr` package are individual-level accelerometry and GPS data. The outputs of the model are walk bouts with corresponding times, duration, and summary statistics on the sample population, which collapse all personally identifying information. These bouts can be used to measure walking both as an outcome of a change to the built environment or as a predictor of health outcomes such as a cardioprotective behavior.
 }
 \seealso{
 Useful links:

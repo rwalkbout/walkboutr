@@ -18,16 +18,16 @@ library(kableExtra)
 ```
 
 
-# walkboutr
+# `walkboutr`
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of walkboutr is to process GPS and accelerometry data into walking bouts. walkboutr will either return the original dataset along with bout labels and categories, or a summarized and de-identified dataset that can be shared for collaboration. 
+The goal of `walkboutr` is to process GPS and accelerometry data into walking bouts. `walkboutr` will either return the original dataset along with bout labels and categories, or a summarized and de-identified dataset that can be shared for collaboration. 
 
 ## Installation
 
-You can install the development version of walkboutr from [GitHub](https://github.com/) with:
+You can install the development version of `walkboutr` from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -38,7 +38,7 @@ devtools::install_github("rwalkbout/walkboutr")
 
 #### Simulated sample data
 
-This is an example of simulated data that could be processed by walkboutr. The GPS data contain the required columns: time, latitude, longitude, speed. The accelerometry data contain the required columns: time, accerometry counts.
+This is an example of simulated data that could be processed by `walkboutr.` The GPS data contain the required columns: time, latitude, longitude, speed. The accelerometry data contain the required columns: time, accerometry counts.
 These data have no extra columns, do not contain NAs, and don't have negative speeds or accelerometry counts. All times are also in date-time format. 
 
 ```{r simulated data}
@@ -64,7 +64,7 @@ kable(head(accelerometry_counts), booktabs = TRUE)  %>%
 <p>
 <p>
 <p>
-Now that we have sample data, we can look at how the walkboutr package works. There are two top level functions that will allow us to generate either (1) a dataset with bouts and bout categories with all of our original data included, or (2) a summary dataset that is completely de-identified and shareable for research purposes. 
+Now that we have sample data, we can look at how the `walkboutr` package works. There are two top level functions that will allow us to generate either (1) a dataset with bouts and bout categories with all of our original data included, or (2) a summary dataset that is completely de-identified and shareable for research purposes. 
 
 
 #### Walk bout dataset including original data

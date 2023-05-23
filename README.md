@@ -1,19 +1,19 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# walkboutr
+# `walkboutr`
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of walkboutr is to process GPS and accelerometry data into
-walking bouts. walkboutr will either return the original dataset along
+The goal of `walkboutr` is to process GPS and accelerometry data into
+walking bouts. `walkboutr` will either return the original dataset along
 with bout labels and categories, or a summarized and de-identified
 dataset that can be shared for collaboration.
 
 ## Installation
 
-You can install the development version of walkboutr from
+You can install the development version of `walkboutr` from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -26,7 +26,7 @@ devtools::install_github("rwalkbout/walkboutr")
 #### Simulated sample data
 
 This is an example of simulated data that could be processed by
-walkboutr. The GPS data contain the required columns: time, latitude,
+`walkboutr.` The GPS data contain the required columns: time, latitude,
 longitude, speed. The accelerometry data contain the required columns:
 time, accerometry counts. These data have no extra columns, do not
 contain NAs, and don’t have negative speeds or accelerometry counts. All
@@ -70,7 +70,7 @@ speed
 122.3321
 </td>
 <td style="text-align:right;">
-0.7699952
+1.2302377
 </td>
 </tr>
 <tr>
@@ -78,10 +78,10 @@ speed
 2012-04-07 00:01:00
 </td>
 <td style="text-align:right;">
-47.60974
+47.61185
 </td>
 <td style="text-align:right;">
-122.3356
+122.3378
 </td>
 <td style="text-align:right;">
 0.9223307
@@ -92,10 +92,10 @@ speed
 2012-04-07 00:01:30
 </td>
 <td style="text-align:right;">
-47.61317
+47.61528
 </td>
 <td style="text-align:right;">
-122.3391
+122.3412
 </td>
 <td style="text-align:right;">
 0.5313921
@@ -106,10 +106,10 @@ speed
 2012-04-07 00:02:00
 </td>
 <td style="text-align:right;">
-47.61579
+47.61790
 </td>
 <td style="text-align:right;">
-122.3417
+122.3438
 </td>
 <td style="text-align:right;">
 0.7581466
@@ -120,10 +120,10 @@ speed
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.61863
+47.62074
 </td>
 <td style="text-align:right;">
-122.3445
+122.3466
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -134,10 +134,10 @@ speed
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62188
+47.62399
 </td>
 <td style="text-align:right;">
-122.3478
+122.3499
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -212,7 +212,7 @@ time
 <p>
 <p>
 
-Now that we have sample data, we can look at how the walkboutr package
+Now that we have sample data, we can look at how the `walkboutr` package
 works. There are two top level functions that will allow us to generate
 either (1) a dataset with bouts and bout categories with all of our
 original data included, or (2) a summary dataset that is completely
@@ -277,10 +277,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.62497
+47.62708
 </td>
 <td style="text-align:right;">
-122.3509
+122.3530
 </td>
 <td style="text-align:right;">
 0.9995464
@@ -306,10 +306,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.61863
+47.62074
 </td>
 <td style="text-align:right;">
-122.3445
+122.3466
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -335,10 +335,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.62188
+47.62399
 </td>
 <td style="text-align:right;">
-122.3478
+122.3499
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -364,10 +364,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.64296
+47.64508
 </td>
 <td style="text-align:right;">
-122.3689
+122.3710
 </td>
 <td style="text-align:right;">
 0.9944386
@@ -393,10 +393,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.64757
+47.64969
 </td>
 <td style="text-align:right;">
-122.3735
+122.3756
 </td>
 <td style="text-align:right;">
 1.2970529
@@ -422,10 +422,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.65391
+47.65602
 </td>
 <td style="text-align:right;">
-122.3798
+122.3819
 </td>
 <td style="text-align:right;">
 1.0669589

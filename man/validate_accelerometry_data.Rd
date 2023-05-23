@@ -9,6 +9,9 @@ validate_accelerometry_data(accelerometry_counts)
 \arguments{
 \item{accelerometry_counts}{Raw accelerometry data with the expected schema.}
 }
+\value{
+This function does not return anything. It throws an error if the accelerometry data fails any of the validation checks.
+}
 \description{
 The input schema for the accelerometry data is \code{time} and \code{activity_counts}.
 \itemize{
