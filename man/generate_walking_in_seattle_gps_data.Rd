@@ -4,10 +4,17 @@
 \alias{generate_walking_in_seattle_gps_data}
 \title{Generate GPS data for a walking activity in Seattle, WA}
 \usage{
-generate_walking_in_seattle_gps_data()
+generate_walking_in_seattle_gps_data(start_lat, start_long, start_time)
+}
+\arguments{
+\item{start_lat}{The starting latitude of the walk.}
+
+\item{start_long}{The starting longitude of the walk.}
+
+\item{start_time}{The start time of a series of data}
 }
 \value{
-A data frame with columns \link{time, latitude, longitude, speed}
+A data frame with columns \code{time}, \code{latitude}, \code{longitude}, \code{speed}
 }
 \description{
 This function generates a data frame containing GPS data for a walking activity in Seattle, WA on April 7th, 2012. It calls the function generate_gps_data to create a series of GPS locations and speeds. The resulting data frame has columns for time, latitude, longitude, and speed.

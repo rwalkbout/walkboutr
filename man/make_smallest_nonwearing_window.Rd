@@ -6,6 +6,9 @@
 \usage{
 make_smallest_nonwearing_window(min_non_wearing_length = 20 * 2)
 }
+\arguments{
+\item{min_non_wearing_length}{minimum non_wearing time before a bout is terminated}
+}
 \value{
 An inactive period data frame that represents the smallest non-wearing window.
 }

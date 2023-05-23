@@ -14,12 +14,6 @@ identify_non_wearing_periods(
 \item{accelerometry_counts}{a data frame containing columns for time (in POSIXct format) and activity_counts}
 
 \item{non_wearing_min_threshold_epochs}{an integer value indicating the minimum number of consecutive epochs with 0 activity counts that constitute a non-wearing period}
-
-\item{min_wearing_hours_per_day}{an integer value indicating the minimum number of hours per day an individual must wear the accelerometer for the day to be considered complete}
-
-\item{epoch_length}{an integer value indicating the duration of an epoch in seconds}
-
-\item{local_time_zone}{a character string indicating the local time zone of the data - data come in and are returned in UTC, but local time zone is used to compute complete_days}
 }
 \value{
 a data frame with the same columns as the input data frame \code{accelerometry_counts}, but with a new column named \code{non_wearing} that indicates whether the individual was wearing their accelerometer during a given period.

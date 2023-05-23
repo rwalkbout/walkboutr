@@ -30,28 +30,20 @@ Imports:
     data.table,
     dplyr,
     geosphere,
+    ggforce,
     ggplot2,
-    here,
-    hms,
-    kableExtra,
-    latticeExtra,
     lubridate,
     lwgeom,
     magrittr,
     measurements,
-    OpenImageR,
-    plyr,
-    Rcpp,
-    RcppRoll,
-    readr,
     sf,
     sp,
     stats,
-    testthat,
-    tidyr,
-    tinytest,
-    units
+    tidyr
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat,
+    tinytest,
+    utils
 VignetteBuilder: knitr

@@ -30,7 +30,7 @@ walkboutr. The GPS data contain the required columns: time, latitude,
 longitude, speed. The accelerometry data contain the required columns:
 time, accerometry counts. These data have no extra columns, do not
 contain NAs, and don’t have negative speeds or accelerometry counts. All
-times are also in date-time formats.
+times are also in date-time format.
 
 ``` r
 library(walkboutr)
@@ -70,7 +70,7 @@ speed
 122.3321
 </td>
 <td style="text-align:right;">
-1.1731321
+0.6055570
 </td>
 </tr>
 <tr>
@@ -78,10 +78,10 @@ speed
 2012-04-07 00:01:00
 </td>
 <td style="text-align:right;">
-47.61159
+47.60898
 </td>
 <td style="text-align:right;">
-122.3375
+122.3349
 </td>
 <td style="text-align:right;">
 0.9223307
@@ -92,10 +92,10 @@ speed
 2012-04-07 00:01:30
 </td>
 <td style="text-align:right;">
-47.61502
+47.61241
 </td>
 <td style="text-align:right;">
-122.3409
+122.3383
 </td>
 <td style="text-align:right;">
 0.5313921
@@ -106,10 +106,10 @@ speed
 2012-04-07 00:02:00
 </td>
 <td style="text-align:right;">
-47.61764
+47.61503
 </td>
 <td style="text-align:right;">
-122.3435
+122.3409
 </td>
 <td style="text-align:right;">
 0.7581466
@@ -120,10 +120,10 @@ speed
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.62048
+47.61787
 </td>
 <td style="text-align:right;">
-122.3464
+122.3438
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -134,10 +134,10 @@ speed
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62373
+47.62112
 </td>
 <td style="text-align:right;">
-122.3496
+122.3470
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -277,10 +277,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.62682
+47.62421
 </td>
 <td style="text-align:right;">
-122.3527
+122.3501
 </td>
 <td style="text-align:right;">
 0.9995464
@@ -306,10 +306,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.62048
+47.61787
 </td>
 <td style="text-align:right;">
-122.3464
+122.3438
 </td>
 <td style="text-align:right;">
 0.8348447
@@ -335,10 +335,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.62373
+47.62112
 </td>
 <td style="text-align:right;">
-122.3496
+122.3470
 </td>
 <td style="text-align:right;">
 0.6335497
@@ -364,10 +364,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.64481
+47.64221
 </td>
 <td style="text-align:right;">
-122.3707
+122.3681
 </td>
 <td style="text-align:right;">
 0.9944386
@@ -393,10 +393,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.64943
+47.64682
 </td>
 <td style="text-align:right;">
-122.3753
+122.3727
 </td>
 <td style="text-align:right;">
 1.2970529
@@ -422,10 +422,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.65576
+47.65315
 </td>
 <td style="text-align:right;">
-122.3817
+122.3791
 </td>
 <td style="text-align:right;">
 1.0669589

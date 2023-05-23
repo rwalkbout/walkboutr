@@ -39,7 +39,7 @@ devtools::install_github("rwalkbout/walkboutr")
 #### Simulated sample data
 
 This is an example of simulated data that could be processed by walkboutr. The GPS data contain the required columns: time, latitude, longitude, speed. The accelerometry data contain the required columns: time, accerometry counts.
-These data have no extra columns, do not contain NAs, and don't have negative speeds or accelerometry counts. All times are also in date-time formats. 
+These data have no extra columns, do not contain NAs, and don't have negative speeds or accelerometry counts. All times are also in date-time format. 
 
 ```{r simulated data}
 library(walkboutr)

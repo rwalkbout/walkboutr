@@ -14,6 +14,8 @@ process_bouts_and_gps_epochs_into_walkbouts(
 \arguments{
 \item{bouts}{a data frame containing bout information}
 
+\item{gps_epochs}{a data frame containing GPS information}
+
 \item{...}{additional arguments to be passed on to other functions}
 
 \item{collated_arguments}{a list of arguments collated from other functions}

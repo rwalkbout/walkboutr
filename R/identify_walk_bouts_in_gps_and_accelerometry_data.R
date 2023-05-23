@@ -25,11 +25,14 @@ identify_walk_bouts_in_gps_and_accelerometry_data <- function(gps_data, accelero
 #' This function summarizes walking bouts and calculates the median speed, complete day, non-wearing, bout start, and duration of each bout.
 #'
 #' @param walk_bouts A data frame containing identified walk bouts
+#' @param ... Additional arguments to be passed to the function
+#' @param collated_arguments A list of collated arguments
 #'
 #' @returns A data frame summarizing identified walk bouts
 #'
 #' @export
 summarize_walk_bouts <- function(walk_bouts, ..., collated_arguments = NULL){
+  bout <- median <- speed <- complete_day <- time <- bout_category <- NULL
   collated_arguments <- collate_arguments(..., collated_arguments=collated_arguments)
 
   summary_walk_bouts <- walk_bouts %>%

@@ -12,7 +12,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-library(kableExtra)
 ```
 
 ```{r setup}
@@ -39,7 +38,7 @@ gps_data <- generate_gps_data(start_lat = 40.7128, start_long = 74.0060, start_t
 These sample GPS data meet all of the characteristics outlined above: 
 
 ```{r sample GPS data head, echo = FALSE}
-kable(head(gps_data))
+knitr::kable(head(gps_data))
 ```
 
 `walkboutr` also has a function to generate a realistic walking route in Seattle, which is simply meant to provide another example for generating data and becoming familiar with the package: 
@@ -50,7 +49,7 @@ seattle <- generate_walking_in_seattle_gps_data()
 
 These data look exactly the same as the randomly generated sample GPS data: 
 ```{r seattle walking data head, echo = FALSE}
-kable(head(seattle))
+knitr::kable(head(seattle))
 ```
 
 <p>
@@ -74,7 +73,7 @@ accelerometry_counts <- make_smallest_bout_without_metadata()
 
 These sample accelerometry data meet all of the characteristics outlined above: 
 ```{r smallest walkbout head, echo=FALSE}
-kable(head(accelerometry_counts))
+knitr::kable(head(accelerometry_counts))
 ```
 
 #### Generating a full data frame of walk bouts 
@@ -88,7 +87,7 @@ walk_bouts <- make_full_walk_bout_df()
 
 This dataset looks like this: 
 ```{r full walk bout head, echo=FALSE}
-kable(head(walk_bouts))
+knitr::kable(head(walk_bouts))
 ```
 
 

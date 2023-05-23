@@ -4,10 +4,24 @@
 \alias{make_smallest_bout_window}
 \title{Create the smallest bout window}
 \usage{
-make_smallest_bout_window(minimum_bout_length = 10)
+make_smallest_bout_window(
+  minimum_bout_length = 10,
+  is_bout = TRUE,
+  non_wearing = FALSE,
+  complete_day = FALSE
+)
+}
+\arguments{
+\item{minimum_bout_length}{is the minimum number of epochs for something to be considered a bout}
+
+\item{is_bout}{Logical indicating if the active period is a bout}
+
+\item{non_wearing}{Logical indicating if the active period is a non-wearing period}
+
+\item{complete_day}{Logical indicating if the active period is a complete day}
 }
 \value{
-A data.frame with columns \link{activity_counts, bout, non_wearing, complete_day} representing the smallest bout window.
+A data.frame with columns \code{activity_counts}, \code{bout}, \code{non_wearing}, and \code{complete_day} representing the smallest bout window.
 }
 \description{
 This function creates an active period of minimum length defined by the parameter \code{minimum_bout_length}.

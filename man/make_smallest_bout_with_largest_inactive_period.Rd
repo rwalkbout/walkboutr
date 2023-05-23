@@ -8,6 +8,9 @@ make_smallest_bout_with_largest_inactive_period(
   maximum_number_consec_inactive_epochs_in_bout = 3
 )
 }
+\arguments{
+\item{maximum_number_consec_inactive_epochs_in_bout}{maximum number of consecutive inactive epochs in a bout before it is terminated}
+}
 \value{
 A data frame with columns \code{activity_counts} and \code{time}, representing the accelerometer counts and the corresponding time stamps.
 }

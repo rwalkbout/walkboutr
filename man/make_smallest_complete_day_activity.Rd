@@ -6,6 +6,9 @@
 \usage{
 make_smallest_complete_day_activity(min_complete_day = 8602)
 }
+\arguments{
+\item{min_complete_day}{minimum number of epochs for something to be a complete day}
+}
 \value{
 An activity sequence data frame with minimum activity counts for a complete day.
 }

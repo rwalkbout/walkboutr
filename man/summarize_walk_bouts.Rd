@@ -10,6 +10,10 @@ summarize_walk_bouts(walk_bouts, ..., collated_arguments = NULL)
 }
 \arguments{
 \item{walk_bouts}{A data frame containing identified walk bouts}
+
+\item{...}{Additional arguments to be passed to the function}
+
+\item{collated_arguments}{A list of collated arguments}
 }
 \value{
 A data frame summarizing identified walk bouts

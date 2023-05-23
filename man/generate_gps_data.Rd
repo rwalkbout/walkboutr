@@ -16,13 +16,15 @@ generate_gps_data(
 \arguments{
 \item{start_lat}{The starting latitude of the walk.}
 
+\item{start_long}{The starting longitude of the walk.}
+
 \item{start_time}{The start time of a series of data}
 
 \item{n_epochs}{The number of epochs in the series}
 
 \item{time_interval}{The time interval between points in seconds.}
 
-\item{start_lon}{The starting longitude of the walk.}
+\item{seed}{random seed}
 }
 \value{
 A data frame with four columns: "timestamp", "lat", "lon", and "speed".

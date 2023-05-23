@@ -2,6 +2,7 @@
 #'
 #' This function processes bouts and GPS epochs into walk bouts. It uses a set of parameters and constants to determine whether an epoch is active or inactive, the minimum number of epochs for a period of activity to be considered as a potential bout, the local time zone of the data, and other relevant information. It takes in two data frames, "bouts" and "gps_epochs", and returns a processed data frame, "walk_bouts", with added columns "bout", "bout_radius", "bout_category", "complete_days", "non_wearing", and "speed".#'
 #' @param bouts a data frame containing bout information
+#' @param gps_epochs a data frame containing GPS information
 #' @param ... additional arguments to be passed on to other functions
 #' @param collated_arguments a list of arguments collated from other functions
 #'
@@ -30,6 +31,7 @@
 #'
 #' @export
 process_bouts_and_gps_epochs_into_walkbouts <- function(bouts, gps_epochs, ..., collated_arguments = NULL){
+time <- bout <- NULL
   collated_arguments <- collate_arguments(..., collated_arguments = collated_arguments)
   print('processing bouts and gps_epochs')
 
@@ -65,6 +67,7 @@ process_bouts_and_gps_epochs_into_walkbouts <- function(bouts, gps_epochs, ..., 
 #'
 #' @returns A data frame containing the latitude and longitude coordinates for the non-outlier GPS points.
 outlier_gps_points <- function(lat_long, dwellbout_radii_quantile){
+quantile <- . <- NULL
   # outlier gps points that are above the 95% percentile of summed distances
   distance_sum <- sp::SpatialPoints(coords = cbind(long = lat_long$longitude, lat = lat_long$latitude)) %>%
     sp::spDists(., longlat = TRUE) %>%
@@ -84,6 +87,7 @@ outlier_gps_points <- function(lat_long, dwellbout_radii_quantile){
 #'
 #' @returns A data frame containing the bout identifier and the radius of the bounding circle for each walking bout.
 generate_bout_radius <- function(walk_bouts, dwellbout_radii_quantile){
+  bout <- longitude <- latitude <- . <- NULL
   bout_radii <- data.frame(bout = integer(), bout_radius=numeric())
   bout_labels <- walk_bouts %>%
     tidyr::drop_na(bout) %>%
@@ -126,6 +130,8 @@ generate_bout_radius <- function(walk_bouts, dwellbout_radii_quantile){
 #'
 #' @returns A data frame containing information about the GPS completeness and median speed for each bout.
 evaluate_gps_completeness <- function(walk_bouts, min_gps_obs_within_bout, min_gps_coverage_ratio){
+  bout <- speed <- latitude <- longitude <- n_valid_gps_records <- gps_coverage_ratio <- NULL
+  sufficient_gps_coverage <- sufficient_gps_records <- NULL
   # determine if we have sufficient gps coverage for each bout
   gps_completeness <- walk_bouts %>%
     dplyr::group_by(bout) %>%
@@ -164,6 +170,8 @@ evaluate_gps_completeness <- function(walk_bouts, min_gps_obs_within_bout, min_g
 #' The resulting data frame contains the following columns: bout, dwell_bout (T/F), non_walk_too_vigorous (T/F), non_walk_slow (T/F), non_walk_fast (T/F), non_walk_incomplete_gps (T/F).
 generate_bout_category <- function(walk_bouts, bout_radii, gps_completeness,
                                    max_dwellbout_radii_ft, max_walking_cpe, min_walking_speed_km_h, max_walking_speed_km_h){
+  bout <- complete_gps <- bout_radius <- activity_counts <- speed <- median_speed <- NULL
+  bout_category <- median_speed <- mean_cpe <- dwell_bout <- non_walk_incomplete_gps <- NULL
   # bout categories:
     # walk bout
     # dwell bout

@@ -6,6 +6,9 @@
 \usage{
 make_non_bout_window(maximum_number_consec_inactive_epochs_in_bout = 3)
 }
+\arguments{
+\item{maximum_number_consec_inactive_epochs_in_bout}{maximum number of consecutive inactive epochs in a bout before it is terminated}
+}
 \value{
 a data frame with columns "activity_counts", "bout", "non_wearing", "complete_day"
 }

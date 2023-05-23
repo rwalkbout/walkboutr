@@ -106,22 +106,19 @@ validate_gps_data <- function(gps_data){
 #'
 #' @export
 assign_epoch_start_time <- function(gps_data, epoch_length){
+  time <- epoch_time <- dx_p <- NULL
   # select the closest 30 second increment to assign epoch start time
   # if there are multiple gps data points in a given 30 second increment,
     # takes the gps coordinates associated with the latest time
   gps_epochs <- gps_data %>%
     dplyr::mutate(epoch_time = as.numeric(time)) %>%
-    # dplyr::mutate(dx_n = (-1*epoch_time)%%epoch_length) %>%
     dplyr::mutate(dx_p = epoch_time%%epoch_length) %>%
     dplyr::mutate(epoch_time = epoch_time-dx_p) %>%
-    # dplyr::mutate(epoch_time = ifelse(dx_n<dx_p, epoch_time+dx_n, epoch_time-dx_p)) %>%
-    # take out dx_n and just mutate to epoch_time-dx_p since we always want to round down since acc data are intervals
     dplyr::group_by(epoch_time) %>%
     dplyr::filter(as.numeric(time) == max(as.numeric(time))) %>%
     dplyr::mutate(time = lubridate::as_datetime(epoch_time, tz="UTC")) %>%
     dplyr:: ungroup() %>%
     dplyr::select(-c(dx_p, epoch_time))
-    # dplyr::select(-c(dx_n, dx_p, epoch_time))
   return(gps_epochs)
 }
 

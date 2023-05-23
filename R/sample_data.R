@@ -1,10 +1,11 @@
 #' Generate a dataset with date-time, speed, and latitude and longitude of someone moving through space on a walk in Seattle
 #'
 #' @param start_lat The starting latitude of the walk.
-#' @param start_lon The starting longitude of the walk.
+#' @param start_long The starting longitude of the walk.
 #' @param start_time The start time of a series of data
 #' @param time_interval The time interval between points in seconds.
 #' @param n_epochs The number of epochs in the series
+#' @param seed random seed
 #'
 #' @returns A data frame with four columns: "timestamp", "lat", "lon", and "speed".
 #'
@@ -14,14 +15,14 @@ generate_gps_data <- function(start_lat, start_long, start_time, n_epochs = 110,
   # set the initial location and speed
   current_lat <- start_lat
   current_long <- start_long
-  current_speed <- runif(1, 0.5, 1.5)  # km/h
+  current_speed <- stats::runif(1, 0.5, 1.5)  # km/h
 
   # set random number generator seed for reproducibility
   set.seed(seed)
 
   # generate a series of locations and speeds
-  directions <- runif(n_epochs, 0, 2 * pi)
-  dts <- runif(n_epochs, 25, 35)
+  directions <- stats::runif(n_epochs, 0, 2 * pi)
+  dts <- stats::runif(n_epochs, 25, 35)
 
   # create a time vector
   times <- seq.POSIXt(as.POSIXct(start_time), length.out = n_epochs + 1, by = time_interval)
@@ -39,7 +40,7 @@ generate_gps_data <- function(start_lat, start_long, start_time, n_epochs = 110,
 
   for (i in seq_along(directions)) {
     df[i+1, c("latitude", "longitude")] <- next_lat_long(df[i, "latitude"], df[i, "longitude"], df[i, "speed"], directions[i], dts[i])
-    df$speed[i+1] <- runif(1, 0.5, 1.5)
+    df$speed[i+1] <- stats::runif(1, 0.5, 1.5)
   }
 
   return(df)
@@ -96,9 +97,13 @@ next_lat_long <- function(latitude, longitude, speed, direction, dt) {
 #'
 #' This function generates a data frame containing GPS data for a walking activity in Seattle, WA on April 7th, 2012. It calls the function generate_gps_data to create a series of GPS locations and speeds. The resulting data frame has columns for time, latitude, longitude, and speed.
 #'
-#' @return A data frame with columns [time, latitude, longitude, speed]
+#' @param start_lat The starting latitude of the walk.
+#' @param start_long The starting longitude of the walk.
+#' @param start_time The start time of a series of data
+#'
+#' @return A data frame with columns `time`, `latitude`, `longitude`, `speed`
 #' @export
-generate_walking_in_seattle_gps_data <- function(){
+generate_walking_in_seattle_gps_data <- function(start_lat, start_long, start_time){
   # Generating a sample dataset of walking in Seattle, WA, USA on April 7th, 2012
   start_lat <- 47.6062
   start_long <- 122.3321
@@ -113,12 +118,6 @@ generate_walking_in_seattle_gps_data <- function(){
 #' This function generates a list of activity epochs with specified minimum active counts per epoch, minimum bout length,
 #' maximum number of consecutive inactive epochs in a bout, minimum non-wearing length, and minimum complete day length.
 #'
-#' @param active_counts_per_epoch_min Minimum active counts per epoch (default: 500)
-#' @param minimum_bout_length Minimum length of a bout in epochs (default: 10)
-#' @param maximum_number_consec_inactive_epochs_in_bout Maximum number of consecutive inactive epochs in a bout (default: 3)
-#' @param min_non_wearing_length Minimum length of non-wearing period in epochs (default: 40)
-#' @param min_complete_day Minimum length of a complete day in epochs (default: 8602)
-#' @param activity_epoch A list containing activity counts, bout, non-wearing, and complete day information
 #' @param length Length of the active period
 #' @param is_bout Logical indicating if the active period is a bout
 #' @param non_wearing Logical indicating if the active period is a non-wearing period
@@ -183,10 +182,14 @@ add_date_and_format <- function(counts) {
 #'
 #' This function creates an active period of minimum length defined by the parameter \code{minimum_bout_length}.
 #'
-#' @return A data.frame with columns [activity_counts, bout, non_wearing, complete_day] representing the smallest bout window.
-#' @examples
-make_smallest_bout_window <- function(minimum_bout_length = 10) {
-  return(make_active_period(minimum_bout_length))
+#' @param minimum_bout_length is the minimum number of epochs for something to be considered a bout
+#' @param is_bout Logical indicating if the active period is a bout
+#' @param non_wearing Logical indicating if the active period is a non-wearing period
+#' @param complete_day Logical indicating if the active period is a complete day
+
+#' @return A data.frame with columns `activity_counts`, `bout`, `non_wearing`, and `complete_day` representing the smallest bout window.
+make_smallest_bout_window <- function(minimum_bout_length = 10, is_bout = TRUE, non_wearing = FALSE, complete_day = FALSE) {
+  return(make_active_period(length = minimum_bout_length, is_bout = TRUE, non_wearing = FALSE, complete_day = FALSE))
 }
 
 
@@ -194,7 +197,10 @@ make_smallest_bout_window <- function(minimum_bout_length = 10) {
 #'
 #' This function creates a non-bout window, which is a period of inactivity that is not long enough to be considered as an inactive bout.
 #'
+#' @param maximum_number_consec_inactive_epochs_in_bout maximum number of consecutive inactive epochs in a bout before it is terminated
+#'
 #' @return a data frame with columns "activity_counts", "bout", "non_wearing", "complete_day"
+#'
 #' @examples
 #' make_non_bout_window()
 #'
@@ -209,7 +215,10 @@ make_non_bout_window <- function(maximum_number_consec_inactive_epochs_in_bout =
 #' Create an inactive period that represents the smallest non-wearing window.
 #' This function uses the \code{make_inactive_period()} function to create the non-wearing window.
 #'
+#' @param min_non_wearing_length minimum non_wearing time before a bout is terminated
+#'
 #' @return An inactive period data frame that represents the smallest non-wearing window.
+#'
 #' @examples
 #' make_smallest_nonwearing_window()
 #' @export
@@ -221,6 +230,8 @@ make_smallest_nonwearing_window <- function(min_non_wearing_length = 20*2) {
 #' Generate an activity sequence for a complete day with minimal activity
 #'
 #' This function generates an activity sequence for a complete day with a minimal activity count.
+#'
+#' @param min_complete_day minimum number of epochs for something to be a complete day
 #'
 #' @return An activity sequence data frame with minimum activity counts for a complete day.
 #'
@@ -238,6 +249,7 @@ make_smallest_complete_day_activity <- function(min_complete_day = 8602) {
 #' Generates a dataset representing the smallest bout, consisting of a sequence of inactive periods followed by the smallest active period.
 #'
 #' @return A data frame containing the activity counts and bout information for the smallest bout.
+#'
 #' @examples
 #' make_smallest_bout()
 #' @export
@@ -271,6 +283,8 @@ make_smallest_bout_without_metadata <- function() {
 #'
 #' This function generates a sequence of accelerometer counts representing the smallest bout with the largest inactive period.
 #' The length of the inactive period is determined by the value of `maximum_number_consec_inactive_epochs_in_bout` variable.
+#'
+#' @param maximum_number_consec_inactive_epochs_in_bout maximum number of consecutive inactive epochs in a bout before it is terminated
 #'
 #' @return A data frame with columns `activity_counts` and `time`, representing the accelerometer counts and the corresponding time stamps.
 #'
@@ -364,6 +378,7 @@ make_full_day_bout_without_metadata <- function() {
 #' make_full_walk_bout_df()
 #' @export
 make_full_walk_bout_df <- function() {
+time <- bout <- NULL
   accelerometry_counts <- make_full_day_bout() %>%
     dplyr::select(-c("bout","non_wearing","complete_day"))
   gps_data <- generate_walking_in_seattle_gps_data()

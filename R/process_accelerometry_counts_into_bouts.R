@@ -75,6 +75,8 @@ run_length_encode <- function(x){
 #' that indicates whether each epoch is part of a bout (1) or not (0).
 identify_bouts <- function(accelerometry_counts, maximum_number_consec_inactive_epochs_in_bout, active_counts_per_epoch_min, minimum_bout_length){
 
+  activity_counts <- inactive <- values <- maybe_bout <- bout <- time <- . <- NULL
+  n_epochs_date <- non_wearing <- total_wearing_epochs_whole_day <- NULL
   # Identify all epochs that are definitely not part of bouts
     # if we have 4 or more epochs where the activity level is below our activity threshold
     # then the epoch at the left most edge of that window is definitely not part of a bout
@@ -133,15 +135,13 @@ identify_bouts <- function(accelerometry_counts, maximum_number_consec_inactive_
 #'
 #' @param accelerometry_counts a data frame containing columns for time (in POSIXct format) and activity_counts
 #' @param non_wearing_min_threshold_epochs an integer value indicating the minimum number of consecutive epochs with 0 activity counts that constitute a non-wearing period
-#' @param min_wearing_hours_per_day an integer value indicating the minimum number of hours per day an individual must wear the accelerometer for the day to be considered complete
-#' @param epoch_length an integer value indicating the duration of an epoch in seconds
-#' @param local_time_zone a character string indicating the local time zone of the data - data come in and are returned in UTC, but local time zone is used to compute complete_days
 #'
 #' @returns a data frame with the same columns as the input data frame \code{accelerometry_counts}, but with a new column named \code{non_wearing} that indicates whether the individual was wearing their accelerometer during a given period.
 #'
 #' @details
 #' Identify periods where the accelerometer is not being worn based on the activity counts and a minimum threshold value.
 identify_non_wearing_periods <- function(accelerometry_counts, non_wearing_min_threshold_epochs){
+  activity_counts <- values <- NULL
   accelerometry_counts <- accelerometry_counts %>%
     dplyr::mutate(inactive = (activity_counts == 0),
            non_wearing = F)
@@ -175,6 +175,7 @@ identify_non_wearing_periods <- function(accelerometry_counts, non_wearing_min_t
 #'
 #' @returns A data frame containing accelerometer counts, non-wearing epochs, and a binary variable indicating if the day is complete or not.
 identify_complete_days <- function(accelerometry_counts, min_wearing_hours_per_day, epoch_length, local_time_zone){
+  time <- . <- n_epochs_date <- non_wearing <- total_wearing_epochs_whole_day <- NULL
   min_wearing_epochs_per_day <- (min_wearing_hours_per_day*60*60)/epoch_length
   # max_non_wearing_per_day <- 24-min_wearing_hours_per_day
   complete_days_df <- accelerometry_counts %>%

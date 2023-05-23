@@ -12,7 +12,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-library(kableExtra)
 ```
 
 ```{r setup}
@@ -39,13 +38,13 @@ summary_walk_bouts <- summarize_walk_bouts(walk_bouts)
 
 The bouts identified look like this: 
 ```{r head walkbouts, echo = FALSE}
-kable(head(walk_bouts))
+knitr::kable(head(walk_bouts))
 ```
 
 We can now use the second function to generate our summarized dataset, which is de-identified and shareable: 
 
 ```{r head summary, echo = FALSE}
-kable(head(summary_walk_bouts))
+knitr::kable(head(summary_walk_bouts))
 ```
 
 The bout categories reflected in these outputs are defined as follows: 
@@ -64,4 +63,8 @@ Accordingly, the following non-walk-bouts are defined as:
 * **Dwell bout** a `dwell_bout` is a bout where the radius of GPS points is below our threshold for considering someone to have stayed in one place.
 * **Non-walk bout due to incomplete GPS coverage** a `non_walk_incomplete_gps` bout is a bout where the GPS coverage is too low to be considered complete.
 
-
+```{r bout plot, message=FALSE, warning=FALSE}
+accelerometry_counts <- make_smallest_bout_without_metadata()
+gps_data <- generate_walking_in_seattle_gps_data()
+generate_bout_plot(accelerometry_counts, gps_data, 1)
+```
