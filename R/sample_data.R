@@ -15,7 +15,7 @@ generate_gps_data <- function(start_lat, start_long, start_time, n_epochs = 110,
   # set the initial location and speed
   current_lat <- start_lat
   current_long <- start_long
-  current_speed <- stats::runif(1, 0.5, 1.5)  # km/h
+  current_speed <- stats::runif(1.7, 0.5, 5)  # km/h
 
   # set random number generator seed for reproducibility
   set.seed(seed)
@@ -40,7 +40,7 @@ generate_gps_data <- function(start_lat, start_long, start_time, n_epochs = 110,
 
   for (i in seq_along(directions)) {
     df[i+1, c("latitude", "longitude")] <- next_lat_long(df[i, "latitude"], df[i, "longitude"], df[i, "speed"], directions[i], dts[i])
-    df$speed[i+1] <- stats::runif(1, 0.5, 1.5)
+    df$speed[i+1] <- stats::runif(1.7,.5,5)
   }
 
   return(df)
@@ -354,6 +354,8 @@ make_full_day_bout <- function() {
 #' @export
 make_full_day_bout_without_metadata <- function() {
   counts <- dplyr::bind_rows(
+    make_non_bout_window(),
+    make_smallest_bout_window(),
     make_non_bout_window(),
     make_smallest_bout_window(),
     make_smallest_complete_day_activity()
