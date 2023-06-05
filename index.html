@@ -98,7 +98,7 @@
 <div class="section level4">
 <h4 id="simulated-sample-data">Simulated sample data<a class="anchor" aria-label="anchor" href="#simulated-sample-data"></a>
 </h4>
-<p>This is an example of simulated data that could be processed by <code>walkboutr.</code> The GPS data contain the required columns: time, latitude, longitude, speed. The accelerometry data contain the required columns: time, accerometry counts. These data have no extra columns, do not contain NAs, and don’t have negative speeds or accelerometry counts. All times are also in date-time format.</p>
+<p>This is an example of simulated data that could be processed by <code>walkboutr.</code> The GPS data contain the required columns: time, latitude, longitude, speed. The accelerometry data contain the required columns: time, accerometry counts. These data have no extra columns, do not contain NAs, and don’t contain negative speeds or accelerometry counts. All times are also in date-time format.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rwalkbout/walkboutr" class="external-link">walkboutr</a></span><span class="op">)</span></span>
 <span><span class="co"># generate sample gps data:</span></span>
@@ -133,7 +133,7 @@ speed
 122.3321
 </td>
 <td style="text-align:right;">
-1.2302377
+1.6049489
 </td>
 </tr>
 <tr>
@@ -141,13 +141,13 @@ speed
 2012-04-07 00:01:00
 </td>
 <td style="text-align:right;">
-47.61185
+47.61357
 </td>
 <td style="text-align:right;">
-122.3378
+122.3395
 </td>
 <td style="text-align:right;">
-0.9223307
+2.4004880
 </td>
 </tr>
 <tr>
@@ -155,13 +155,13 @@ speed
 2012-04-07 00:01:30
 </td>
 <td style="text-align:right;">
-47.61528
+47.62250
 </td>
 <td style="text-align:right;">
-122.3412
+122.3484
 </td>
 <td style="text-align:right;">
-0.5313921
+0.6412646
 </td>
 </tr>
 <tr>
@@ -169,13 +169,13 @@ speed
 2012-04-07 00:02:00
 </td>
 <td style="text-align:right;">
-47.61790
+47.62566
 </td>
 <td style="text-align:right;">
-122.3438
+122.3516
 </td>
 <td style="text-align:right;">
-0.7581466
+1.6616599
 </td>
 </tr>
 <tr>
@@ -183,13 +183,13 @@ speed
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.62074
+47.63189
 </td>
 <td style="text-align:right;">
-122.3466
+122.3578
 </td>
 <td style="text-align:right;">
-0.8348447
+2.0068013
 </td>
 </tr>
 <tr>
@@ -197,13 +197,13 @@ speed
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.62399
+47.63969
 </td>
 <td style="text-align:right;">
-122.3499
+122.3656
 </td>
 <td style="text-align:right;">
-0.6335497
+1.1009735
 </td>
 </tr>
 </tbody>
@@ -318,65 +318,7 @@ speed
 1
 </td>
 <td style="text-align:left;">
-non_walk_slow
-</td>
-<td style="text-align:right;">
-500
-</td>
-<td style="text-align:left;">
-2012-04-07 00:03:30
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:right;">
-47.62708
-</td>
-<td style="text-align:right;">
-122.3530
-</td>
-<td style="text-align:right;">
-0.9995464
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-non_walk_slow
-</td>
-<td style="text-align:right;">
-500
-</td>
-<td style="text-align:left;">
-2012-04-07 00:02:30
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:right;">
-47.62074
-</td>
-<td style="text-align:right;">
-122.3466
-</td>
-<td style="text-align:right;">
-0.8348447
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-non_walk_slow
+walk_bout
 </td>
 <td style="text-align:right;">
 500
@@ -391,13 +333,13 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.62399
+47.63969
 </td>
 <td style="text-align:right;">
-122.3499
+122.3656
 </td>
 <td style="text-align:right;">
-0.6335497
+1.1009735
 </td>
 </tr>
 <tr>
@@ -405,7 +347,65 @@ TRUE
 1
 </td>
 <td style="text-align:left;">
-non_walk_slow
+walk_bout
+</td>
+<td style="text-align:right;">
+500
+</td>
+<td style="text-align:left;">
+2012-04-07 00:05:00
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:right;">
+47.68250
+</td>
+<td style="text-align:right;">
+122.4084
+</td>
+<td style="text-align:right;">
+2.7901428
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+walk_bout
+</td>
+<td style="text-align:right;">
+500
+</td>
+<td style="text-align:left;">
+2012-04-07 00:07:00
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:right;">
+47.74350
+</td>
+<td style="text-align:right;">
+122.4694
+</td>
+<td style="text-align:right;">
+0.9801357
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+walk_bout
 </td>
 <td style="text-align:right;">
 500
@@ -420,13 +420,13 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.64508
+47.69565
 </td>
 <td style="text-align:right;">
-122.3710
+122.4216
 </td>
 <td style="text-align:right;">
-0.9944386
+2.7249735
 </td>
 </tr>
 <tr>
@@ -434,7 +434,7 @@ TRUE
 1
 </td>
 <td style="text-align:left;">
-non_walk_slow
+walk_bout
 </td>
 <td style="text-align:right;">
 500
@@ -449,13 +449,13 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.64969
+47.70829
 </td>
 <td style="text-align:right;">
-122.3756
+122.4342
 </td>
 <td style="text-align:right;">
-1.2970529
+4.0867381
 </td>
 </tr>
 <tr>
@@ -463,7 +463,7 @@ TRUE
 1
 </td>
 <td style="text-align:left;">
-non_walk_slow
+walk_bout
 </td>
 <td style="text-align:right;">
 500
@@ -478,13 +478,13 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.65602
+47.72825
 </td>
 <td style="text-align:right;">
-122.3819
+122.4542
 </td>
 <td style="text-align:right;">
-1.0669589
+3.0513150
 </td>
 </tr>
 </tbody>
@@ -517,12 +517,13 @@ duration
 bout_category
 </th>
 </tr></thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td style="text-align:right;">
 1
 </td>
 <td style="text-align:right;">
-0.9895184
+2.736466
 </td>
 <td style="text-align:left;">
 TRUE
@@ -531,14 +532,35 @@ TRUE
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
+5.0
+</td>
+<td style="text-align:left;">
+walk_bout
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2.555720
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+2012-04-07 00:09:30
+</td>
+<td style="text-align:right;">
 4304.5
 </td>
 <td style="text-align:left;">
-non_walk_slow
+walk_bout
 </td>
-</tr></tbody>
+</tr>
+</tbody>
 </table>
-<p>In this example, we have 1 bout(s), and each bout has a label. Bout 1 occurred on 2012.04.07 and has a complete day worth of data (<code>complete_day</code> = TRUE) and a start time of 00:02:30. This bout lasted 4304.5 minutes, or 71.7416667 hours. The bout is a non-walk bout because the participant was moving too slowly for this walk to be considered walking.</p>
+<p>In this example, we have 2 bout(s), and each bout has a label. Bout 1 occurred on 2012.04.07 and has a complete day worth of data (<code>complete_day</code> = TRUE) and a start time of 00:02:30. This bout lasted 5 minutes, or 0.0833333 hours. The bout is a non-walk bout because the participant was moving too slowly for this walk to be considered walking.</p>
 <p>For more information on bout categories and how these are assigned, please see the vignette titled <strong>Generate Walk Bouts</strong>.</p>
 </div>
 </div>
