@@ -3,7 +3,9 @@
 \name{identify_complete_days}
 \alias{identify_complete_days}
 \title{Identify complete wearing days
-This function identifies complete days based on accelerometry data by calculating the total number of epochs worn per day and comparing it to the minimum number of wearing epochs per day required to consider a day complete.}
+This function identifies complete days based on accelerometry data by
+calculating the total number of epochs worn per day and comparing it to the
+minimum number of wearing epochs per day required to consider a day complete.}
 \usage{
 identify_complete_days(
   accelerometry_counts,
@@ -26,5 +28,7 @@ A data frame containing accelerometer counts, non-wearing epochs, and a binary v
 }
 \description{
 Identify complete wearing days
-This function identifies complete days based on accelerometry data by calculating the total number of epochs worn per day and comparing it to the minimum number of wearing epochs per day required to consider a day complete.
+This function identifies complete days based on accelerometry data by
+calculating the total number of epochs worn per day and comparing it to the
+minimum number of wearing epochs per day required to consider a day complete.
 }

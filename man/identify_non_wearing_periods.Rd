@@ -3,7 +3,8 @@
 \name{identify_non_wearing_periods}
 \alias{identify_non_wearing_periods}
 \title{Identify non-wearing periods:
-This function identifies non-wearing periods in accelerometry data based on a threshold of consecutive epochs with activity counts of 0.}
+This function identifies non-wearing periods in accelerometry data based on a
+threshold of consecutive epochs with activity counts of 0.}
 \usage{
 identify_non_wearing_periods(
   accelerometry_counts,
@@ -11,16 +12,21 @@ identify_non_wearing_periods(
 )
 }
 \arguments{
-\item{accelerometry_counts}{a data frame containing columns for time (in POSIXct format) and activity_counts}
+\item{accelerometry_counts}{a data frame containing columns for time
+(in POSIXct format) and activity_counts}
 
-\item{non_wearing_min_threshold_epochs}{an integer value indicating the minimum number of consecutive epochs with 0 activity counts that constitute a non-wearing period}
+\item{non_wearing_min_threshold_epochs}{an integer value indicating the
+minimum number of consecutive epochs with 0 activity counts that constitute a non-wearing period}
 }
 \value{
-a data frame with the same columns as the input data frame \code{accelerometry_counts}, but with a new column named \code{non_wearing} that indicates whether the individual was wearing their accelerometer during a given period.
+a data frame with the same columns as the input data frame \code{accelerometry_counts},
+but with a new column named \code{non_wearing} that indicates whether the
+individual was wearing their accelerometer during a given period.
 }
 \description{
 Identify non-wearing periods:
-This function identifies non-wearing periods in accelerometry data based on a threshold of consecutive epochs with activity counts of 0.
+This function identifies non-wearing periods in accelerometry data based on a
+threshold of consecutive epochs with activity counts of 0.
 }
 \details{
 Identify periods where the accelerometer is not being worn based on the activity counts and a minimum threshold value.

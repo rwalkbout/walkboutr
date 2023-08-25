@@ -21,7 +21,9 @@ identify_bouts(
 \item{minimum_bout_length}{Minimum number of epochs for a period of activity to be considered as a potential bout}
 }
 \value{
-A data frame with the same columns as the input data frame \code{accelerometry_counts}, but with a new column named \code{bout} that indicates whether each epoch is part of a bout (in which case it gets a bout number assigned) or not (0)
+A data frame with the same columns as the input data frame \code{accelerometry_counts},
+but with a new column named \code{bout} that indicates whether each epoch is part of a bout
+(in which case it gets a bout number assigned) or not (0)
 }
 \description{
 Identify Bouts:

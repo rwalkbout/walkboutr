@@ -9,7 +9,7 @@
 The goal of `walkboutr` is to process GPS and accelerometry data into
 walking bouts. `walkboutr` will either return the original dataset along
 with bout labels and categories, or a summarized and de-identified
-dataset that can be shared for collaborations.
+dataset that can be shared for collaboration.
 
 ## Installation
 
@@ -70,7 +70,7 @@ speed
 122.3321
 </td>
 <td style="text-align:right;">
-0.9716321
+3.3657251
 </td>
 </tr>
 <tr>
@@ -78,10 +78,10 @@ speed
 2012-04-07 00:01:00
 </td>
 <td style="text-align:right;">
-47.61066
+47.62166
 </td>
 <td style="text-align:right;">
-122.3366
+122.3476
 </td>
 <td style="text-align:right;">
 2.4004880
@@ -92,10 +92,10 @@ speed
 2012-04-07 00:01:30
 </td>
 <td style="text-align:right;">
-47.61959
+47.63059
 </td>
 <td style="text-align:right;">
-122.3455
+122.3565
 </td>
 <td style="text-align:right;">
 0.6412646
@@ -106,10 +106,10 @@ speed
 2012-04-07 00:02:00
 </td>
 <td style="text-align:right;">
-47.62275
+47.63375
 </td>
 <td style="text-align:right;">
-122.3487
+122.3597
 </td>
 <td style="text-align:right;">
 1.6616599
@@ -120,10 +120,10 @@ speed
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.62898
+47.63998
 </td>
 <td style="text-align:right;">
-122.3549
+122.3659
 </td>
 <td style="text-align:right;">
 2.0068013
@@ -134,10 +134,10 @@ speed
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.63678
+47.64778
 </td>
 <td style="text-align:right;">
-122.3627
+122.3737
 </td>
 <td style="text-align:right;">
 1.1009735
@@ -277,10 +277,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.63678
+47.64778
 </td>
 <td style="text-align:right;">
-122.3627
+122.3737
 </td>
 <td style="text-align:right;">
 1.1009735
@@ -306,10 +306,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.67959
+47.69059
 </td>
 <td style="text-align:right;">
-122.4055
+122.4165
 </td>
 <td style="text-align:right;">
 2.7901428
@@ -335,10 +335,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.74059
+47.75159
 </td>
 <td style="text-align:right;">
-122.4665
+122.4775
 </td>
 <td style="text-align:right;">
 0.9801357
@@ -364,10 +364,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.69274
+47.70374
 </td>
 <td style="text-align:right;">
-122.4187
+122.4297
 </td>
 <td style="text-align:right;">
 2.7249735
@@ -393,10 +393,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.70538
+47.71638
 </td>
 <td style="text-align:right;">
-122.4313
+122.4423
 </td>
 <td style="text-align:right;">
 4.0867381
@@ -422,10 +422,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.72534
+47.73634
 </td>
 <td style="text-align:right;">
-122.4513
+122.4623
 </td>
 <td style="text-align:right;">
 3.0513150

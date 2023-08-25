@@ -11,17 +11,20 @@ process_accelerometry_counts_into_bouts(
 )
 }
 \arguments{
-\item{accelerometry_counts}{A data frame with two columns: time and cpm (counts per minute)}
+\item{accelerometry_counts}{A data frame with two columns: time and activity counts (CPE, counts per epoch)}
 
 \item{...}{Additional arguments to be passed to the function.}
 
 \item{collated_arguments}{An optional list of previously collated arguments.}
 }
 \value{
-A list of complete days of wearing the accelerometer.
+A list of processed data frames containing identified walk bouts, non-wearing periods,
+and complete days, based on the provided accelerometry counts and processing parameters.
 }
 \description{
-This function processes accelerometry counts into bouts of activity and returns a list of complete days of wearing the accelerometer.
+This function processes accelerometry counts into bouts of activity and
+returns those bouts as well as flags for whether the individual was wearing
+their device and if the wearing day can be considered complete
 }
 \details{
 The input schema for the accelerometry data is \code{time} and \code{activity_counts}.
@@ -30,5 +33,17 @@ The input schema for the accelerometry data is \code{time} and \code{activity_co
 \item \code{activity_counts} should be a positive numeric column with no null values.
 }
 
-This function processes accelerometry counts into bouts of activity. The function first validates the input data in the first step. In the second step, the function identifies bouts of activity based on a specified minimum number of active counts per epoch, a maximum number of consecutive inactive epochs allowed within a bout, and a minimum bout length. In the third step, the function identifies non-wearing periods based on a specified threshold of consecutive epochs with 0 activity counts. In the fourth step, the function identifies complete days of wearing the accelerometer based on a specified minimum number of hours of wearing and the epoch length. The returned list includes information about each complete day, including the start and end times of each day, the duration of the day in seconds, the number of epochs, the total number of cpm for the day, and the bouts of activity within the day.
+This function processes accelerometry counts into bouts of activity.
+The function first validates the input data in the first step.
+In the second step, the function identifies bouts of activity based on a
+specified minimum number of active counts per epoch, a maximum number of
+consecutive inactive epochs allowed within a bout, and a minimum bout length.
+In the third step, the function identifies non-wearing periods based on a
+specified threshold of consecutive epochs with 0 activity counts.
+In the fourth step, the function identifies complete days of wearing the
+accelerometer based on a specified minimum number of hours of wearing and
+the epoch length. The returned list includes information about each complete
+day, including the start and end times of each day, the duration of the day
+in seconds, the number of epochs, the total number of cpm for the day, and
+the bouts of activity within the day.
 }

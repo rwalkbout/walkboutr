@@ -13,7 +13,10 @@
 #' @export
 identify_walk_bouts_in_gps_and_accelerometry_data <- function(gps_data, accelerometry_counts, ..., collated_arguments = NULL){
   collated_arguments <- collate_arguments(..., collated_arguments=collated_arguments)
+  # complete_days <- generate_c_d()
   bouts <- process_accelerometry_counts_into_bouts(accelerometry_counts, collated_arguments=collated_arguments)
+  # take out the complete days processing from identify bouts
+  # merge on complete_days info
   gps_epochs <- process_gps_data_into_gps_epochs(gps_data, collated_arguments=collated_arguments)
   walk_bouts <- process_bouts_and_gps_epochs_into_walkbouts(bouts, gps_epochs, collated_arguments=collated_arguments)
   return(walk_bouts)
