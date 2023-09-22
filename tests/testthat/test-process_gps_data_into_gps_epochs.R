@@ -58,7 +58,7 @@ test_that("time has NAs", {
 })
 test_that("time wrong timezone", {
   gps <- generate_walking_in_seattle_gps_data()
-  gps <- gps %>% dplyr::mutate(time = lubridate::with_tz(time, tzone = "PDT"))
+  gps <- gps %>% dplyr::mutate(time = lubridate::with_tz(time, tzone = "America/Los_Angeles"))
   expect_error(
     validate_gps_data(gps)
   )

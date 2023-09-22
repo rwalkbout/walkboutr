@@ -39,7 +39,7 @@ test_that("time has NAs", {
 
 test_that("time wrong timezone", {
   acc <- make_smallest_bout_without_metadata()
-  acc <- acc %>% dplyr::mutate(time = lubridate::with_tz(time, tzone = "PDT"))
+  acc <- acc %>% dplyr::mutate(time = lubridate::with_tz(time, tzone = "America/Los_Angeles"))
   expect_error(
     validate_accelerometry_data(acc)
   )

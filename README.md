@@ -70,7 +70,7 @@ speed
 122.3321
 </td>
 <td style="text-align:right;">
-3.3657251
+3.9387960
 </td>
 </tr>
 <tr>
@@ -78,10 +78,10 @@ speed
 2012-04-07 00:01:00
 </td>
 <td style="text-align:right;">
-47.62166
+47.62430
 </td>
 <td style="text-align:right;">
-122.3476
+122.3502
 </td>
 <td style="text-align:right;">
 2.4004880
@@ -92,10 +92,10 @@ speed
 2012-04-07 00:01:30
 </td>
 <td style="text-align:right;">
-47.63059
+47.63322
 </td>
 <td style="text-align:right;">
-122.3565
+122.3591
 </td>
 <td style="text-align:right;">
 0.6412646
@@ -106,10 +106,10 @@ speed
 2012-04-07 00:02:00
 </td>
 <td style="text-align:right;">
-47.63375
+47.63638
 </td>
 <td style="text-align:right;">
-122.3597
+122.3623
 </td>
 <td style="text-align:right;">
 1.6616599
@@ -120,10 +120,10 @@ speed
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.63998
+47.64261
 </td>
 <td style="text-align:right;">
-122.3659
+122.3685
 </td>
 <td style="text-align:right;">
 2.0068013
@@ -134,10 +134,10 @@ speed
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.64778
+47.65042
 </td>
 <td style="text-align:right;">
-122.3737
+122.3763
 </td>
 <td style="text-align:right;">
 1.1009735
@@ -277,10 +277,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.64778
+47.65042
 </td>
 <td style="text-align:right;">
-122.3737
+122.3763
 </td>
 <td style="text-align:right;">
 1.1009735
@@ -306,10 +306,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.69059
+47.69322
 </td>
 <td style="text-align:right;">
-122.4165
+122.4191
 </td>
 <td style="text-align:right;">
 2.7901428
@@ -335,10 +335,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.75159
+47.75422
 </td>
 <td style="text-align:right;">
-122.4775
+122.4801
 </td>
 <td style="text-align:right;">
 0.9801357
@@ -364,10 +364,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.70374
+47.70637
 </td>
 <td style="text-align:right;">
-122.4297
+122.4323
 </td>
 <td style="text-align:right;">
 2.7249735
@@ -393,10 +393,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.71638
+47.71901
 </td>
 <td style="text-align:right;">
-122.4423
+122.4449
 </td>
 <td style="text-align:right;">
 4.0867381
@@ -422,10 +422,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.73634
+47.73897
 </td>
 <td style="text-align:right;">
-122.4623
+122.4649
 </td>
 <td style="text-align:right;">
 3.0513150

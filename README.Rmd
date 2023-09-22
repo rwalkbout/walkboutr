@@ -33,7 +33,7 @@ You can install the development version of `walkboutr` from [GitHub](https://git
 # install.packages("devtools")
 devtools::install_github("rwalkbout/walkboutr")
 ```
-
+ 
 ## Basic Usage
 
 #### Simulated sample data
