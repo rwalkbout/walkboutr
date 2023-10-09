@@ -1,6 +1,6 @@
 Package: walkboutr
 Title: Generate Walk Bouts from GPS and Accelerometry Data
-Version: 0.2.0
+Version: 0.3.0
 Authors@R: 
     c(person("Lauren Blair", "Wilner", 
     email = "wilnerl@uw.edu", 
