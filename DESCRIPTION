@@ -32,6 +32,8 @@ Imports:
     sp,
     stats,
     tidyr
+Depends:
+    R (>= 4.3.0)
 Suggests: 
     knitr,
     rmarkdown,
