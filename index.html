@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Generate Walk Bouts from GPS and Accelerometry Data">
 <meta property="og:description" content="Process GPS and accelerometry data to generate walk bouts. A walk bout is a period of activity with accelerometer movement matching the patterns of walking with corresponding GPS measurements that confirm travel. The inputs of the walkboutr package are individual-level accelerometry and GPS data. The outputs of the model are walk bouts with corresponding times, duration, and summary statistics on the sample population, which collapse all personally identifying information. These bouts can be used to measure walking both as an outcome of a change to the built environment or as a predictor of health outcomes such as a cardioprotective behavior. Kang B, Moudon AV, Hurvitz PM, Saelens BE (2017) &lt;doi:10.1016/j.trd.2017.09.026&gt;.">
@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="index.html">walkboutr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -133,7 +133,7 @@ speed
 122.3321
 </td>
 <td style="text-align:right;">
-3.9387960
+3.3588907
 </td>
 </tr>
 <tr>
@@ -141,10 +141,10 @@ speed
 2012-04-07 00:01:00
 </td>
 <td style="text-align:right;">
-47.62430
+47.62163
 </td>
 <td style="text-align:right;">
-122.3502
+122.3475
 </td>
 <td style="text-align:right;">
 2.4004880
@@ -155,10 +155,10 @@ speed
 2012-04-07 00:01:30
 </td>
 <td style="text-align:right;">
-47.63322
+47.63056
 </td>
 <td style="text-align:right;">
-122.3591
+122.3565
 </td>
 <td style="text-align:right;">
 0.6412646
@@ -169,10 +169,10 @@ speed
 2012-04-07 00:02:00
 </td>
 <td style="text-align:right;">
-47.63638
+47.63372
 </td>
 <td style="text-align:right;">
-122.3623
+122.3596
 </td>
 <td style="text-align:right;">
 1.6616599
@@ -183,10 +183,10 @@ speed
 2012-04-07 00:02:30
 </td>
 <td style="text-align:right;">
-47.64261
+47.63995
 </td>
 <td style="text-align:right;">
-122.3685
+122.3659
 </td>
 <td style="text-align:right;">
 2.0068013
@@ -197,10 +197,10 @@ speed
 2012-04-07 00:03:00
 </td>
 <td style="text-align:right;">
-47.65042
+47.64775
 </td>
 <td style="text-align:right;">
-122.3763
+122.3737
 </td>
 <td style="text-align:right;">
 1.1009735
@@ -333,10 +333,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.65042
+47.64775
 </td>
 <td style="text-align:right;">
-122.3763
+122.3737
 </td>
 <td style="text-align:right;">
 1.1009735
@@ -362,10 +362,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.69322
+47.69056
 </td>
 <td style="text-align:right;">
-122.4191
+122.4165
 </td>
 <td style="text-align:right;">
 2.7901428
@@ -391,10 +391,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.75422
+47.75155
 </td>
 <td style="text-align:right;">
-122.4801
+122.4775
 </td>
 <td style="text-align:right;">
 0.9801357
@@ -420,10 +420,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.70637
+47.70371
 </td>
 <td style="text-align:right;">
-122.4323
+122.4296
 </td>
 <td style="text-align:right;">
 2.7249735
@@ -449,10 +449,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.71901
+47.71635
 </td>
 <td style="text-align:right;">
-122.4449
+122.4423
 </td>
 <td style="text-align:right;">
 4.0867381
@@ -478,10 +478,10 @@ FALSE
 TRUE
 </td>
 <td style="text-align:right;">
-47.73897
+47.73631
 </td>
 <td style="text-align:right;">
-122.4649
+122.4622
 </td>
 <td style="text-align:right;">
 3.0513150
