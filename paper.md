@@ -141,7 +141,7 @@ Accelerometry data are collected via accelerometers and are expected to contain 
 
 The accelerometry data are validated and processed. The processed accelerometry data contain the columns described in Table 1. 
 
-![Table 1. Processed accelerometry data.\label{table:1}](table1.png)
+![Table 1. Processed accelerometry data.\label{table:1}](table1.png){width=150%}
 
 ## GPS data
 
@@ -149,7 +149,7 @@ Raw GPS data are expected to contain columns time, latitude, longitude, and spee
 
 The processed GPS data consist of a dataset with columns time, longitude, latitude, and speed, where time is now the nearest epoch start time (rather than the precise time stamp of the GPS data point). GPS data are assigned to an epoch start time by rounding down the time associated with the GPS datapoint to the nearest epoch start time.  For example, if epochs in the accelerometry data are 30 seconds, the time associated with a GPS data point will be rounded down to the nearest 30-second increment. If there are multiple GPS datapoints within a single accelerometry epoch, the latest GPS data point in that epoch is used. This allows for the integration of the accelerometry and GPS datasets. The columns described here can be found in Table 2. 
 
-![Table 2. Processed GPS data.\label{table:2}](table2.png)
+![Table 2. Processed GPS data.\label{table:2}](table2.png){width=150%}
 
 ## Constants and parameters
 
@@ -157,11 +157,11 @@ The processed GPS data consist of a dataset with columns time, longitude, latitu
 
 The following parameters are optional, and the default value in the absence of a user specifying the parameter, is shown in Table 3. These values can be passed as arguments to the top level functions in the package. 
 
-![Table 3. Parameters.\label{table:3}](table3.png)
+![Table 3. Parameters.\label{table:3}](table3.png){width=150%}
 
 The constants can be found in Table 4.  
 
-![Table 4. Constants.\label{table:4}](table4.png)
+![Table 4. Constants.\label{table:4}](table4.png){width=150%}
 
 # Outputs
 
@@ -173,9 +173,9 @@ The second output is a summarized dataset (at the bout level), which has been de
 
 The full dataset (at the epoch level) can be seen in Table 5. The summarized dataset (at the bout level) can be seen in Table 6.
 
-![Table 5. Full dataset.\label{table:5}](table5.png)
+![Table 5. Full dataset.\label{table:5}](table5.png){width=150%}
 
-![Table 6. Summarized dataset.\label{table:6}](table6.png)
+![Table 6. Summarized dataset.\label{table:6}](table6.png){width=150%}
 
 # `walkboutr` Diagnostics
 
@@ -183,7 +183,7 @@ Bouts are categorized into either a walk bout, or one of several other non-walk-
 
 The `walkboutr` package also produces figures describing the walk bouts that are generated, as demonstrated below. This figure below shows a walk bout where the bout is contained within the gray box, where the accelerometry counts exceed the threshold for being considered active. There is also an image of the ratio of radii of the bout and the dwell bout threshold. Given that (1) the activity CPE are consistent with that of walking and (2) the bout area is larger than that of the dwell bout, this is considered a walk bout, this is likely to be a walk bout. `walkboutr` checks to ensure that speed and maximum CPE are consistent with walking (as discussed in the categories above), and then labels this as a walk bout. 
 
-![Table 6. Example of a walk bout.\label{fig:5}](fig_5.png)
+![Table 6. Example of a walk bout.\label{fig:5}](fig_5.png){width=150%}
 
 
 # Discussion
