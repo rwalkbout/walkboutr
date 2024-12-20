@@ -9,74 +9,38 @@ date: "2023-09-26"
 author:  
   - name: Lauren Blair Wilner
     corresponding: true
-    affiliation: University of Washington
-    address:
-    - School of Public Health, Department of Epidemiology
-    - Hans Rosling Center for Population Health
-    - 3980 15th Ave NE, Seattle, WA 98105
-    url: https://www.washington.edu/
+    affiliation: 1
     orcid: 0000-0003-4439-3734
-    email:  wilnerl@uw.edu
   - name: Weipeng Zhou
-    affiliation: University of Washington
-    address:
-    - Biomedical Informatics and Medical Education, School of Medicine
-    - Box 358047
-    - Seattle, WA 98195
-    url: https://www.washington.edu/
-    email: wzhou87@uw.edu
+    affiliation: 2
   - name: Philip M Hurvitz
-    affiliation: University of Washington
-    address:
-    - Center for Studies in Demogrpahy and Ecology
-    - 206 Raitt Hall, Box 353412, 1410 NE Campus Parkway
-    - Seattle, WA 98195
-    url: https://www.washington.edu/
-    email: phurvitz@uw.edu
+    affiliation: 3
   - name: Anne V Moudon
-    affiliation: University of Washington
-    address:
-    - Urban Design and Planning, College of Built Environments
-    - 1410 NE Campus Parkway, Seattle, WA 98195
-    url: https://www.washington.edu/
-    email: moudon@uw.edu
+    affiliation: 4
   - name: Bumjoon Kang
-    affiliation: Myongji University
-    address:
-    - College of Architecture, Myongji University
-    - 34 Geobukgol-ro, Seodaemun-gu, Seoul, South Korea
-    url: https://www.mju.ac.kr/
-    email: bumjoon@mju.ac.kr
+    affiliation: 5
   - name: Brian E Saelens
-    affiliation: Seattle Children's Research Institute
-    address:
-    - 1920 Terry Ave, Seattle, WA 98101
-    url: https://www.seattlechildrens.org/
-    email: brian.saelens@seattlechildrens.org
+    affiliation: 6
   - name: Jimmy Phuong
-    affiliation: University of Washington
-    address:
-    - Biomedical Informatics and Medical Education, School of Medicine
-    - Box 358047
-    - Seattle, WA 98195
-    url: https://www.washington.edu/
-    email: jphuong@uw.edu
+    affiliation: 2
   - name: Matthew Dekker
-    affiliation: University of Washington
-    address:
-    - School of Public Health, Department of Epidemiology
-    - Hans Rosling Center for Population Health
-    - 3980 15th Ave NE, Seattle, WA 98105
-    url: https://www.washington.edu/
-    email: mdekker@uw.edu
+    affiliation: 1
   - name: Stephen J Mooney
-    affiliation: University of Washington
-    address:
-    - School of Public Health, Department of Epidemiology
-    - Hans Rosling Center for Population Health
-    - 3980 15th Ave NE, Seattle, WA 98105
-    url: https://www.washington.edu/
-    email: sjm2186@uw.edu
+    affiliation: 1
+affiliations: 
+  - name: University of Washington, School of Public Health, Department of Epidemiology, United States
+    index: 1
+  - name: University of Washington, Biomedical Informatics and Medical Education, School of Medicine, United States
+    index: 2
+  - name: University of Washington, Center for Studies in Demography and Ecology, United States
+    index: 3
+  - name: University of Washington, Urban Design and Planning, College of Built Environments, United States
+    index: 4
+  - name: College of Architecture, Myongji University, South Korea
+    index: 5
+  - name: Seattle Children's Research Institute, United States
+    index: 6
+
 bibliography: refs.bib
 ---
 
