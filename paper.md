@@ -1,47 +1,52 @@
 ---
-title: "Walkboutr: Extracting Walk Bouts from GPS and Accelerometry Data for Physical Activity Research"
-tags: 
-    - R
-    - physical activity
-    - public health
-    - walking
+title: 'Walkboutr: Extracting Walk Bouts from GPS and Accelerometry Data for Physical
+  Activity Research'
+tags:
+- R
+- physical activity
+- public health
+- walking
 date: "2023-09-26"
-authors:  
-  - name: Lauren Blair Wilner
-    corresponding: true
-    affiliation: 1
-    orcid: 0000-0003-4439-3734
-  - name: Weipeng Zhou
-    affiliation: 2
-  - name: Philip M Hurvitz
-    affiliation: 3
-  - name: Anne V Moudon
-    affiliation: 4
-  - name: Bumjoon Kang
-    affiliation: 5
-  - name: Brian E Saelens
-    affiliation: 6
-  - name: Jimmy Phuong
-    affiliation: 2
-  - name: Matthew Dekker
-    affiliation: 1
-  - name: Stephen J Mooney
-    affiliation: 1
-affiliations: 
-  - name: University of Washington, School of Public Health, Department of Epidemiology, United States
-    index: 1
-  - name: University of Washington, Biomedical Informatics and Medical Education, School of Medicine, United States
-    index: 2
-  - name: University of Washington, Center for Studies in Demography and Ecology, United States
-    index: 3
-  - name: University of Washington, Urban Design and Planning, College of Built Environments, United States
-    index: 4
-  - name: College of Architecture, Myongji University, South Korea
-    index: 5
-  - name: Seattle Children's Research Institute, United States
-    index: 6
-
+output: pdf_document
+affiliations:
+- name: University of Washington, School of Public Health, Department of Epidemiology,
+    United States
+  index: 1
+- name: University of Washington, Biomedical Informatics and Medical Education, School
+    of Medicine, United States
+  index: 2
+- name: University of Washington, Center for Studies in Demography and Ecology, United
+    States
+  index: 3
+- name: University of Washington, Urban Design and Planning, College of Built Environments,
+    United States
+  index: 4
+- name: College of Architecture, Myongji University, South Korea
+  index: 5
+- name: Seattle Children's Research Institute, United States
+  index: 6
 bibliography: refs.bib
+authors:
+- name: Lauren Blair Wilner
+  corresponding: true
+  affiliation: 1
+  orcid: "0000-0003-4439-3734"
+- name: Weipeng Zhou
+  affiliation: 2
+- name: Philip M Hurvitz
+  affiliation: 3
+- name: Anne V Moudon
+  affiliation: 4
+- name: Bumjoon Kang
+  affiliation: 5
+- name: Brian E Saelens
+  affiliation: 6
+- name: Jimmy Phuong
+  affiliation: 2
+- name: Matthew Dekker
+  affiliation: 1
+- name: Stephen J Mooney
+  affiliation: 1
 ---
 
 # Summary 
