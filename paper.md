@@ -84,13 +84,13 @@ We can then classify physical activity bouts as walking or not walking based on 
 
 Figure 1 presents a high-leveled dataflow diagram of how `walkboutr` works. The four modular transformation steps will be described in the following sections as the Accelerometry Process, GPS Process, Walk bout identification, and Summary of walk bouts.
 
-![walkboutr process.\label{fig:1}](/images/fig1.png)
+![walkboutr process.\label{fig:1}](fig1.png)
 
 ## I. Accelerometry Process
 
 First, from accelerometry data alone, we identify physical activity bouts. These bouts indicate periods of time in which the wearer appears to be physically active, though not necessarily walking (e.g., they could be playing a sport or working out). In order to identify physical activity bouts in accordance with the definition given above, `walkboutr` uses a run-length encoding algorithm to identify subsequences within the accelerometry data where there are 4 or more consecutive epochs where the activity level is above the threshold indicating the individual was active (>500 CPE). Where 4 or more epochs are inactive, the last of those consecutive epochs is by definition not part of a bout (Figure 2). 
 
-![An accelerometry trace indicating a bout, where the bout period is indicated by the gray bounds and the epochs outside of these bounds are not included in the bout. The blue line shows the threshold for an individual being considered active, which defaults to 500 CPE in walkboutr.\label{fig:2}](/images/fig2.png){width=100%}
+![An accelerometry trace indicating a bout, where the bout period is indicated by the gray bounds and the epochs outside of these bounds are not included in the bout. The blue line shows the threshold for an individual being considered active, which defaults to 500 CPE in walkboutr.\label{fig:2}](fig2.png){width=100%}
 
 The dataset can then be divided into non-bouts and potential bouts (i.e., subsequences in which a beginning and end of a period need to be identified to determine whether the activity periods extend long enough to be an activity bout).  These potential bouts can then be run-length encoded to identify bouts. Each sequence of epochs that have been identified as potential bouts will have a number of inactive epochs at the end of the series that is equal to the maximum number of consecutive inactive epochs in a bout, a parameter that can be specified by the user but defaults to 3 epochs (or 1.5 minutes for 30s epochs). All potential bouts that were found in this first step are now filtered to only include bouts that have enough epochs to be considered a bout, another parameter that can be specified by the user but defaults to 10 epochs (or 5 minutes). 
 
@@ -108,7 +108,7 @@ Incorporating GPS data to classify bouts as walking or not walking requires four
 
 Next, `walkboutr` calculates a circle to approximate the distance covered by this bout. The circle is centered at the GPS point cloud median and includes the inner 95% of GPS points. An activity bout is considered a dwell bout (i.e., not walking) if, as mentioned above, the individual does not leave a prespecified and parameterized radius (default setting at 66 feet `[Kang-2013]`), which may indicate they had not left their home, work, etc. The left side of Figure 3 depicts a dwell bout, where the bout radius (green) is circumscribed by the maximum dwell bout radius (pink). A walk-bout (also referred as a non-dwell bout) is depicted on the right in Figure 3, where a bout radius (green) exceeds the maximum dwell bout radius (pink). 
 
-![Walk bout (left) and dwell bout (right) show how an individual must leave the dwell bout threshold of 66 feet (shown in blue in both plots) in order to be considered a potential walk bout.\label{fig:3}](/images/fig_3.png)
+![Walk bout (left) and dwell bout (right) show how an individual must leave the dwell bout threshold of 66 feet (shown in blue in both plots) in order to be considered a potential walk bout.\label{fig:3}](fig_3.png)
 
 GPS data are then evaluated for completeness based on whether they have a sufficient number of GPS records. This is assessed both in terms of the number of GPS observations within a bout as well as the ratio of observations that have GPS data. By default, a bout has sufficient GPS coverage if it has at least five GPS observations and at least 20% of the epochs have a paired GPS observation. 
 
@@ -129,7 +129,7 @@ The first function of `walkboutr`, described above, labels walk bouts. After the
 
 Figure 4 is a summary of the high-level process for this processing: 
 
-![walkboutr process using simulated data included in package.\label{fig:3}](/images/fig_4.png)
+![walkboutr process using simulated data included in package.\label{fig:3}](fig_4.png)
 
 
 # Inputs
@@ -141,7 +141,7 @@ Accelerometry data are collected via accelerometers and are expected to contain 
 
 The accelerometry data are validated and processed. The processed accelerometry data contain the columns described in Table 1. 
 
-![Table 1. Processed accelerometry data.\label{table:1}](/images/table1.png)
+![Table 1. Processed accelerometry data.\label{table:1}](table1.png)
 
 ## GPS data
 
@@ -149,7 +149,7 @@ Raw GPS data are expected to contain columns time, latitude, longitude, and spee
 
 The processed GPS data consist of a dataset with columns time, longitude, latitude, and speed, where time is now the nearest epoch start time (rather than the precise time stamp of the GPS data point). GPS data are assigned to an epoch start time by rounding down the time associated with the GPS datapoint to the nearest epoch start time.  For example, if epochs in the accelerometry data are 30 seconds, the time associated with a GPS data point will be rounded down to the nearest 30-second increment. If there are multiple GPS datapoints within a single accelerometry epoch, the latest GPS data point in that epoch is used. This allows for the integration of the accelerometry and GPS datasets. The columns described here can be found in Table 2. 
 
-![Table 2. Processed GPS data.\label{table:2}](/images/table2.png)
+![Table 2. Processed GPS data.\label{table:2}](table2.png)
 
 ## Constants and parameters
 
@@ -157,11 +157,11 @@ The processed GPS data consist of a dataset with columns time, longitude, latitu
 
 The following parameters are optional, and the default value in the absence of a user specifying the parameter, is shown in Table 3. These values can be passed as arguments to the top level functions in the package. 
 
-![Table 3. Parameters.\label{table:3}](/images/table3.png)
+![Table 3. Parameters.\label{table:3}](table3.png)
 
 The constants can be found in Table 4.  
 
-![Table 4. Constants.\label{table:4}](/images/table4.png)
+![Table 4. Constants.\label{table:4}](table4.png)
 
 # Outputs
 
@@ -173,9 +173,9 @@ The second output is a summarized dataset (at the bout level), which has been de
 
 The full dataset (at the epoch level) can be seen in Table 5. The summarized dataset (at the bout level) can be seen in Table 6.
 
-![Table 5. Full dataset.\label{table:5}](/images/table5.png)
+![Table 5. Full dataset.\label{table:5}](table5.png)
 
-![Table 6. Summarized dataset.\label{table:6}](/images/table6.png)
+![Table 6. Summarized dataset.\label{table:6}](table6.png)
 
 # `walkboutr` Diagnostics
 
@@ -183,7 +183,7 @@ Bouts are categorized into either a walk bout, or one of several other non-walk-
 
 The `walkboutr` package also produces figures describing the walk bouts that are generated, as demonstrated below. This figure below shows a walk bout where the bout is contained within the gray box, where the accelerometry counts exceed the threshold for being considered active. There is also an image of the ratio of radii of the bout and the dwell bout threshold. Given that (1) the activity CPE are consistent with that of walking and (2) the bout area is larger than that of the dwell bout, this is considered a walk bout, this is likely to be a walk bout. `walkboutr` checks to ensure that speed and maximum CPE are consistent with walking (as discussed in the categories above), and then labels this as a walk bout. 
 
-![Table 6. Example of a walk bout.\label{fig:5}](/images/fig_5.png)
+![Table 6. Example of a walk bout.\label{fig:5}](fig_5.png)
 
 
 # Discussion
