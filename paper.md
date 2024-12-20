@@ -6,7 +6,7 @@ tags:
     - public health
     - walking
 date: "2023-09-26"
-author:  
+authors:  
   - name: Lauren Blair Wilner
     corresponding: true
     affiliation: 1
