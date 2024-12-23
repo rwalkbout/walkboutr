@@ -193,6 +193,7 @@ The following parameters are optional, and the default value in the absence of a
 The constants can be found in Table 4.  
 
 ![Table 4. Constants.\label{table:4}](table4.png){width=100%}
+
 | Column                                     | Class                                     | Definition                                                                                                     | Default |
 |--------------------------------------------|-------------------------------------------|---------------------------------------------------------------------------------------------------------------|---------|
 | non_wearing_min_threshold_epochs           | Number of consecutive epochs with activity counts of 0 that constitutes a period where the device is not worn | 40      |
@@ -219,6 +220,7 @@ The second output is a summarized dataset (at the bout level), which has been de
 The full dataset (at the epoch level) can be seen in Table 5. The summarized dataset (at the bout level) can be seen in Table 6.
 
 ![Table 5. Full dataset.\label{table:5}](table5.png){width=100%}
+
 | Column                       | Class             | Definition                                                                                                                                                        |
 |-------------------------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | bout                         | Numeric           | This column is a label for each walk bout – each bout is sequentially labeled with a number for easier identification purposes.                                   |
