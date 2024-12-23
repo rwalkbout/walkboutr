@@ -181,8 +181,8 @@ The following parameters are optional, and the default value in the absence of a
 
 ![Table 3. Parameters.\label{table:3}](table3.png){width=100%}
 
-| Column                                      | Definition                                                                                             | Default            |
-|---------------------------------------------|---------------------------------------------------------------------------------------------------------|--------------------|
+| Column                                        | Definition                                                                                          | Default       |
+|-----------------------------------------------|------------------------------------------------------------------------------------------------------|--------------|
 | epoch_length                                | The duration of an epoch in seconds.                                                                   | 30                 |
 | active_counts_per_epoch_min                 | Minimum accelerometer counts for an epoch to be considered active (vs. inactive).                      | 500                |
 | minimum_bout_length                         | Minimum number of epochs for a period of activity to be considered as a potential bout.                | 10                 |
@@ -194,8 +194,8 @@ The constants can be found in Table 4.
 
 ![Table 4. Constants.\label{table:4}](table4.png){width=100%}
 
-| Column                                     | Definition                                                                                                     | Default |
-|--------------------------------------------|---------------------------------------------------------------------------------------------------------------|---------|
+| Column                                        | Definition                                                                                          | Default       |
+|-----------------------------------------------|------------------------------------------------------------------------------------------------------|--------------|
 | non_wearing_min_threshold_epochs           | Number of consecutive epochs with activity counts of 0 that constitutes a period where the device is not worn | 40      |
 | min_wearing_hours_per_day                  | Minimum number of hours in a day an individual must wear an accelerometer for the day to be considered complete. | 8       |
 | min_gps_obs_within_bout                    | Minimum number of GPS observations within a bout for that bout to be considered to have complete GPS data.    | 5       |
@@ -233,7 +233,6 @@ The full dataset (at the epoch level) can be seen in Table 5. The summarized dat
 | longitude                    | Numeric           | Longitude coordinate.                                                                                                                                            |
 | median_speed                 | Numeric           | This column contains the median speed, in km/h, of a given bout.                                                                                                 |
 | duration                     | Numeric           | This column contains the length of a bout, in minutes.                                                                                                           |
-
 **Table 5.** Full dataset.
 
 ![Table 6. Summarized dataset.\label{table:6}](table6.png){width=100%}
@@ -246,7 +245,6 @@ The full dataset (at the epoch level) can be seen in Table 5. The summarized dat
 | complete_day             | Logical         | This is a Boolean column indicating whether the calendar day of data was complete (assessed by determining whether the individual wore their accelerometer for greater than x hours, where x is passed in as a parameter.     min_wearing_hours_per_day or defaults to 8.) |
 | bout_start               | Date-time       | This column contains date-time values in the UTC time zone.                                                 |
 | duration                 | Numeric         | This column contains the length of a bout, in minutes.                                                      |
-
 **Table 6.** Summarized dataset.
 
 # `walkboutr` Diagnostics
