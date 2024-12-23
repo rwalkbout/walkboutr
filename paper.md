@@ -148,8 +148,8 @@ The accelerometry data are validated and processed. The processed accelerometry 
 
 ![Table 1. Processed accelerometry data.\label{table:1}](table1.png){width=100%}
 
-| Column          | Class    | Definition                                                                                                                                                    |
-|------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Column                   | Class           | Definition                                                                                                   |
+|---------------------------|-----------------|-------------------------------------------------------------------------------------------------------------|
 | activity_counts | Numeric  | This column contains the activity counts from the original data, in counts per epoch (CPE).                                                                   |
 | time            | Date-time| This column contains date-time values in the UTC time zone. (Note: For the determination of the complete_day variable, this column is converted to local time and then back to UTC in order to ensure the correct evaluation of whether a day is complete). |
 | bout            | Numeric  | This column is a label for each walk bout – each bout is sequentially labeled with a number for easier identification purposes.                                |
@@ -165,8 +165,9 @@ Raw GPS data are expected to contain columns time, latitude, longitude, and spee
 The processed GPS data consist of a dataset with columns time, longitude, latitude, and speed, where time is now the nearest epoch start time (rather than the precise time stamp of the GPS data point). GPS data are assigned to an epoch start time by rounding down the time associated with the GPS datapoint to the nearest epoch start time.  For example, if epochs in the accelerometry data are 30 seconds, the time associated with a GPS data point will be rounded down to the nearest 30-second increment. If there are multiple GPS datapoints within a single accelerometry epoch, the latest GPS data point in that epoch is used. This allows for the integration of the accelerometry and GPS datasets. The columns described here can be found in Table 2. 
 
 ![Table 2. Processed GPS data.\label{table:2}](table2.png){width=100%}
-| Column     | Class    | Definition                                                                                                                                |
-|------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------|
+
+| Column                   | Class           | Definition                                                                                                   |
+|---------------------------|-----------------|-------------------------------------------------------------------------------------------------------------|
 | time       | Date-time| This column contains date-time values in the UTC time zone. (Note: this column is now the nearest time that corresponds with an accelerometry epoch, as described above). |
 | longitude  | Numeric  | Longitude coordinate.                                                                                                                    |
 | latitude   | Numeric  | Latitude coordinate.                                                                                                                     |
@@ -181,8 +182,8 @@ The following parameters are optional, and the default value in the absence of a
 
 ![Table 3. Parameters.\label{table:3}](table3.png){width=100%}
 
-| Column                                                 | Definition                                                                           | Default             |
-|--------------------------------------------------------|---------------------------------------------------------------------------------------|--------------------|
+| Column                                                    | Definition                                                                     | Default                |
+|-----------------------------------------------------------|---------------------------------------------------------------------------------|-----------------------|
 | epoch_length                                | The duration of an epoch in seconds.                                                                   | 30                 |
 | active_counts_per_epoch_min                 | Minimum accelerometer counts for an epoch to be considered active (vs. inactive).                      | 500                |
 | minimum_bout_length                         | Minimum number of epochs for a period of activity to be considered as a potential bout.                | 10                 |
@@ -194,8 +195,8 @@ The constants can be found in Table 4.
 
 ![Table 4. Constants.\label{table:4}](table4.png){width=100%}
 
-| Column                                                 | Definition                                                                           | Default             |
-|--------------------------------------------------------|---------------------------------------------------------------------------------------|--------------------|
+| Column                                                    | Definition                                                                     | Default                |
+|-----------------------------------------------------------|---------------------------------------------------------------------------------|-----------------------|
 | non_wearing_min_threshold_epochs           | Number of consecutive epochs with activity counts of 0 that constitutes a period where the device is not worn | 40      |
 | min_wearing_hours_per_day                  | Minimum number of hours in a day an individual must wear an accelerometer for the day to be considered complete. | 8       |
 | min_gps_obs_within_bout                    | Minimum number of GPS observations within a bout for that bout to be considered to have complete GPS data.    | 5       |
