@@ -248,7 +248,7 @@ Bouts are categorized into either a walk bout, or one of several other non-walk-
 
 The `walkboutr` package also produces figures describing the walk bouts that are generated, as demonstrated below. This figure below shows a walk bout where the bout is contained within the gray box, where the accelerometry counts exceed the threshold for being considered active. There is also an image of the ratio of radii of the bout and the dwell bout threshold. Given that (1) the activity CPE are consistent with that of walking and (2) the bout area is larger than that of the dwell bout, this is considered a walk bout, this is likely to be a walk bout. `walkboutr` checks to ensure that speed and maximum CPE are consistent with walking (as discussed in the categories above), and then labels this as a walk bout. 
 
-![Table 6. Example of a walk bout.\label{fig:5}](fig_5.png){width=100%}
+![Example of a walk bout.\label{fig:5}](fig_5.png){width=100%}
 
 
 # Discussion
