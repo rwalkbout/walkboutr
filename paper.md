@@ -143,6 +143,16 @@ The accelerometry data are validated and processed. The processed accelerometry 
 
 ![Table 1. Processed accelerometry data.\label{table:1}](table1.png){width=100%}
 
+| Column          | Class    | Definition                                                                                                                                                    |
+|------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| activity_counts | Numeric  | This column contains the activity counts from the original data, in counts per epoch (CPE).                                                                   |
+| time            | Date-time| This column contains date-time values in the UTC time zone. (Note: For the determination of the complete_day variable, this column is converted to local time and then back to UTC in order to ensure the correct evaluation of whether a day is complete). |
+| bout            | Numeric  | This column is a label for each walk bout – each bout is sequentially labeled with a number for easier identification purposes.                                |
+| inactive        | Logical  | This is a Boolean column for whether the activity_counts > 500 CPE, which is the threshold for an individual being considered active.                          |
+| non_wearing     | Logical  | This is a Boolean column indicating whether the individual was wearing their accelerometer during that period (assessed by determining if the individual was wearing the accelerometer for x consecutive epochs, where x is passed in as parameter non_wearing_min_threshold_epochs or defaults to 40.) |
+| complete_day    | Logical  | This is a Boolean column indicating whether the calendar day of data was complete (assessed by determining whether the individual wore their accelerometer for greater than x hours, where x is passed in as parameter non_wearing_hours_per_day or defaults to 8.) |
+**Table 1.** Processed accelerometry data.
+
 ## GPS data
 
 Raw GPS data are expected to contain columns time, latitude, longitude, and speed – where time represents date-time values in the UTC and speed is in kilometers per hour.  These data are consistent with the format used by the QStarz BG-1000XT GPS device commonly used in research `[Steel-2021]`.  The GPS data are essential to determining whether an individual has left a given area and is thus walking. In order to assess this, `walkboutr` estimates the distance that an individual has traveled and use that to determine if the individual is likely to have left a given area. If an individual meets the activity count requirements to be considered to be on a walk but does not leave a given location, convention is to label this a dwell bout. A dwell bout may be characterized by an individual walking around their home, walking around their work, etc. – the individual is walking, but the individual is not on a walk. This is an important aspect of measuring walking as it differentiates movement in one space from movement through space {Kang-2013}.   
@@ -150,6 +160,13 @@ Raw GPS data are expected to contain columns time, latitude, longitude, and spee
 The processed GPS data consist of a dataset with columns time, longitude, latitude, and speed, where time is now the nearest epoch start time (rather than the precise time stamp of the GPS data point). GPS data are assigned to an epoch start time by rounding down the time associated with the GPS datapoint to the nearest epoch start time.  For example, if epochs in the accelerometry data are 30 seconds, the time associated with a GPS data point will be rounded down to the nearest 30-second increment. If there are multiple GPS datapoints within a single accelerometry epoch, the latest GPS data point in that epoch is used. This allows for the integration of the accelerometry and GPS datasets. The columns described here can be found in Table 2. 
 
 ![Table 2. Processed GPS data.\label{table:2}](table2.png){width=100%}
+| Column     | Class    | Definition                                                                                                                                |
+|------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| time       | Date-time| This column contains date-time values in the UTC time zone. (Note: this column is now the nearest time that corresponds with an accelerometry epoch, as described above). |
+| longitude  | Numeric  | Longitude coordinate.                                                                                                                    |
+| latitude   | Numeric  | Latitude coordinate.                                                                                                                     |
+| speed      | Numeric  | Current speed in kilometers per hour.                                                                                                    |
+**Table 2.** Processed GPS data.
 
 ## Constants and parameters
 
@@ -159,9 +176,33 @@ The following parameters are optional, and the default value in the absence of a
 
 ![Table 3. Parameters.\label{table:3}](table3.png){width=100%}
 
+| Column                                      | Definition                                                                                             | Default            |
+|---------------------------------------------|---------------------------------------------------------------------------------------------------------|--------------------|
+| epoch_length                                | The duration of an epoch in seconds.                                                                   | 30                 |
+| active_counts_per_epoch_min                 | Minimum accelerometer counts for an epoch to be considered active (vs. inactive).                      | 500                |
+| minimum_bout_length                         | Minimum number of epochs for a period of activity to be considered as a potential bout.                | 10                 |
+| local_time_zone                             | Local time zone of the data - data come in and are returned in UTC, but local time zone is used to compute complete days. | America/Los_Angeles |
+| maximum_number_consec_inactive_epochs_in_bout | Number of consecutive epochs that can be labeled as inactive during a bout without ending the bout.     | 3                  |
+**Table 3.** Parameters.
+
 The constants can be found in Table 4.  
 
 ![Table 4. Constants.\label{table:4}](table4.png){width=100%}
+
+| Column                            | Definition                                                                                                     | Default |
+|-----------------------------------|---------------------------------------------------------------------------------------------------------------|---------|
+| non_wearing_min_threshold_epochs  | Number of consecutive epochs with activity counts of 0 that constitutes a period where the device is not worn | 40      |
+| min_wearing_hours_per_day         | Minimum number of hours in a day an individual must wear an accelerometer for the day to be considered complete. | 8       |
+| min_gps_obs_within_bout           | Minimum number of GPS observations within a bout for that bout to be considered to have complete GPS data.    | 5       |
+| min_gps_coverage_ratio            | Minimum ratio of data points with GPS data vs. without GPS data for the bout to be considered to have complete GPS data. | 0.2     |
+| dwellbout_radii_quantile          | Threshold for outlying GPS data points - any data points above the 95th percentile are considered outliers.   | 0.95    |
+| max_dwellbout_radii_ft            | Maximum radius, in feet, of a bounding circle that would be considered a dwell bout (rather than a potential walk bout). | 66      |
+| min_dwellbout_obs                 | Minimum number of observations to consider something a potential dwell bout.                                  | 10      |
+| max_walking_cpe                   | Maximum CPE value before the accelerometer is considered to be picking up on an activity more intense than walking. | 2863    |
+| min_walking_speed_km_h            | Minimum speed considered walking.                                                                             | 2       |
+| max_walking_speed_km_h            | Maximum speed considered walking.                                                                             | 6       |
+**Table 4.** Constants.
+
 
 # Outputs
 
@@ -175,7 +216,31 @@ The full dataset (at the epoch level) can be seen in Table 5. The summarized dat
 
 ![Table 5. Full dataset.\label{table:5}](table5.png){width=100%}
 
+| Column          | Class      | Definition                                                                                                                                                        |
+|------------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| bout            | Numeric    | This column is a label for each walk bout – each bout is sequentially labeled with a number for easier identification purposes.                                   |
+| bout_category   | Character  | This column contains the category of the bout, which is described below.                                                                                         |
+| activity_counts | Numeric    | Accelerometer counts in counts per epoch (CPE).                                                                                                                  |
+| bout_start      | Date-time  | This column contains date-time values in the UTC time zone.                                                                                                      |
+| non_wearing     | Logical    | Boolean flag for whether the user was wearing their device at the time (non_wearing = TRUE).                                                                     |
+| complete_day    | Logical    | This is a Boolean column indicating whether the calendar day of data was complete (assessed by determining whether the individual wore their accelerometer for greater than x hours, where x is passed in as a parameter min_wearing_hours_per_day or defaults to 8.) |
+| latitude        | Numeric    | Latitude coordinate.                                                                                                                                             |
+| longitude       | Numeric    | Longitude coordinate.                                                                                                                                            |
+| median_speed    | Numeric    | This column contains the median speed, in km/h, of a given bout.                                                                                                 |
+| duration        | Numeric    | This column contains the length of a bout, in minutes.                                                                                                           |
+**Table 5.** Full dataset.
+
 ![Table 6. Summarized dataset.\label{table:6}](table6.png){width=100%}
+
+| Column          | Class      | Definition                                                                                                                                                        |
+|------------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| bout            | Numeric    | This column is a label for each walk bout – each bout is sequentially labeled with a number for easier identification purposes.                                   |
+| median_speed    | Numeric    | This column contains the median speed, in km/h, of a given bout.                                                                                                 |
+| bout_category   | Character  | This column contains the category of the bout, which is described below.                                                                                         |
+| complete_day    | Logical    | This is a Boolean column indicating whether the calendar day of data was complete (assessed by determining whether the individual wore their accelerometer for greater than x hours, where x is passed in as a parameter min_wearing_hours_per_day or defaults to 8.) |
+| bout_start      | Date-time  | This column contains date-time values in the UTC time zone.                                                                                                      |
+| duration        | Numeric    | This column contains the length of a bout, in minutes.                                                                                                           |
+**Table 6.** Summarized dataset.
 
 # `walkboutr` Diagnostics
 
