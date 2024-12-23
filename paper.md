@@ -6,6 +6,8 @@ tags:
 - physical activity
 - public health
 - walking
+- accelerometry
+- global positioning system
 date: "2023-09-26"
 output: pdf_document
 affiliations:
