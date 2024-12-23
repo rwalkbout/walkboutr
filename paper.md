@@ -146,8 +146,6 @@ Accelerometry data are collected via accelerometers and are expected to contain 
 
 The accelerometry data are validated and processed. The processed accelerometry data contain the columns described in Table 1. 
 
-![Table 1. Processed accelerometry data.\label{table:1}](table1.png){width=100%}
-
 | Column                   | Class           | Definition                                                                                                   |
 |---------------------------|-----------------|-------------------------------------------------------------------------------------------------------------|
 | activity_counts | Numeric  | This column contains the activity counts from the original data, in counts per epoch (CPE).                                                                   |
@@ -164,8 +162,6 @@ Raw GPS data are expected to contain columns time, latitude, longitude, and spee
 
 The processed GPS data consist of a dataset with columns time, longitude, latitude, and speed, where time is now the nearest epoch start time (rather than the precise time stamp of the GPS data point). GPS data are assigned to an epoch start time by rounding down the time associated with the GPS datapoint to the nearest epoch start time.  For example, if epochs in the accelerometry data are 30 seconds, the time associated with a GPS data point will be rounded down to the nearest 30-second increment. If there are multiple GPS datapoints within a single accelerometry epoch, the latest GPS data point in that epoch is used. This allows for the integration of the accelerometry and GPS datasets. The columns described here can be found in Table 2. 
 
-![Table 2. Processed GPS data.\label{table:2}](table2.png){width=100%}
-
 | Column                   | Class           | Definition                                                                                                   |
 |---------------------------|-----------------|-------------------------------------------------------------------------------------------------------------|
 | time       | Date-time| This column contains date-time values in the UTC time zone. (Note: this column is now the nearest time that corresponds with an accelerometry epoch, as described above). |
@@ -180,8 +176,6 @@ The processed GPS data consist of a dataset with columns time, longitude, latitu
 
 The following parameters are optional, and the default value in the absence of a user specifying the parameter, is shown in Table 3. These values can be passed as arguments to the top level functions in the package. 
 
-![Table 3. Parameters.\label{table:3}](table3.png){width=100%}
-
 | Column                                                    | Definition                                                                        | Default             |
 |-----------------------------------------------------------|------------------------------------------------------------------------------------|--------------------|
 | epoch_length                                | The duration of an epoch in seconds.                                                                   | 30                 |
@@ -192,8 +186,6 @@ The following parameters are optional, and the default value in the absence of a
 **Table 3.** Parameters.
 
 The constants can be found in Table 4.  
-
-![Table 4. Constants.\label{table:4}](table4.png){width=100%}
 
 | Column                                                    | Definition                                                                        | Default             |
 |-----------------------------------------------------------|------------------------------------------------------------------------------------|--------------------|
@@ -209,7 +201,6 @@ The constants can be found in Table 4.
 | max_walking_speed_km_h                     | Maximum speed considered walking.                                                                             | 6       |
 **Table 4.** Constants.
 
-
 # Outputs
 
 As seen in \autoref{fig:1}, from the processed GPS and accelerometry data, a complete, epoch-level dataset (containing epoch time as date-time in the UTC time zone, accelerometry counts per epoch, latitude, longitude, epoch speed, and wearing day complete flag) is used to create two different output datasets:
@@ -219,8 +210,6 @@ The first output is a full dataset (at the epoch level) – this dataset returns
 The second output is a summarized dataset (at the bout level), which has been de-identified and collapsed to only include summary walk bout information. This dataset is intended to provide essential walking and physical activity metrics without any identifying information – thus serving as a product that can be shared and collaborated upon. This dataset can be used in analyses of walking, merged with other key covariates, and used in research studies of external factors that do or do not increase walking in a population (e.g., neighborhood features and their association with walkability can be merged on prior to deidentification and incorporated after identifying features have been removed) `[Mooney:2020]`. 
 
 The full dataset (at the epoch level) can be seen in Table 5. The summarized dataset (at the bout level) can be seen in Table 6.
-
-![Table 5. Full dataset.\label{table:5}](table5.png){width=100%}
 
 | Column                   | Class           | Definition                                                                                                   |
 |---------------------------|-----------------|-------------------------------------------------------------------------------------------------------------|
@@ -235,8 +224,6 @@ The full dataset (at the epoch level) can be seen in Table 5. The summarized dat
 | median_speed                 | Numeric           | This column contains the median speed, in km/h, of a given bout.                                                                                                 |
 | duration                     | Numeric           | This column contains the length of a bout, in minutes.                                                                                                           |
 **Table 5.** Full dataset.
-
-![Table 6. Summarized dataset.\label{table:6}](table6.png){width=100%}
 
 | Column                   | Class           | Definition                                                                                                   |
 |---------------------------|-----------------|-------------------------------------------------------------------------------------------------------------|
