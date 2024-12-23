@@ -194,8 +194,8 @@ The constants can be found in Table 4.
 
 ![Table 4. Constants.\label{table:4}](table4.png){width=100%}
 
-| Column                                     | Class                                     | Definition                                                                                                     | Default |
-|--------------------------------------------|-------------------------------------------|---------------------------------------------------------------------------------------------------------------|---------|
+| Column                                     | Definition                                                                                                     | Default |
+|--------------------------------------------|---------------------------------------------------------------------------------------------------------------|---------|
 | non_wearing_min_threshold_epochs           | Number of consecutive epochs with activity counts of 0 that constitutes a period where the device is not worn | 40      |
 | min_wearing_hours_per_day                  | Minimum number of hours in a day an individual must wear an accelerometer for the day to be considered complete. | 8       |
 | min_gps_obs_within_bout                    | Minimum number of GPS observations within a bout for that bout to be considered to have complete GPS data.    | 5       |
@@ -221,8 +221,8 @@ The full dataset (at the epoch level) can be seen in Table 5. The summarized dat
 
 ![Table 5. Full dataset.\label{table:5}](table5.png){width=100%}
 
-| Column                       | Class             | Definition                                                                                                                                                        |
-|-------------------------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Column                   | Class           | Definition                                                                                                   |
+|---------------------------|-----------------|-------------------------------------------------------------------------------------------------------------|
 | bout                         | Numeric           | This column is a label for each walk bout – each bout is sequentially labeled with a number for easier identification purposes.                                   |
 | bout_category                | Character         | This column contains the category of the bout, which is described below.                                                                                         |
 | activity_counts              | Numeric           | Accelerometer counts in counts per epoch (CPE).                                                                                                                  |
