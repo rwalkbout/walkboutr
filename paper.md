@@ -182,12 +182,12 @@ The following parameters are optional, and the default value in the absence of a
 
 ![Table 3. Parameters.\label{table:3}](table3.png){width=100%}
 
-| Column                                                    | Definition                                                                     | Default                |
-|-----------------------------------------------------------|---------------------------------------------------------------------------------|-----------------------|
+| Column                                                    | Definition                                                                        | Default             |
+|-----------------------------------------------------------|------------------------------------------------------------------------------------|--------------------|
 | epoch_length                                | The duration of an epoch in seconds.                                                                   | 30                 |
 | active_counts_per_epoch_min                 | Minimum accelerometer counts for an epoch to be considered active (vs. inactive).                      | 500                |
 | minimum_bout_length                         | Minimum number of epochs for a period of activity to be considered as a potential bout.                | 10                 |
-| local_time_zone                             | Local time zone of the data - data come in and are returned in UTC, but local time zone is used to compute complete days. | America/Los_Angeles |
+| local_time_zone                             | Local time zone of the data - data come in and are returned in UTC, but local time zone is used to compute complete days. | America/ Los_Angeles |
 | maximum_number_consec_inactive_epochs_in_bout | Number of consecutive epochs that can be labeled as inactive during a bout without ending the bout.     | 3                  |
 **Table 3.** Parameters.
 
@@ -195,8 +195,8 @@ The constants can be found in Table 4.
 
 ![Table 4. Constants.\label{table:4}](table4.png){width=100%}
 
-| Column                                                    | Definition                                                                     | Default                |
-|-----------------------------------------------------------|---------------------------------------------------------------------------------|-----------------------|
+| Column                                                    | Definition                                                                        | Default             |
+|-----------------------------------------------------------|------------------------------------------------------------------------------------|--------------------|
 | non_wearing_min_threshold_epochs           | Number of consecutive epochs with activity counts of 0 that constitutes a period where the device is not worn | 40      |
 | min_wearing_hours_per_day                  | Minimum number of hours in a day an individual must wear an accelerometer for the day to be considered complete. | 8       |
 | min_gps_obs_within_bout                    | Minimum number of GPS observations within a bout for that bout to be considered to have complete GPS data.    | 5       |
