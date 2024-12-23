@@ -237,14 +237,15 @@ The full dataset (at the epoch level) can be seen in Table 5. The summarized dat
 
 ![Table 6. Summarized dataset.\label{table:6}](table6.png){width=100%}
 
-| Column          | Class      | Definition                                                                                                                                                        |
-|------------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| bout            | Numeric    | This column is a label for each walk bout – each bout is sequentially labeled with a number for easier identification purposes.                                   |
-| median_speed    | Numeric    | This column contains the median speed, in km/h, of a given bout.                                                                                                 |
-| bout_category   | Character  | This column contains the category of the bout, which is described below.                                                                                         |
-| complete_day    | Logical    | This is a Boolean column indicating whether the calendar day of data was complete (assessed by determining whether the individual wore their accelerometer for greater than x hours, where x is passed in as a parameter min_wearing_hours_per_day or defaults to 8.) |
-| bout_start      | Date-time  | This column contains date-time values in the UTC time zone.                                                                                                      |
-| duration        | Numeric    | This column contains the length of a bout, in minutes.                                                                                                           |
+| Column                   | Class           | Definition                                                                                                   |
+|---------------------------|-----------------|-------------------------------------------------------------------------------------------------------------|
+| bout                     | Numeric         | This column is a label for each walk bout – each bout is sequentially labeled with a number for easier identification purposes. |
+| median_speed             | Numeric         | This column contains the median speed, in km/h, of a given bout.                                            |
+| bout_category            | Character       | This column contains the category of the bout, which is described below.                                    |
+| complete_day             | Logical         | This is a Boolean column indicating whether the calendar day of data was complete (assessed by determining whether the individual wore their accelerometer for greater than x hours, where x is passed in as a parameter min_wearing_hours_per_day or defaults to 8.) |
+| bout_start               | Date-time       | This column contains date-time values in the UTC time zone.                                                 |
+| duration                 | Numeric         | This column contains the length of a bout, in minutes.                                                      |
+
 **Table 6.** Summarized dataset.
 
 # `walkboutr` Diagnostics
