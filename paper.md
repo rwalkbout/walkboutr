@@ -23,7 +23,7 @@ affiliations:
 - name: University of Washington, Urban Design and Planning, College of Built Environments,
     United States
   index: 4
-- name: College of Architecture, Myongji University, South Korea
+- name: Department of Architecture and Architectural Engineering, Seoul National University, South Korea
   index: 5
 - name: Seattle Children's Research Institute, United States
   index: 6
