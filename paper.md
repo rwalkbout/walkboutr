@@ -54,7 +54,7 @@ authors:
 # Summary 
 Walking is the most common form of physical activity and a behavior of key interest for urban planners, health promotion researchers, and rehabilitation medicine practitioners. Personal monitoring with accelerometer and Global Positioning System (GPS) devices is the gold standard measurement approach for walking. However, processing accelerometer and GPS device traces to identify walking is a computational and algorithmic challenge. Walkboutr is a new package that allows researchers to process raw accelerometry and GPS traces into standardized walk bouts that can be used to analyze the relationships between urban design, physical activity, and health outcomes. In addition to providing a consistent metric for physical activity analysis, the package de-identifies the original data in a summarized dataset, allowing research groups to use both a full set of data with all identifying information, as well as collaborate on analyses without the ethical and legal complications of working with individually identifiable datasets.
 
-# Introduction
+# Statement of need
 
 Data collected from monitoring devices such as GPS trackers and accelerometers hold considerable public health research potential `[Feng:2013, Troped:2008]`. By analyzing patterns in individual energy expenditure and movement through space, these data can be used to objectively measure walking, distinct from other forms of physical activity, and its effects, unlocking a researcher’s ability to identify encouragement for and barriers to this key cardioprotective behavior across geospatial contexts and populations `[Kang:2013, Jankowska:2015]`.
 
