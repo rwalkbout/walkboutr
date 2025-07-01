@@ -1,12 +1,11 @@
-pandoc: 2.19.2
-pkgdown: 2.0.7
+pandoc: 3.1.11
+pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   changing_default_parameters: changing_default_parameters.html
   generate_data: generate_data.html
   process_bouts: process_bouts.html
-last_built: 2024-01-29T23:59Z
+last_built: 2025-07-01T18:41Z
 urls:
   reference: https://rwalkbout.github.io/walkboutr/reference
   article: https://rwalkbout.github.io/walkboutr/articles
-
