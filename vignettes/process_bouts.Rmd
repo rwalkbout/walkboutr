@@ -24,7 +24,16 @@ _Note: GPS data are assigned to an epoch start time by rounding down the time as
 <p>
 2. **Summarized dataset**: This dataframe does not contain any of the original GPS/accelerometry data, and is thus completely de-identified and shareable. The output contains one row for each bout (walking or otherwise) as well as information on the median speed for that bout, whether there was a complete day worth of data for the bout, the start time of the bout, the duration in minutes, and the bout category. More details on bout category can be found below. 
 
-First we will generate some sample data: 
+First we will generate some sample data. 
+
+To do this, we will use the `generate_walking_in_seattle_gps_data()` function to create GPS data. This function generates a data frame containing GPS data for a walking activity in Seattle, WA on April 7th, 2012. It calls the function generate_gps_data to create a series of GPS locations and speeds. The resulting data frame has columns for time, latitude, longitude, and speed.
+
+We will generate acceleromatry data using the `make_smallest_bout_without_metadata()` function. This function creates the smallest bout window without the metadata columns by calling the function `make_smallest_bout` -- which generates a dataset representing the smallest bout, consisting of a sequence of inactive periods followed by the smallest active period -- and removing the columns "non_wearing", "complete_day", and "bout".
+
+Together, this will give us a small sample of GPS and accelerometry data that we can use as inputs to `walkboutr`.
+
+Here we generate our sample data:
+
 ```{r generate sample data}
 gps_data <- generate_walking_in_seattle_gps_data()
 accelerometry_counts <- make_full_day_bout_without_metadata()
@@ -69,3 +78,9 @@ accelerometry_counts <- make_smallest_bout_without_metadata()
 gps_data <- generate_walking_in_seattle_gps_data()
 generate_bout_plot(accelerometry_counts, gps_data, 1)
 ```
+
+In this plot, the black dots and lines represent the accelerometry counts, plotted over time. The red dotted line shows us our threshold for a bout to be considered a walk bout, which is 500 counts per epoch. Based on this, we can see that the non-dwell walk bout starts at the first point where the counts exceed 500, and ends at the last point before the counts drop below 500 again. 
+
+The top right corner shows a circle representing the GPS radius, which is calculated based on the GPS data. The blue part of this circle (the small dot in the middle) represents the area that would be considered a dwell bout based on our dwell bout radius threshold. We can see that the GPS radius is larger than the dwell bout radius, as indicated by the green circle (the area in which this bout took place) being larger than the blue circle. As such, this indicates that the person was moving through a larger space than a dwelling during this bout.
+
+Accordingly, this plot shows us that this was a non-dwell walk bout, as the accelerometry counts exceed the threshold for a walk bout, and the GPS radius is larger than the dwell bout radius.
