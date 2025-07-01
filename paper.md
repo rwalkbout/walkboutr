@@ -141,7 +141,7 @@ Figure 4 is a summary of the high-level process for this processing:
 
 # Inputs
 
-`walkboutr` takes in GPS and accelerometry data and processes them to generate walk bouts, using several optional parameters. 
+`walkboutr` takes in GPS and accelerometry data and processes them to generate walk bouts, using several optional parameters. The following description of these arguments, parameters, and inputs are applicable as of June 2025 and users can check our the `walkboutr` [CRAN page](https://cran.r-project.org/web/packages/walkboutr/index.html) and [website](https://rwalkbout.github.io/walkboutr/index.html) for any future updates.
 
 ## Accelerometry data
 Accelerometry data are collected via accelerometers and are expected to contain two columns – time and activity counts – where time represents date-time values in the UTC time zone and activity (a numeric column) represents counts per epoch, as described above. `walkboutr` expects the user to convert time to UTC time for input this package, but also takes the local time zone as an argument in order to ensure the correct handling of date-time. This format is consistent with the output format from the Actigraph GT3X accelerometer, a device commonly used in research. Refer to Figure 1 for a visualization of accelerometry data. 
