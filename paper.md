@@ -59,7 +59,7 @@ Walking is the most common form of physical activity and a behavior of key inter
 While GPS devices and acceleremoters provide the gold standard measurement approach for walking, processing accelerometer and GPS device traces to identify walking is a computational and algorithmic challenge. In their raw form – a series of timestamps, locations, and accelerometer counts – monitoring data are rarely of direct researcher interest and may also contain subject-identifying location data. Further, it can be challenging to process these data efficiently to identify behaviors of interest (e.g. periods of walking).  Some methods to identify travel using personal monitoring data (e.g. PALMS,and its successor HABITUS) (https://www.habitus.eu) process data on secure servers `[Carlson:2015]`; however, researchers whose privacy agreements with study participants preclude storing data on 3rd party servers may prefer a local R package.  To address this gap, we developed a package, `walkboutr`, that implements a previously validated algorithm to extract patterns in monitoring data consistent with walking `[Kang:2013]` that may be safely shared across research teams.  `walkboutr` allows researchers to (1) process raw personal time stamp-linked GPS and accelerometry data for identifying periods and locations of walking and (2) create a deidentified summary of walking behavior that can be used in research and practice. 
 -->
 
-Walking is the most common form of physical activity and a behavior of key interest for urban planners, health promotion researchers, and rehabilitation medicine practitioners. Personal monitoring with accelerometer and Global Positioning System (GPS) devices is the gold standard measurement approach for walking. However, processing accelerometer and GPS device traces to identify walking is a computational and algorithmic challenge. Walkboutr is a new package that allows researchers to process raw accelerometry and GPS traces into standardized walk bouts that can be used to analyze the relationships between urban design, physical activity, and health outcomes. In addition to providing a consistent metric for physical activity analysis, the package de-identifies the original data in a summarized dataset, allowing research groups to use both a full set of data with all identifying information, as well as collaborate on analyses without the complications of working with individually identifiable datasets.
+Walking is the most common form of physical activity and a behavior of key interest for urban planners, health promotion researchers, and rehabilitation medicine practitioners. Personal monitoring with accelerometer and Global Positioning System (GPS) devices is the gold standard measurement approach for walking. However, processing accelerometer and GPS device traces to identify walking is a computational and algorithmic challenge. `walkboutr` is a new package that allows researchers to process raw accelerometry and GPS traces into standardized walk bouts that can be used to analyze the relationships between urban design, physical activity, and health outcomes. In addition to providing a consistent metric for physical activity analysis, the package de-identifies the original data in a summarized dataset, allowing research groups to use both a full set of data with all identifying information, as well as collaborate on analyses without the complications of working with individually identifiable datasets.
 
 # Contribution of `walkboutr` to Demography and Public Health
 
@@ -133,16 +133,15 @@ We can then classify physical activity bouts as walking or not walking based on 
 * has a median speed consistent with that of walking (specific thresholds configurable and outlined below)
 * has sufficient GPS coverage 
 
+<!-- JLG: Title section 3 something like Using the `walkboutr` package -->
 
 ## How `walkboutr` works
-
-
-
+<!-- JLG: Title section 3.1 something like Identifying physical activity bouts-->
 ### I. Accelerometry Process
 
 First, from accelerometry data alone, we identify physical activity bouts. These bouts indicate periods of time in which the wearer appears to be physically active, though not necessarily walking (e.g., they could be playing a sport or working out). In order to identify physical activity bouts in accordance with the definition given above, `walkboutr` uses a run-length encoding algorithm to identify subsequences within the accelerometry data where there are 4 or more consecutive epochs where the activity level is above the threshold indicating the individual was active (>500 CPE). Where 4 or more epochs are inactive, the last of those consecutive epochs is by definition not part of a bout (Figure 1). 
 
-<!-- The last sentence in the paragraph above is a little confusing to me. If there are 4 or more consecutive inactive epochs, aren't all of them by definition not a bout, not just the final one?  -->
+<!-- DMC: The last sentence in the paragraph above is a little confusing to me. If there are 4 or more consecutive inactive epochs, aren't all of them by definition not a bout, not just the final one?  -->
 
 ![An accelerometry trace indicating a bout, where the bout period is indicated by the gray bounds and the epochs outside of these bounds are not included in the bout. The blue line shows the threshold for an individual being considered active, which defaults to 500 CPE in walkboutr.\label{fig:1}](fig2.png){width=100%}
 
@@ -163,6 +162,7 @@ Finally, `walkboutr` determines if the user wore their accelerometer for a suffi
 
 After identifying all physical activity bouts and flagging for non-wearing time, the accelerometry data is ready to be merged with GPS data. 
 
+<!--JLG title section 3.2 Merging GPS and accelerometer data-->
 ### II. GPS Process
 
 Incorporating GPS data to classify bouts as walking or not walking requires four steps.  First, `walkboutr` merges GPS and accelerometry data by timestamp.  This merge is complex for two reasons: (1) accelerometry data are typically recorded in local time whereas GPS devices record in UTC time, and (2) whereas accelerometers record activity in consistent epochs from the time they are turned on, GPS devices record when they receive responses from GPS satellites.  A fully launched GPS device pings satellites on a regular schedule, often aligned by design with accelerometer epochs.  However, when devices re-establish connections with satellites (e.g., after a device restart or after time spent in a tunnel), timestamps may be off-alignment.  Accordingly, for each recorded GPS point, `walkboutr` identifies the accelerometer epoch synchronized local time zone of the GPS points (accounting for daylight savings time), then merges the datasets. When multiple GPS points fall within one accelerometer epoch, `walkboutr` will assign the latest GPS point within the epoch to reconcile duplications due to temporal alignment.
@@ -173,6 +173,7 @@ Next, `walkboutr` calculates a circle to approximate the distance covered by thi
 
 GPS data are then evaluated for completeness based on whether they have a sufficient number of GPS records. This is assessed both in terms of the number of GPS observations within a bout as well as the ratio of observations that have GPS data. By default, a bout has sufficient GPS coverage if it has at least five GPS observations and at least 20% of the epochs have a paired GPS observation. 
 
+<!-- JLG: Title section 3.3 Identifying walk bouts-->
 ### III. Walk Bout Identification
 The final step in `walkboutr` synthesizes the above information and labels each physical activity bout as either a walk bout or a non-walk bout, with a specific label for the different types of non-walk bouts.  Each physical activity bout can have just one category, making the order of labeling important. There are six possible categories into which a bout can fall `[Kang:2013]`. In order, `walkboutr` applies the following labels:    
 
@@ -187,6 +188,7 @@ The final step in `walkboutr` synthesizes the above information and labels each 
 5.	Among remaining physical activity bouts, bouts whose GPS data do not exceed a bounding radius of 66 feet are labeled as dwell bouts (labeled as **dwell_bout**).
 6.	Any remaining physical activity bouts are labeled as walk bouts (labeled as **walk_bout**).
 
+<!-- JLG: need a snippier title for section 3.4, maybe we call it something like Producing walk bout datasets for analysis-->
 ### IV. Outputs
 
 From the processed GPS and accelerometry data, a complete, epoch-level dataset (containing epoch time as date-time in the UTC time zone, accelerometry counts per epoch, latitude, longitude, epoch speed, and wearing day complete flag) is used to create two different output datasets:
@@ -226,9 +228,6 @@ The full dataset (at the epoch level) can be seen in Table 1. The summarized dat
 The `walkboutr` package also produces figures describing the walk bouts that are generated, as demonstrated below (Figure 5). This figure shows a walk bout (contained within the gray box) where the accelerometry counts exceed the threshold for being considered active, and an image of the ratio of radii of the bout to the the dwell bout threshold. Given that (1) the activity CPE are consistent with that of walking and (2) the bout area is larger than that of the dwell bout, this is considered a walk bout.  
 
 ![Example of a walk bout.\label{fig:3}](fig_5.png){width=100%}
-
-
-
 
 # Conclusions and future directions
 
