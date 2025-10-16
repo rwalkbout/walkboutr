@@ -67,6 +67,7 @@ Data collected from monitoring devices, such as GPS trackers and accelerometers,
 
 In their raw form – a series of timestamps, locations, and accelerometer counts -- monitoring data are rarely of direct researcher interest, and may also (in the case of GPS data) be identifying, but it can be challenging to process these data efficiently to identify behaviors of interest (e.g. periods of walking) that may be safely shared across research teams.  Some methods to identify travel using personal monitoring data (e.g. PALMS,and its successor HABITUS) (https://www.habitus.eu) process data on secure servers `[Carlson:2015]`; however, researchers whose privacy agreements with study participants preclude storing data on 3rd party servers may prefer a local R package.  To address this gap, we developed a package, `walkboutr`, that implements a previously validated algorithm to extract patterns in monitoring data consistent with walking `[Kang:2013]`.  `walkboutr` allows researchers to (1) process raw personal time stamp-linked GPS and accelerometry data for identifying periods and locations of walking and (2) create a deidentified summary of walking behavior that can be used in research and practice. 
 
+
 A walk bout is defined as a period of activity in which an accelerometer trace indicates movement consistent with walking and GPS traces from the corresponding time period indicate movement through space consistent with walking (e.g., based on speed) as well. 
 
 <!-- DMC: This sentence above is not real clear to me. Isn't the accelerometer (not just the GPS trace) based on speed? I thought the GPS trace was used to define the position or the overall distance travelled to differentiate between walking around the house vs going for a walk? 
@@ -85,11 +86,26 @@ By offering a comprehensive set of functions, `walkboutr` empowers researchers a
 
 ## Definition of a walk bout
 
+<!-- JLG: Start section 2 # Definition of a walk bout here -->
+<!-- JLG: suggested form including DMC suggested edits-->
+A walk bout is defined as a period of activity in which both accelerometer and GPS traces indicate movement consistent with walking based on speed and distance travelled. The idea of a walk bout derives from the physical activity literature, in which monitored time is partitioned into ‘activity bouts’ and inactive time.  **A walk bout is a physical activity bout in which both activity count range and GPS trace is consistent with walking** `[Kang:2013]`.  To identify physical activity bouts, the package first classify each epoch (see below for a definition of an epoch) as *active* or *inactive* following Troiano et al `[Troiano:2008]`.   Epochs are defined as active if the accelerometer records more than 500 counts per epoch (CPE) when epochs were set at 30 seconds long and inactive otherwise (values that are parameterized in the package and can be set by the user).  This relatively low threshold compared with other physical activity research was selected to allow for capture of slow walking.
+
+An epoch is technically defined as a discrete time interval at which accelerometers collect data – typically accelerometers collect continuous streams of data and divide them into non-overlapping time windows that are referred to as epochs `[Troiano:2008]`. Within an epoch, the data from the accelerometer is summarized to represent the activity level during that specific time interval `[Troiano:2008]`.
+
+Similarly, CPE refers to the total number of counts that were recorded by the accelerometer within a single epoch duration `[Troiano:2008]`. CPE serve as a fundamental measure of an individual's physical activity level over short time intervals. To calculate CPE for a particular epoch, the raw acceleration data for each axis is usually processed by applying filters or mathematical algorithms to remove noise and gravitational effects. Then, the absolute values of the filtered acceleration readings are summed across all three axes to obtain the total count value for that epoch. 
+
+Next, a physical activity bout is any contiguous set of epochs that:  
+
+* Contains at least 10 cumulative 30-second epochs of being active 
+* Is preceded and followed by at least 4 consecutive 30-second epochs of inactivity. 
+-->
+
 The idea of a walk bout derives from the physical activity literature, in which monitored time is partitioned into ‘activity bouts’ and inactive time.  **A walk bout is a physical activity bout in which both activity count range and GPS trace is consistent with walking** `[Kang:2013]`.  
 
 <!-- DMC: would it be useful to report what accelerometer and GPS measurements are capturing?  -->
 
 
+<!-- JLG: Maybe not necessary, but general note: Can we change references to "we" to the package unless it's referring to the researchers themselves. -->
 To identify physical activity bouts, we first classify each epoch (see below for a definition of an epoch) as *active* or *inactive* following Troiano et al `[Troiano:2008]`.   Epochs are defined as active if the accelerometer records more than 500 counts per epoch (CPE) when epochs were set at 30 seconds long and inactive otherwise (values that are parameterized in the package and can be set by the user).  This relatively low threshold compared with other physical activity research was selected to allow for capture of slow walking.
 
 An epoch is technically defined as a discrete time interval at which accelerometers collect data – typically accelerometers collect continuous streams of data and divide them into non-overlapping time windows that are referred to as epochs `[Troiano:2008]`. Within an epoch, the data from the accelerometer is summarized to represent the activity level during that specific time interval `[Troiano:2008]`.
