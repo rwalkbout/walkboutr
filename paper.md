@@ -101,9 +101,9 @@ The final `walkboutr` output labels each physical activity bout as either a walk
 
 From the processed GPS and accelerometry data, a complete, epoch-level dataset (containing epoch time as date-time in the UTC time zone, accelerometry counts per epoch, latitude, longitude, epoch speed, and wearing day complete flag) is used to create two different output datasets:
 
-The first output is a full dataset (at the epoch level) – this dataset returns all of the original input data that the user provided, in addition to the new columns that `walkboutr` created. This dataset is not de-identified, and thus is appropriate for investigators interested in exploring where people walk (e.g., a walkability analysis) `[Dalmat:2021]`.
+The first output is a complete, epoch-level dataset that returns all of the original input data that the user provided and the new columns `walkboutr` created. This dataset is not de-identified, and thus is appropriate for investigators interested in exploring where people walk (e.g., a walkability analysis) `[Dalmat:2021]`.
 
-The second output is a summarized dataset (at the bout level), which has been de-identified and collapsed to only include summary walk bout information. This dataset is intended to provide essential walking and physical activity metrics without any identifying information – thus serving as a product that can be easily shared. This dataset can be used in analyses of walking, merged with other key covariates, and used in research studies of external factors that do or do not increase walking in a population (e.g., neighborhood features and their association with walkability can be merged on prior to deidentification and incorporated after identifying features have been removed) `[Mooney:2020]`. 
+The second output is a summary, bout-level dataset that has been de-identified and collapsed to only include summary walk bout information. This dataset is intended to provide essential walking and physical activity metrics without any identifying information – thus serving as a product that can be easily shared. This dataset can be used in analyses where walking or walking frequency is the outcome, e.g. research studies identifying external factors or neighborhood features that do or do not increase walking in a population `[Mooney:2020]`. 
 
 The full dataset (at the epoch level) can be seen in Table 1. The summarized dataset (at the bout level) can be seen in Table 2.
 
@@ -119,7 +119,7 @@ The full dataset (at the epoch level) can be seen in Table 1. The summarized dat
 | longitude                    | Numeric           | Longitude coordinate.                                                                                                                                            |
 | median_speed                 | Numeric           | This column contains the median speed, in km/h, of a given bout.                                                                                                 |
 | duration                     | Numeric           | This column contains the length of a bout, in minutes.                                                                                                           |
-**Table 1.** Full dataset.
+**Table 1. Complete, epoch-level dataset.**  The first column contains the dataset column names, the second column contains the object class of each dataset feature, and the final column provides a definition of each feature.
 
 | Column                   | Class           | Definition                                                                                                   |
 |---------------------------|-----------------|-------------------------------------------------------------------------------------------------------------|
@@ -129,13 +129,11 @@ The full dataset (at the epoch level) can be seen in Table 1. The summarized dat
 | complete_day             | Logical         | This is a Boolean column indicating whether the calendar day of data was complete (assessed by determining whether the individual wore their accelerometer for greater than x hours, where x is passed in as a parameter.     min_wearing_hours_per_day or defaults to 8.) |
 | bout_start               | Date-time       | This column contains date-time values in the UTC time zone.                                                 |
 | duration                 | Numeric         | This column contains the length of a bout, in minutes.                                                      |
-**Table 2.** Summarized dataset.
+**Table 2. Summary, bout-level dataset.** The first column contains the dataset column names, the second column contains the object class of each dataset feature, and the final column provides a definition of each feature.
 
+The `walkboutr` package also produces summary figures describing the walk bouts. This figure shows a walk bout where the accelerometry counts exceed the threshold for being considered active in combination with an image of the ratio of radii of the bout to the the dwell bout threshold. In the example in Figure 3, the physical activity bout in the gray box is classified as a walk bout, because (1) the activity CPE are consistent with that of walking and (2) the bout area is larger than that of the dwell bout.  
 
-
-The `walkboutr` package also produces figures describing the walk bouts that are generated, as demonstrated below (Figure 5). This figure shows a walk bout (contained within the gray box) where the accelerometry counts exceed the threshold for being considered active, and an image of the ratio of radii of the bout to the the dwell bout threshold. Given that (1) the activity CPE are consistent with that of walking and (2) the bout area is larger than that of the dwell bout, this is considered a walk bout.  
-
-![Example of a walk bout.\label{fig:3}](fig_5.png){width=100%}
+![**Figure 3. Summary figure of a walk bout.** \label{fig:3}](fig_5.png){width=100%}
 
 # Conclusions and future directions
 
