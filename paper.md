@@ -87,19 +87,15 @@ Next, `walkboutr` determines whether each bout is a walk bout or a dwell bout.  
 
 GPS data for each bout are evaluated for completeness, assessed both in terms of the number of GPS observations within a bout as well as the proportion of acceleremotry observations that have GPS data. By default, a bout has sufficient GPS coverage if it has at least five GPS observations and at least 20% of the epochs have a paired GPS observation. 
 
-### III. Identifying walk bouts
-The final step in `walkboutr` synthesizes the above information and labels each physical activity bout as either a walk bout or a non-walk bout, with a specific label for the different types of non-walk bouts.  Each physical activity bout can have just one category, making the order of labeling important. There are six possible categories into which a bout can fall `[Kang:2013]`. In order, `walkboutr` applies the following labels:    
+The final `walkboutr` output labels each physical activity bout as either a walk bout or a non-walk bout, with a specific label for five different types of non-walk bouts. `[Kang:2013]`  Each physical activity bout can have just one category, making the order of labeling important. In order, `walkboutr` applies the following labels:    
 
-1.	Among all physical activity bouts, bouts without complete GPS data are labeled as a non-walk bout due to incomplete GPS coverage (labeled as **non_walk_incomplete_gps**). 
-2.	Among remaining physical activity bouts, bouts where the median speed exceeds the maximum walking speed are labeled as a non-walk bout due to high speed (labeled as **non_walk_too_fast**). Maximum walking speed defaults to 6 kilometers per hour.
-3.	Among remaining physical activity bouts, bouts where the median speed falls below the minimum walking speed are labeled as a non-walk bout due to low speed (labeled as **non_walk_too_slow**). <!-- DMC: what is the default min walking speed? ->
-4.	Among remaining physical activity bouts, bouts whose mean activity counts (in CPE) are too vigorous to be considered walking (by default, greater than 500 CPE) are labeled as non-walk bout due to high activity (labeled as **non_walk_too_vigorous**).
-
+1.	**non_walk_incomplete_gps**: all physical activity bouts without complete GPS data, 
+2.	**non_walk_too_fast**: remaining physical activity bouts where the median speed exceeds the maximum walking speed (default: 6 km/h),
+3.	**non_walk_too_slow**: remaining physical activity bouts where the median speed falls below the minimum walking speed (default: XX km/h), <!-- DMC: what is the default min walking speed? ->
+4.	**non_walk_too_vigorous**: remaining physical activity bouts whose mean CPE are too vigorous to be considered walking (default: > 500 CPE), 
 <!-- DMC: #4 above. It says earlier that 500 CPE is the cut-off to determine whether an epoch is active or inactive. Shouldn't all walkbouts have epochs with CPE > 500 CPE?    -->
-
-
-5.	Among remaining physical activity bouts, bouts whose GPS data do not exceed a bounding radius of 66 feet are labeled as dwell bouts (labeled as **dwell_bout**).
-6.	Any remaining physical activity bouts are labeled as walk bouts (labeled as **walk_bout**).
+5. **dwell_bout**: remaining physical activity bouts whose GPS data do not exceed a circular dwell bout threshhold radius (default: 66 ft), and, finally,
+6.	**walk_bout**: remaining physical activity bouts.
 
 ###  Producing walk bout datasets for analysis
 
