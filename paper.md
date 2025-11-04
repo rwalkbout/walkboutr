@@ -91,9 +91,8 @@ The final `walkboutr` output labels each physical activity bout as either a walk
 
 1.	**non_walk_incomplete_gps**: all physical activity bouts without complete GPS data, 
 2.	**non_walk_too_fast**: remaining physical activity bouts where the median speed exceeds the maximum walking speed (default: 6 km/h),
-3.	**non_walk_too_slow**: remaining physical activity bouts where the median speed falls below the minimum walking speed (default: XX km/h), <!-- DMC: what is the default min walking speed? ->
-4.	**non_walk_too_vigorous**: remaining physical activity bouts whose mean CPE are too vigorous to be considered walking (default: > 500 CPE), 
-<!-- DMC: #4 above. It says earlier that 500 CPE is the cut-off to determine whether an epoch is active or inactive. Shouldn't all walkbouts have epochs with CPE > 500 CPE?    -->
+3.	**non_walk_too_slow**: remaining physical activity bouts where the median speed falls below the minimum walking speed (default: 2 km/h), 
+4.	**non_walk_too_vigorous**: remaining physical activity bouts whose mean CPE are too vigorous to be considered walking (default: > 2,863 CPE), 
 5. **dwell_bout**: remaining physical activity bouts whose GPS data do not exceed a circular dwell bout threshhold radius (default: 66 ft), and, finally,
 6.	**walk_bout**: remaining physical activity bouts.
 
@@ -101,7 +100,7 @@ The final `walkboutr` output labels each physical activity bout as either a walk
 
 From the processed GPS and accelerometry data, a complete, epoch-level dataset (containing epoch time as date-time in the UTC time zone, accelerometry counts per epoch, latitude, longitude, epoch speed, and wearing day complete flag) is used to create two different output datasets:
 
-The first output is a complete, epoch-level dataset (Table 1) that returns all of the original input data that the user provided and the new columns `walkboutr` created. This dataset is not de-identified, and thus is appropriate for investigators interested in exploring where people walk (e.g., a walkability analysis) `[Dalmat:2021]`.
+The first output is a complete, epoch-level dataset (Table 1) that returns all of the original input data that the user provided and the new columns `walkboutr` created. This dataset is not de-identified, and thus is appropriate for investigators interested in exploring where people walk `[Dalmat:2021]`.
 
 The second output is a summary, bout-level dataset (Table 2) that has been de-identified and collapsed to only include summary walk bout information. This dataset is intended to provide essential walking and physical activity metrics without any identifying information – thus serving as a product that can be easily shared. This dataset can be used in analyses where walking or walking frequency is the outcome, e.g. research studies identifying external factors or neighborhood features that do or do not increase walking in a population `[Mooney:2020]`. 
 
