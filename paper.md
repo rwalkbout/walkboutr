@@ -51,128 +51,58 @@ authors:
   affiliation: 1
 ---
 
-# Summary 
-Walking is the most common form of physical activity and a behavior of key interest for urban planners, health promotion researchers, and rehabilitation medicine practitioners. Personal monitoring with accelerometer and Global Positioning System (GPS) devices is the gold standard measurement approach for walking. However, processing accelerometer and GPS device traces to identify walking is a computational and algorithmic challenge. Walkboutr is a new package that allows researchers to process raw accelerometry and GPS traces into standardized walk bouts that can be used to analyze the relationships between urban design, physical activity, and health outcomes. In addition to providing a consistent metric for physical activity analysis, the package de-identifies the original data in a summarized dataset, allowing research groups to use both a full set of data with all identifying information, as well as collaborate on analyses without the complications of working with individually identifiable datasets.
+# Walking and Measurement in Public Health Research 
 
-# Contribution of `walkboutr` to Demography and Public Health
+Walking is the most common form of physical activity and a behavior of key interest for urban planners, health promotion researchers, and rehabilitation medicine practitioners.  Data collected from monitoring devices, such as Global Positioning System (GPS) trackers and accelerometers, hold considerable public health research potential `[Feng:2013, Troped:2008]`. By analyzing patterns in individual energy expenditure and movement, these data can be used to objectively measure walking and its effects, unlocking a researcher’s ability to identify encouragement for, and barriers to, this key cardioprotective behavior across geospatial contexts and populations `[Kang:2013, Jankowska:2015]`. 
 
-Data collected from monitoring devices, such as GPS trackers and accelerometers, hold considerable public health research potential `[Feng:2013, Troped:2008]`. By analyzing patterns in individual energy expenditure and movement, these data can be used to objectively measure walking and its effects, unlocking a researcher’s ability to identify encouragement for, and barriers to, this key cardioprotective behavior across geospatial contexts and populations `[Kang:2013, Jankowska:2015]`.
+While GPS devices and acceleremoters provide the gold standard measurement approach for walking, processing accelerometer and GPS device traces to identify walking is a computational and algorithmic challenge. In their raw form – a series of timestamps, locations, and accelerometer counts – monitoring data are rarely of direct researcher interest and may also contain subject-identifying location data. Further, it can be challenging to process these data efficiently to identify behaviors of interest (e.g. periods of walking).  Some methods to identify travel using personal monitoring data (e.g. PALMS,and its successor HABITUS) (https://www.habitus.eu) process data on secure servers `[Carlson:2015]`; however, researchers whose privacy agreements with study participants preclude storing data on 3rd party servers may prefer a local R package.  To address this gap, we developed a package, `walkboutr`, that implements a previously validated algorithm to extract patterns in monitoring data consistent with walking `[Kang:2013]` that may be safely shared across research teams.  `walkboutr` allows researchers to (1) process raw personal time stamp-linked GPS and accelerometry data for identifying periods and locations of walking and (2) create a deidentified summary of walking behavior that can be used in research and practice. 
 
-In their raw form – a series of timestamps, locations, and accelerometer counts -- monitoring data are rarely of direct researcher interest, and may also (in the case of GPS data) be identifying, but it can be challenging to process these data efficiently to identify behaviors of interest (e.g. periods of walking) that may be safely shared across research teams.  Some methods to identify travel using personal monitoring data (e.g. PALMS,and its successor HABITUS) (https://www.habitus.eu) process data on secure servers `[Carlson:2015]`; however, researchers whose privacy agreements with study participants preclude storing data on 3rd party servers may prefer a local R package.  To address this gap, we developed a package, `walkboutr`, that implements a previously validated algorithm to extract patterns in monitoring data consistent with walking `[Kang:2013]`.  `walkboutr` allows researchers to (1) process raw personal time stamp-linked GPS and accelerometry data for identifying periods and locations of walking and (2) create a deidentified summary of walking behavior that can be used in research and practice. 
+# Definition of a walk bout
 
-A walk bout is defined as a period of activity in which an accelerometer trace indicates movement consistent with walking and GPS traces from the corresponding time period indicate movement through space consistent with walking (e.g., based on speed) as well. 
+A walk bout is defined as a period of activity in which (1) an accelerometer trace indicates movement consistent with walking (e.g., based on speed) and (2) a GPS traces from the corresponding time period indicate movement through space (e.g., based on distance traveled). The idea of a walk bout derives from the physical activity literature, in which monitored time is partitioned into ‘activity bouts’ and inactive time.  **A walk bout is a physical activity bout in which both activity count range and GPS trace is consistent with walking** `[Kang:2013]`.  
 
-<!-- DMC: This sentence above is not real clear to me. Isn't the accelerometer (not just the GPS trace) based on speed? I thought the GPS trace was used to define the position or the overall distance travelled to differentiate between walking around the house vs going for a walk? 
+To identify physical activity bouts, the package first classify each non-overlapping discrete time window of accelerometry observations, or epoch, as *active* or *inactive* following Troiano et al `[Troiano:2008]`.  Next, a physical activity bout is any contiguous set of epochs that contains a segment of cumulative active epochs that are preceded and followed by segments of consecutive inactive epochs. These bouts indicate periods of time in which the wearer appears to be physically active, though not necessarily walking (e.g., they could be playing a sport or working out). 
 
-Would it be accurate to say: 
+Physical activity bouts are further classified as a *walk bout* or *dwell bout* based on GPS traces.  A dwell bout is a physical activity bout in which an individual did not leave a pre-specified radius `[Kang:2013]`. A walk bout is phyiscial activity bout that is *not* a dwell bout, has a median speed consistent with that of walking, and has sufficient GPS coverage.
 
-A walk bout is defined as a period of activity in which both accelerometer and GPS traces indicate movement consistent with walking based on speed and distance travelled.        -->
+## Using the `walkboutr` package
+### I. Identifying physical activity bouts
 
-The inputs of the `walkboutr` package are individual-level accelerometry and GPS data. The output of the package is a data frame integrating all walk bouts (with corresponding times, duration, and summary statistics) identified in those data. A secondary output is a smaller dataset in which all identifying information have been omitted, where this bout summary dataset simply contains a list of all bouts for an individual as well as their corresponding category, median speed, and limited other relevant details. Researchers can use either the full dataset that contains bout labels and categories, or the bout summary with all personally identifying information removed.
+First, observed accelerometry epochs along each axis in three-dimensional space are processed to remove noise and gravitational effects. The total count per epoch (CPE) is calculated as the sum of absolute values across all three axes and epochs with a CPE above a selected threshold are considerd active. For example, epochs 30 seconds in length with a CPE of 500 or higher are classified as *active* by the `walkboutr` package. While threshold is relatively low threshold compared with other physical activity research, it allows for capture of slow walking. (Note: epoch length and CPE threshold can be set by the package user.)
 
-By offering a comprehensive set of functions, `walkboutr` empowers researchers and public health practitioners to explore, evaluate, and interpret walk bout data with or without identifying information. This paper introduces the design, features, and potential applications of our R package, highlighting its role in advancing public health research and fostering a deeper understanding of the relationship between physical activity and overall well-being.
+A physical activity bout is identified as a collection of consecutive epochs that is preceded and followed by a collection consecutive inactive epochs. First, the data are divided into potential physical activity bouts and non-bouts using a run-length encoding algorithm to identify subsequences with at least 4 consecutive active epochs. Physical activity bouts are then identified from the potential bouts by filtering to those with 10 consective active epochs preceded and followed by at least 4 inactive epochs, as shown in Figure 1. These threshholds can be changed by the package user if desired. Note, `walkboutr` considers a physical activty bout to include the relevant active epochs and 3 culminating inactive epochs.
+<!-- JLG: Can you correct anything incorrect I said based on the conversation around the whether the inactive epochs that end a phyiscal activity bout are part of the bout? The comment conversation made me think the sentence I wrote above is correct, but the figure below does not indicate that.-->
 
-<!-- DMC: Consider removing the paragraph above. It's a good summary of the statement of need, but I think it would be better to have a more succint version for PDL.  -->
+![**Figure 1. Identifying physical activity bouts from accelerometer epochs.** An accelerometry trace indicating a physical activity bout, where the bout period is indicated by the gray bounds and the epochs outside of these bounds are not included in the bout. The blue line shows the threshold for an individual being considered active, which defaults to 500 CPE in `walkboutr`.\label{fig:1}](fig2.png){width=100%}
 
-# Walk-through of `walkboutr`
+If no bouts are identified, `walkboutr` stops and returns a message indicating that there are no bouts. If there are physical activity bouts, `walkboutr` labels each bout with a numeric value. These bouts will later be labeled as either walk bouts or non-walk bouts. In addition to finding all bouts in the accelerometry data, `walkboutr` identifies non-wearing periods in the accelerometry data when there are 20 consecutive minutes in which activity counts are 0 CPE `[Saelens:2014]`. Finally, `walkboutr` flags whether the subject wore their accelerometer for a "complete day", or provided at least 8-hours of data `[Saelens:2014]`.  As with other parameters, the package user may modify the non-threshholds for flagging non-wearing periods and complete days.
 
-## Definition of a walk bout
+### II. Merging GPS and accelerometer data
 
-The idea of a walk bout derives from the physical activity literature, in which monitored time is partitioned into ‘activity bouts’ and inactive time.  **A walk bout is a physical activity bout in which both activity count range and GPS trace is consistent with walking** `[Kang:2013]`.  
+Once physical activity bouts are identified, `walkboutr` uses GPS data to classify bouts as walking or not walking.  First, `walkboutr` merges GPS and accelerometry data by timestamp.  This merge is complex for two reasons: (1) accelerometry data are typically recorded in local time whereas GPS devices record in UTC time, and (2) accelerometers record activity in consistent epochs from the time they are turned on, whereas GPS devices only record when they receive responses from GPS satellites.  A fully launched GPS device pings satellites on a regular schedule, often aligned by design with accelerometer epochs.  However, when devices re-establish connections with satellites (e.g., after a device restart or after time spent in a tunnel), timestamps may be off-alignment.  Accordingly, for each recorded GPS point, `walkboutr` identifies the accelerometer epoch synchronized local time zone of the GPS points (accounting for daylight saving time) before merging the datasets. When multiple GPS points fall within one accelerometer epoch, `walkboutr` will assign the latest GPS point within the epoch to reconcile duplications.
 
-<!-- DMC: would it be useful to report what accelerometer and GPS measurements are capturing?  -->
+Next, `walkboutr` determines whether each bout is a walk bout or a dwell bout.  For each bout, a circle is constructed so that it is centered at the GPS point cloud median and includes the inner 95% of all GPS points.  As shown in Figure 2, bout is classified as a dwell bout (i.e., not walking) if the radies of the constructed circle is smaller than a prespecified threshhold. If the bout's constructed circle is larger than the dwell bout threshhold, that physical activity bout is a walk bout. `[Kang-2013]`.  By default, `walkboutr` prespecifies the dwell bout circle radius at 66 feet, but this parameter may be changed.
 
+![**Figure 2. Classifying phyiscal activity bouts as walk bouts or dwell bouts.** An individual's physical activity bout is classified as a walk bout (right) if the constructed circle (dashed black circles) containing 95\% of the bout's GPS points and centered on the median GPS location, is larger than the prespecified dwell bout threshhold with a radius of 66 feet (pink circles) and a dwell bout (left) otherwise.\label{fig:2}](fig_3.png)
 
-To identify physical activity bouts, we first classify each epoch (see below for a definition of an epoch) as *active* or *inactive* following Troiano et al `[Troiano:2008]`.   Epochs are defined as active if the accelerometer records more than 500 counts per epoch (CPE) when epochs were set at 30 seconds long and inactive otherwise (values that are parameterized in the package and can be set by the user).  This relatively low threshold compared with other physical activity research was selected to allow for capture of slow walking.
+GPS data for each bout are evaluated for completeness, assessed both in terms of the number of GPS observations within a bout as well as the proportion of acceleremotry observations that have GPS data. By default, a bout has sufficient GPS coverage if it has at least five GPS observations and at least 20% of the epochs have a paired GPS observation. 
 
-An epoch is technically defined as a discrete time interval at which accelerometers collect data – typically accelerometers collect continuous streams of data and divide them into non-overlapping time windows that are referred to as epochs `[Troiano:2008]`. Within an epoch, the data from the accelerometer is summarized to represent the activity level during that specific time interval `[Troiano:2008]`.
+The final `walkboutr` output labels each physical activity bout as either a walk bout or a non-walk bout, with a specific label for five different types of non-walk bouts. `[Kang:2013]`  Each physical activity bout can have just one category, making the order of labeling important. In order, `walkboutr` applies the following labels:    
 
-Similarly, CPE refers to the total number of counts that were recorded by the accelerometer within a single epoch duration `[Troiano:2008]`. CPE serve as a fundamental measure of an individual's physical activity level over short time intervals. To calculate CPE for a particular epoch, the raw acceleration data for each axis is usually processed by applying filters or mathematical algorithms to remove noise and gravitational effects. Then, the absolute values of the filtered acceleration readings are summed across all three axes to obtain the total count value for that epoch. 
+1.	**non_walk_incomplete_gps**: all physical activity bouts without complete GPS data, 
+2.	**non_walk_too_fast**: remaining physical activity bouts where the median speed exceeds the maximum walking speed (default: 6 km/h),
+3.	**non_walk_too_slow**: remaining physical activity bouts where the median speed falls below the minimum walking speed (default: 2 km/h), 
+4.	**non_walk_too_vigorous**: remaining physical activity bouts whose mean CPE are too vigorous to be considered walking (default: > 2,863 CPE), 
+5. **dwell_bout**: remaining physical activity bouts whose GPS data do not exceed a circular dwell bout threshhold radius (default: 66 ft), and, finally,
+6.	**walk_bout**: remaining physical activity bouts.
 
-Next, a physical activity bout is any contiguous set of epochs that:  
-
-* Contains at least 10 cumulative 30-second epochs of being active 
-* Begins with an active epoch preceded by at least 4 consecutive 30-second epochs of inactivity (i.e., is not part of a prior active epoch)
-* Ends with an active epoch followed by at least 4 consecutive 30-second epochs of inactivity
-
-<!-- DMC: Can we combine the final two bullet points:
-
-* Is preceded and followed by at least 4 consecutive 30-second epochs of inactivity. 
-
--->
-
-We can then classify physical activity bouts as walking or not walking based on GPS traces.  A physical activity bout is a walking bout if it:
-
-* is not a *dwell bout* (i.e., a bout in which an individual did not leave a pre-specified radius, determined using the GPS trace (default: 66 feet) `[Kang:2013]`, indicating that the individual was not moving in space).
-
-<!-- DMC: Is 'moving in space' the common term in this literature? That always bothered me because you are still moving in space, just not as far. Could we say 'indicating that the person did not leave their local area'? -->
-
-* has a median speed consistent with that of walking (specific thresholds configurable and outlined below)
-* has sufficient GPS coverage 
-
-
-## How `walkboutr` works
-
-
-
-### I. Accelerometry Process
-
-First, from accelerometry data alone, we identify physical activity bouts. These bouts indicate periods of time in which the wearer appears to be physically active, though not necessarily walking (e.g., they could be playing a sport or working out). In order to identify physical activity bouts in accordance with the definition given above, `walkboutr` uses a run-length encoding algorithm to identify subsequences within the accelerometry data where there are 4 or more consecutive epochs where the activity level is above the threshold indicating the individual was active (>500 CPE). Where 4 or more epochs are inactive, the last of those consecutive epochs is by definition not part of a bout (Figure 1). 
-
-<!-- The last sentence in the paragraph above is a little confusing to me. If there are 4 or more consecutive inactive epochs, aren't all of them by definition not a bout, not just the final one?  -->
-
-![An accelerometry trace indicating a bout, where the bout period is indicated by the gray bounds and the epochs outside of these bounds are not included in the bout. The blue line shows the threshold for an individual being considered active, which defaults to 500 CPE in walkboutr.\label{fig:1}](fig2.png){width=100%}
-
-The dataset can then be divided into non-bouts and potential bouts (i.e., subsequences in which a beginning and end of a period need to be identified to determine whether the activity periods extend long enough to be an activity bout).  The potential bouts can then be run-length encoded to identify bouts. Each sequence of epochs that have been identified as potential bouts will have a number of inactive epochs at the end of the series that is equal to the maximum number of consecutive inactive epochs in a bout, a parameter that can be specified by the user but defaults to 3 epochs (or 1.5 minutes for 30s epochs). 
-<!-- DMC: The above sentence is a little confusing to me. Shouldn't it be more than the max number of consecutive inactive epochs in a bout? Otherwise it could be just the middle of a bout?   -->
-
-All potential bouts that were found in this first step are now filtered to only include those that have enough active epochs to be considered a bout, another parameter that can be specified by the user but defaults to 10 active epochs (or 5 minutes). 
-
-If there are no bouts, `walkboutr` stops and returns a message indicating that there are no bouts. If there are physical activity bouts, `walkboutr` labels each bout with a numeric value. These bouts will later be labeled as either walk bouts or non-walk bouts. 
-
-In addition to finding all bouts in the accelerometry data, `walkboutr` identifies non-wearing periods in the accelerometry data based on a threshold of consecutive epochs with activity counts of 0 CPE. When there are 20 consecutive minutes in which activity counts are 0 CPE, the individual is determined not to be wearing their accelerometry device `[Saelens:2014]`.  These periods are flagged and labeled as non-wearing periods. 
-
-<!-- DMC: consider removing the above paragraph for brevity. I don't think it's important for this paper. Or maybe just keep the first sentence and combine with paragraph below. 
-
-We could simplify these two paragraphs by saying: `walkboutr` also identifies and flags periods where the device is not worn as well as days in which the device is worn for less than 8 hours.  -->
-
-Finally, `walkboutr` determines if the user wore their accelerometer for a sufficient sampling period of 8-hours, also referred as a "complete day." This 8-hour threshold comes preset as a modifiable constant within the `walkboutr` package `[Saelens:2014]`.  `walkboutr` does this by converting time to the local time zone indicated by the user, identifying each full day sequence, and determining if the non-wearing time exceeds 16 hours (24-8 hours). `walkboutr` then creates a flag to designate data points that are associated with a complete day. 
-
-After identifying all physical activity bouts and flagging for non-wearing time, the accelerometry data is ready to be merged with GPS data. 
-
-### II. GPS Process
-
-Incorporating GPS data to classify bouts as walking or not walking requires four steps.  First, `walkboutr` merges GPS and accelerometry data by timestamp.  This merge is complex for two reasons: (1) accelerometry data are typically recorded in local time whereas GPS devices record in UTC time, and (2) whereas accelerometers record activity in consistent epochs from the time they are turned on, GPS devices record when they receive responses from GPS satellites.  A fully launched GPS device pings satellites on a regular schedule, often aligned by design with accelerometer epochs.  However, when devices re-establish connections with satellites (e.g., after a device restart or after time spent in a tunnel), timestamps may be off-alignment.  Accordingly, for each recorded GPS point, `walkboutr` identifies the accelerometer epoch synchronized local time zone of the GPS points (accounting for daylight savings time), then merges the datasets. When multiple GPS points fall within one accelerometer epoch, `walkboutr` will assign the latest GPS point within the epoch to reconcile duplications due to temporal alignment.
-
-Next, `walkboutr` calculates a circle to approximate the distance covered by this bout. The circle is centered at the GPS point cloud median and includes the inner 95% of GPS points. An activity bout is considered a dwell bout (i.e., not walking) if, as mentioned above, the individual does not leave a prespecified radius (default setting at 66 feet `[Kang-2013]`), which may indicate they had not left their home, work, etc. Figure 2 depicts a walk bout and a dwell bout. 
-
-![Walk bout (left) and dwell bout (right) show how an individual must leave the dwell bout threshold of 66 feet (shown in pink circle in both plots) in order to be considered a potential walk bout.\label{fig:2}](fig_3.png)
-
-GPS data are then evaluated for completeness based on whether they have a sufficient number of GPS records. This is assessed both in terms of the number of GPS observations within a bout as well as the ratio of observations that have GPS data. By default, a bout has sufficient GPS coverage if it has at least five GPS observations and at least 20% of the epochs have a paired GPS observation. 
-
-### III. Walk Bout Identification
-The final step in `walkboutr` synthesizes the above information and labels each physical activity bout as either a walk bout or a non-walk bout, with a specific label for the different types of non-walk bouts.  Each physical activity bout can have just one category, making the order of labeling important. There are six possible categories into which a bout can fall `[Kang:2013]`. In order, `walkboutr` applies the following labels:    
-
-1.	Among all physical activity bouts, bouts without complete GPS data are labeled as a non-walk bout due to incomplete GPS coverage (labeled as **non_walk_incomplete_gps**). 
-2.	Among remaining physical activity bouts, bouts where the median speed exceeds the maximum walking speed are labeled as a non-walk bout due to high speed (labeled as **non_walk_too_fast**). Maximum walking speed defaults to 6 kilometers per hour.
-3.	Among remaining physical activity bouts, bouts where the median speed falls below the minimum walking speed are labeled as a non-walk bout due to low speed (labeled as **non_walk_too_slow**). <!-- DMC: what is the default min walking speed? ->
-4.	Among remaining physical activity bouts, bouts whose mean activity counts (in CPE) are too vigorous to be considered walking (by default, greater than 500 CPE) are labeled as non-walk bout due to high activity (labeled as **non_walk_too_vigorous**).
-
-<!-- DMC: #4 above. It says earlier that 500 CPE is the cut-off to determine whether an epoch is active or inactive. Shouldn't all walkbouts have epochs with CPE > 500 CPE?    -->
-
-
-5.	Among remaining physical activity bouts, bouts whose GPS data do not exceed a bounding radius of 66 feet are labeled as dwell bouts (labeled as **dwell_bout**).
-6.	Any remaining physical activity bouts are labeled as walk bouts (labeled as **walk_bout**).
-
-### IV. Outputs
+###  Producing walk bout datasets for analysis
 
 From the processed GPS and accelerometry data, a complete, epoch-level dataset (containing epoch time as date-time in the UTC time zone, accelerometry counts per epoch, latitude, longitude, epoch speed, and wearing day complete flag) is used to create two different output datasets:
 
-The first output is a full dataset (at the epoch level) – this dataset returns all of the original input data that the user provided, in addition to the new columns that `walkboutr` created. This dataset is not de-identified, and thus is appropriate for investigators interested in exploring where people walk (e.g., a walkability analysis) `[Dalmat:2021]`.
+The first output is a complete, epoch-level dataset (Table 1) that returns all of the original input data that the user provided and the new columns `walkboutr` created. This dataset is not de-identified, and thus is appropriate for investigators interested in exploring where people walk `[Dalmat:2021]`.
 
-The second output is a summarized dataset (at the bout level), which has been de-identified and collapsed to only include summary walk bout information. This dataset is intended to provide essential walking and physical activity metrics without any identifying information – thus serving as a product that can be easily shared. This dataset can be used in analyses of walking, merged with other key covariates, and used in research studies of external factors that do or do not increase walking in a population (e.g., neighborhood features and their association with walkability can be merged on prior to deidentification and incorporated after identifying features have been removed) `[Mooney:2020]`. 
-
-The full dataset (at the epoch level) can be seen in Table 1. The summarized dataset (at the bout level) can be seen in Table 2.
+The second output is a summary, bout-level dataset (Table 2) that has been de-identified and collapsed to only include summary walk bout information. This dataset is intended to provide essential walking and physical activity metrics without any identifying information – thus serving as a product that can be easily shared. This dataset can be used in analyses where walking or walking frequency is the outcome, e.g. research studies identifying external factors or neighborhood features that do or do not increase walking in a population `[Mooney:2020]`. 
 
 | Column                   | Class           | Definition                                                                                                   |
 |---------------------------|-----------------|-------------------------------------------------------------------------------------------------------------|
@@ -186,7 +116,8 @@ The full dataset (at the epoch level) can be seen in Table 1. The summarized dat
 | longitude                    | Numeric           | Longitude coordinate.                                                                                                                                            |
 | median_speed                 | Numeric           | This column contains the median speed, in km/h, of a given bout.                                                                                                 |
 | duration                     | Numeric           | This column contains the length of a bout, in minutes.                                                                                                           |
-**Table 1.** Full dataset.
+
+**Table 1. Complete, epoch-level dataset.**  The first column contains the dataset column names, the second column contains the object class of each dataset feature, and the final column provides a definition of each feature.
 
 | Column                   | Class           | Definition                                                                                                   |
 |---------------------------|-----------------|-------------------------------------------------------------------------------------------------------------|
@@ -196,16 +127,12 @@ The full dataset (at the epoch level) can be seen in Table 1. The summarized dat
 | complete_day             | Logical         | This is a Boolean column indicating whether the calendar day of data was complete (assessed by determining whether the individual wore their accelerometer for greater than x hours, where x is passed in as a parameter.     min_wearing_hours_per_day or defaults to 8.) |
 | bout_start               | Date-time       | This column contains date-time values in the UTC time zone.                                                 |
 | duration                 | Numeric         | This column contains the length of a bout, in minutes.                                                      |
-**Table 2.** Summarized dataset.
 
+**Table 2. Summary, bout-level dataset.** The first column contains the dataset column names, the second column contains the object class of each dataset feature, and the final column provides a definition of each feature.
 
+The `walkboutr` package also produces summary figures describing the walk bouts. This figure shows a walk bout where the accelerometry counts exceed the threshold for being considered active in combination with an image of the ratio of radii of the bout to the the dwell bout threshold. In the example in Figure 3, the physical activity bout in the gray box is classified as a walk bout, because (1) the activity CPE are consistent with that of walking and (2) the bout area is larger than that of the dwell bout.  
 
-The `walkboutr` package also produces figures describing the walk bouts that are generated, as demonstrated below (Figure 5). This figure shows a walk bout (contained within the gray box) where the accelerometry counts exceed the threshold for being considered active, and an image of the ratio of radii of the bout to the the dwell bout threshold. Given that (1) the activity CPE are consistent with that of walking and (2) the bout area is larger than that of the dwell bout, this is considered a walk bout.  
-
-![Example of a walk bout.\label{fig:3}](fig_5.png){width=100%}
-
-
-
+![**Figure 3. Summary figure of a walk bout.** \label{fig:3}](fig_5.png){width=100%}
 
 # Conclusions and future directions
 
@@ -218,114 +145,3 @@ As public health research increasingly embraces data-driven methodologies, the `
 
 *Acknowledgements: We thank Amy Youngbloom for her contributions and assistance in vetting these methods.*
 
-
-
-\newpage
-
-
-# DMC - Suggested removal
-
-<!-- DMC - moving sections down here that I think should be removed from the paper.  -->
-
-Figure 1 presents a high-leveled dataflow diagram of how `walkboutr` works. The four modular transformation steps will be described in the following sections as the Accelerometry Process, GPS Process, Walk bout identification, and Summary of walk bouts.
-
-![walkboutr process.\label{fig:1}](fig1.png)
-
-
-# Inputs
-
-`walkboutr` takes in GPS and accelerometry data and processes them to generate walk bouts, using several optional parameters. The following description of these arguments, parameters, and inputs are applicable as of June 2025 and users can check our the `walkboutr` [CRAN page](https://cran.r-project.org/web/packages/walkboutr/index.html) and [website](https://rwalkbout.github.io/walkboutr/index.html) for any future updates.
-
-## Accelerometry data
-Accelerometry data are collected via accelerometers and are expected to contain two columns – time and activity counts – where time represents date-time values in the UTC time zone and activity (a numeric column) represents counts per epoch, as described above. `walkboutr` expects the user to convert time to UTC time for use in the package, but also takes the local time zone as an argument in order to ensure the correct handling of date-time. This format is consistent with the output format from the Actigraph GT3X accelerometer, a device commonly used in research. Refer to Figure 1 for a visualization of accelerometry data. 
-
-The accelerometry data are validated and processed. The processed accelerometry data contain the columns described in Table 1. 
-
-| Column                   | Class           | Definition                                                                                                   |
-|---------------------------|-----------------|-------------------------------------------------------------------------------------------------------------|
-| activity_counts | Numeric  | This column contains the activity counts from the original data, in counts per epoch (CPE).                                                                   |
-| time            | Date-time| This column contains date-time values in the UTC time zone. (Note: For the determination of the complete_day variable, this column is converted to local time and then back to UTC in order to ensure the correct evaluation of whether a day is complete). |
-| bout            | Numeric  | This column is a label for each walk bout – each bout is sequentially labeled with a number for easier identification purposes.                                |
-| inactive        | Logical  | This is a Boolean column for whether the activity_counts > 500 CPE, which is the threshold for an individual being considered active.                          |
-| non_wearing     | Logical  | This is a Boolean column indicating whether the individual was wearing their accelerometer during that period (assessed by determining if the individual was wearing the accelerometer for x consecutive epochs, where x is passed in as parameter non_wearing_min_threshold_epochs or defaults to 40.) |
-| complete_day    | Logical  | This is a Boolean column indicating whether the calendar day of data was complete (assessed by determining whether the individual wore their accelerometer for greater than x hours, where x is passed in as parameter non_wearing_hours_per_day or defaults to 8.) |
-**Table 1.** Processed accelerometry data.
-
-## GPS data
-
-Raw GPS data are expected to contain column times, latitude, longitude, and speed – where time represents date-time values in the UTC and speed is in kilometers per hour.  These data are consistent with the format used by the QStarz BG-1000XT GPS device commonly used in research `[Steel-2021]`.  The GPS data are essential to determining whether an individual has left a given area and is thus walking. In order to assess this, `walkboutr` estimates the distance that an individual has traveled and use that to determine if the individual is likely to have left a given area. If an individual meets the activity count requirements to be considered to be on a walk but does not leave a given location, convention is to label this a dwell bout. A dwell bout may be characterized by an individual walking around their home, walking around their work, etc. – the individual is walking, but the individual is not on a walk. This is an important aspect of measuring walking as it differentiates movement in one space from movement through space {Kang-2013}.   
-
-The processed GPS data consist of a dataset with columns time, longitude, latitude, and speed, where time is now the nearest epoch start time (rather than the precise time stamp of the GPS data point). GPS data are assigned to an epoch start time by rounding down the time associated with the GPS datapoint to the nearest epoch start time.  For example, if epochs in the accelerometry data are 30 seconds, the time associated with a GPS data point will be rounded down to the nearest 30-second increment. If there are multiple GPS datapoints within a single accelerometry epoch, the latest GPS data point in that epoch is used. This allows for the integration of the accelerometry and GPS datasets. The columns described here can be found in Table 2. 
-
-| Column                   | Class           | Definition                                                                                                   |
-|---------------------------|-----------------|-------------------------------------------------------------------------------------------------------------|
-| time       | Date-time| This column contains date-time values in the UTC time zone. (Note: this column is now the nearest time that corresponds with an accelerometry epoch, as described above). |
-| longitude  | Numeric  | Longitude coordinate.                                                                                                                    |
-| latitude   | Numeric  | Latitude coordinate.                                                                                                                     |
-| speed      | Numeric  | Current speed in kilometers per hour.                                                                                                    |
-**Table 2.** Processed GPS data.
-
-## Constants and parameters
-
-`walkboutr` contains several optional parameters and constants within the package. The constants are pre-set in the package, but the parameters can be adjusted if a user wants to. If a user does not want to adjust any parameters, there is no further specification required. 
-
-The following parameters are optional, and the default value in the absence of a user specifying the parameter, is shown in Table 3. These values can be passed as arguments to the top level functions in the package. 
-
-| Column                                                    | Definition                                                                        | Default             |
-|-----------------------------------------------------------|------------------------------------------------------------------------------------|--------------------|
-| epoch_length                                | The duration of an epoch in seconds.                                                                   | 30                 |
-| active_counts_per_epoch_min                 | Minimum accelerometer counts for an epoch to be considered active (vs. inactive).                      | 500                |
-| minimum_bout_length                         | Minimum number of epochs for a period of activity to be considered as a potential bout.                | 10                 |
-| local_time_zone                             | Local time zone of the data - data come in and are returned in UTC, but local time zone is used to compute complete days. | America/ Los_Angeles |
-| maximum_number_consec_inactive_epochs_in_bout | Number of consecutive epochs that can be labeled as inactive during a bout without ending the bout.     | 3                  |
-**Table 3.** Parameters.
-
-The constants can be found in Table 4.  
-
-| Column                                                    | Definition                                                                        | Default             |
-|-----------------------------------------------------------|------------------------------------------------------------------------------------|--------------------|
-| non_wearing_min_threshold_epochs           | Number of consecutive epochs with activity counts of 0 that constitutes a period where the device is not worn | 40      |
-| min_wearing_hours_per_day                  | Minimum number of hours in a day an individual must wear an accelerometer for the day to be considered complete. | 8       |
-| min_gps_obs_within_bout                    | Minimum number of GPS observations within a bout for that bout to be considered to have complete GPS data.    | 5       |
-| min_gps_coverage_ratio                     | Minimum ratio of data points with GPS data vs. without GPS data for the bout to be considered to have complete GPS data. | 0.2     |
-| dwellbout_radii_quantile                   | Threshold for outlying GPS data points - any data points above the 95th percentile are considered outliers.   | 0.95    |
-| max_dwellbout_radii_ft                     | Maximum radius, in feet, of a bounding circle that would be considered a dwell bout (rather than a potential walk bout). | 66      |
-| min_dwellbout_obs                          | Minimum number of observations to consider something a potential dwell bout.                                  | 10      |
-| max_walking_cpe                            | Maximum CPE value before the accelerometer is considered to be picking up on an activity more intense than walking. | 2863    |
-| min_walking_speed_km_h                     | Minimum speed considered walking.                                                                             | 2       |
-| max_walking_speed_km_h                     | Maximum speed considered walking.                                                                             | 6       |
-**Table 4.** Constants.
-
-
-Figure 4 is a high-level summary of this process: 
-
-![walkboutr process using simulated data included in package.\label{fig:4}](fig_4.png)
-
-
-
-# Discussion
-
-<!-- DMC: I think most of this information is included in our first section. We should cut the current discussion for brevity. -->
-
-## Contribution of `walkboutr` to public health research
-
-<!-- DMC: this information is described in more detail in the first section -->
-
-`walkboutr` allows researchers to evaluate their personal monitoring data using a consistent and precise definition of a walk bout, allowing for research efforts to be focused on the implications of walking. This implementation of the algorithm will aid physical activity researchers in evaluating changes in walking behavior in their populations of interest, thereby facilitating research in this space.  
-
-
-### An example of `walkboutr` use: TRAC study
-
-Our most recent application of this package is using the TRAC collected data beginning in 2008 with the goal of assessing the ways in which new light-rail changes in King County affected physical activity, particularly walking. Participants in the TRAC study wore a uni-axial or tri-axial accelerometer (GT1M or GT3X Actigraph LLC, Fort Walton Beach, FL) and carried a GPS device (DG-100 GPS data logger, GlobalSat, Taipei, Taiwan or QStarz BT1000-XT) `[Kang:2018]`.  The data from the TRAC study were cleaned and processed to contain the columns required by `walkboutr` and were then processed to identify walk bouts in the data. These walk bouts were then used, for example, to identify whether people walk more near new transit stops `[Huang:2017]`, determine which residential neighborhood features were most correlated with walking `[Mooney:2020]`, and compare walkability metrics to determine which best predicted walking `[Dalmat:2021]`. 
-
-However, the code for walk bout identification for these previous papers was developed only for the TRAC study.  `walkboutr` implements the bout identification algorithm in a re-usable way and deidentifies the data; it allows all researchers to use the same algorithm and share common data, and provides efficient and consistent processing of data to estimate walking. 
-
-
-## Contribution of `walkboutr` to data privacy and ethics practices
-
-In addition to aiding physical activity researchers in their ability to evaluate walking and thus outcomes with which exposure can be tied, `walkboutr` represents an example of an R package in the public health research space that allows researchers who work with personally identifying and sensitive data to collaborate with other researchers safely and without risk of privacy breaches. 
-
-`walkboutr` does this by collapsing all identifying information within its processing and outputting a dataset that contains all relevant walking information without any personal identifiers, exact GPS coordinates, nor exact accelerometer values – making it impossible to trace any bouts back to individuals.  Given the sensitive nature of GPS and accelerometry data, `walkboutr` thus offers anonymous set of walk bouts upon which researchers may collaborate. For example, it allows researchers looking at walking in King County to collaborate with researchers looking at walking in other counties, as the light-rail continues to expand, in the case of the TRAC study, without any risk of privacy breaches. The ability to de-identify, anonymize, and label GPS data opens many more avenues to collaboration in this space.
-
-
-# References
